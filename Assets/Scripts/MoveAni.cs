@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Spine.Unity;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 public class MoveAni : MonoBehaviour
 {
     public bool choose, check, Opening;
 
     public GameController gamecontroller;
     public CongAnimation dooranmation;
+    public GameObject Panel_GameOver;
 
     public SkeletonAnimation anim;
     private Rigidbody2D rb;
@@ -23,17 +22,20 @@ public class MoveAni : MonoBehaviour
     public LayerMask groundLayer;
 
     //kiem tra di chuyen
-    private bool moveRight, moveleft, die, isMovingDown, isMovingUp;
+    private bool moveRight, moveleft, die;
     //load scene
-    public string Scenename;
+   // public string Scenename;
 
-    public Button right, left, jump;
+
    
 
     [SpineAnimation] public string IdleAnim; //cac hanh dong
     [SpineAnimation] public string walkAnim;
     [SpineAnimation] public string jumpAnim;
     [SpineAnimation] public string isDie;
+    [SpineAnimation] public string happy;
+    [SpineAnimation] public string Win;
+
     [SpineAtlasRegion] public SpineSkin skin;
 
     // Start is called before the first frame update
@@ -61,7 +63,7 @@ public class MoveAni : MonoBehaviour
        
     }
 
-    private void PlayAninmation(string _strAnim)
+    public void PlayAninmation(string _strAnim)
     {
         if (!anim.AnimationName.Equals(_strAnim))
         {
@@ -69,7 +71,15 @@ public class MoveAni : MonoBehaviour
             anim.AnimationState.SetAnimation(0, _strAnim, true);
         }
     }
-   
+    public void PlayAninmationDie(string _strAnim)
+    {
+        if (!anim.AnimationName.Equals(_strAnim))
+        {
+
+            anim.AnimationState.SetAnimation(0, _strAnim, false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (check)
@@ -83,6 +93,7 @@ public class MoveAni : MonoBehaviour
             {
                 dooranmation.OpenDoor2();
                 Opening = true;
+              
             }
             else
             {
@@ -95,8 +106,9 @@ public class MoveAni : MonoBehaviour
                 Died();
                 die = true;
                 
-                PlayAninmation(isDie);
-                StartCoroutine(Dieing());
+                PlayAninmationDie(isDie);
+                 StartCoroutine(Dieing());
+               // Panel_GameOver.SetActive(true);
 
             }
             if (collision.gameObject.tag == "Die")
@@ -104,8 +116,9 @@ public class MoveAni : MonoBehaviour
                 rb.velocity = new Vector3(0f, 0f);
                 Died();
                 die = true;
-                PlayAninmation(isDie);
+                PlayAninmationDie(isDie);
                 StartCoroutine(Dieing());
+                //Panel_GameOver.SetActive(true);
             }
 
         }
@@ -120,6 +133,7 @@ public class MoveAni : MonoBehaviour
             {
                 dooranmation.OpenDoor1();
                 Opening = true;
+              
             }
             else
             {
@@ -131,17 +145,19 @@ public class MoveAni : MonoBehaviour
                 rb.velocity = new Vector3(0f, 0f);
                 Died();
                 die = true;
-                PlayAninmation(isDie);               
+                PlayAninmationDie(isDie);
                 StartCoroutine(Dieing());
-                
+               // Panel_GameOver.SetActive(true);
+
             }
             if (collision.gameObject.tag == "Die")
             {
                 rb.velocity = new Vector3(0f, 0f);
                 Died();
                 die = true;
-                PlayAninmation(isDie);
-                StartCoroutine(Dieing());
+                PlayAninmationDie(isDie);
+                 StartCoroutine(Dieing());
+                //Panel_GameOver.SetActive(true);
             }
 
         }
@@ -197,12 +213,13 @@ public class MoveAni : MonoBehaviour
         {
             if (isGrounded)
             {
-                if (rb.velocity.y == 0)
+                //  if (rb.velocity.y == 0)
                 {
                     rb.velocity = Vector2.up * jumpForce;
                     PlayAninmation(jumpAnim);
                 }
             }
+            
         }
        
         
@@ -245,7 +262,7 @@ public class MoveAni : MonoBehaviour
                     PlayAninmation(walkAnim);
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.D))
+            else if (Input.GetKeyUp(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 PlayAninmation(IdleAnim);
             }
@@ -264,9 +281,18 @@ public class MoveAni : MonoBehaviour
                     PlayAninmation(walkAnim);
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.A))
+            else if (Input.GetKeyUp(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 PlayAninmation(IdleAnim);
+            }
+
+            if (Input.GetKey(KeyCode.H))
+            {
+                PlayAninmation(happy);
+            }
+            if (Input.GetKey(KeyCode.P))
+            {
+                PlayAninmation(Win);
             }
         }
     }
@@ -279,19 +305,22 @@ public class MoveAni : MonoBehaviour
             {
                 if (isGrounded)
                 {
-                    if (rb.velocity.y == 0)
-                    {
-                        rb.velocity = Vector2.up * jumpForce;
-                        PlayAninmation(jumpAnim);
-                        dbjump = true;
-                    }
-                    if (dbjump)
-                    {
-                        rb.velocity = Vector2.up * jumpForce;
-                       
-                    }
+                    //if (rb.velocity.y == 0)
+
+                    rb.velocity = Vector2.up * jumpForce;
+                    PlayAninmation(jumpAnim);
+                    dbjump = true;
+                }
+                else if (dbjump)
+                {
+                    jumpForce = jumpForce / 1.5f;
+                    rb.velocity = Vector2.up * jumpForce;
+                    dbjump = false;
+                    jumpForce = jumpForce * 1.5f;
+
                 }
             }
+
             else if (Input.GetKeyUp(KeyCode.Space))
             {
                 PlayAninmation(IdleAnim);
@@ -299,10 +328,12 @@ public class MoveAni : MonoBehaviour
         }
     }
 
-   IEnumerator Dieing( )
+
+    IEnumerator Dieing()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(Scenename);
+        Panel_GameOver.SetActive(true);
+        
     }
 
     public void Died()
@@ -310,8 +341,6 @@ public class MoveAni : MonoBehaviour
         moveleft = false;
         moveRight = false;
     }
-
-//////////Hieu ung khi clickbuton
 
 
     

@@ -35,14 +35,17 @@ public class CongTac : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, vStart, speed * Time.deltaTime);        
         }
         MoveTamvanTim();
-/////
-        if (!yeallow) return;
+        MoveTamVanXanh();
+        /////
+         if (!yeallow) return;
+        //if (!ismovingright) return;
+        //if (!ismovingleft) return;
         MoveTamVanVang();
     }
 
 
     private bool isMovingDown, isMovingUp,  isTimup;
-    public bool yeallow,red, isTimdown, isMovingLeft, isMovingRight;
+    public bool yeallow,red, green,green2, isTimdown, isMovingLeft, isMovingRight, isMovingLeft2, isMovingRight2;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,7 +64,6 @@ public class CongTac : MonoBehaviour
             isMovingLeft = false;
           
         }
-
         if (red)
         {
 
@@ -69,6 +71,16 @@ public class CongTac : MonoBehaviour
             isTimdown = false;
           
         }
+        if (green)
+        {
+            isTimdown = true;
+            isTimup = false;
+        }
+        if (green2)
+        {
+            isMovingLeft2 = true;
+            isMovingRight2 = false;
+        } 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -92,7 +104,16 @@ public class CongTac : MonoBehaviour
                 isTimdown = true;
                 isTimup = false;
             }
-
+            if (green)
+            {
+                isTimdown = false;
+                isTimup = true; ;
+            }
+            if (green2)
+            {
+                isMovingLeft2 = false;
+                isMovingRight2 = true;
+            }
         }
     }
 
@@ -120,6 +141,18 @@ public class CongTac : MonoBehaviour
         {
             Tamvan1.position = Vector3.MoveTowards(Tamvan1.position, vitri1_1, Autospeed * Time.deltaTime);
            
+        }
+    }
+public void MoveTamVanXanh(){
+
+        if (isMovingRight2)
+        {
+            TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri1_2, Autospeed * Time.deltaTime);
+        }
+
+        if (isMovingLeft2)
+        {
+            TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri2_2, Autospeed * Time.deltaTime);
         }
     }
 }

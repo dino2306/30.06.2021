@@ -27,12 +27,12 @@ public class GameController : MonoBehaviour
     }
     public void getScore1(){
         num--;
-        CountBlue.text =  num.ToString();
+        CountBlue.text =   num.ToString();
        
     }
     public void getScore2(){
         num2 --;
-        CountRed.text = num2.ToString();
+        CountRed.text =   num2.ToString();
        
     }
 

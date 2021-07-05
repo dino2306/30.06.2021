@@ -140,14 +140,14 @@ MonoBehaviour:
   check: 0
   Opening: 0
   gamecontroller: {fileID: 8916570815367710847, guid: d7c73190f3a96c64c9c5a3bd972e282d, type: 3}
-  dooranmation: {fileID: 4027089086735703548, guid: 1716e38f88bfe5b428ded68a294542ab, type: 3}
+  dooranmation: {fileID: 8718647005479960518, guid: 1716e38f88bfe5b428ded68a294542ab, type: 3}
   anim: {fileID: 3843210989072330011}
   speed: 4
-  jumpForce: 13
+  jumpForce: 8
   groundCehck: {fileID: 7898322863833219414}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8
   Scenename: 
   right: {fileID: 0}
   left: {fileID: 0}
@@ -156,6 +156,8 @@ MonoBehaviour:
   walkAnim: 100_run
   jumpAnim: jump
   isDie: die0
+  happy: idle5_1
+  Win: idle3
 --- !u!50 &3053730960824375299
 Rigidbody2D:
   serializedVersion: 4
@@ -171,7 +173,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: f7e727d3146e223428fc80750f414cdb, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -190,7 +192,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05, y: 0.5}
+  m_Offset: {x: 0.049999997, y: 0.5038902}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -201,7 +203,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.01}
+  m_Size: {x: 0.4, y: 1.0022196}
   m_EdgeRadius: 0
 --- !u!1001 &225576745017216648
 PrefabInstance:
@@ -220,11 +222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7979554002892689374, guid: 900614d28d407fe4498af325e6565464, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7979554002892689374, guid: 900614d28d407fe4498af325e6565464, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.038
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 7979554002892689374, guid: 900614d28d407fe4498af325e6565464, type: 3}
       propertyPath: m_LocalPosition.z
@@ -272,6 +274,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1354558582324667461}
     m_Modifications:
+    - target: {fileID: 2068180068816181984, guid: 6cd96adf1fea8ed4ea553e3cdd59414f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6426666
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068180068816181984, guid: 6cd96adf1fea8ed4ea553e3cdd59414f, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.3034202
+      objectReference: {fileID: 0}
     - target: {fileID: 2068180068816181986, guid: 6cd96adf1fea8ed4ea553e3cdd59414f, type: 3}
       propertyPath: m_RootOrder
       value: 0

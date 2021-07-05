@@ -5,10 +5,11 @@ using UnityEngine;
 public class XuliCongTac : MonoBehaviour
 {
     public CongTac congtac1, congtac3;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-
+        player = gameObject;
     }
 
     // Update is called once per frame
@@ -43,23 +44,13 @@ public class XuliCongTac : MonoBehaviour
 
 
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag.Contains("Player"))
-    //    {
-    //        congtac1.yeallow = true;
-    //        congtac3.yeallow = false;
-    //        Debug.Log("HIHIHIHIH");
-    //    }
-    //}
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag.Contains("Player"))
-    //    {
-    //        congtac1.yeallow = false;
-    //        congtac3.yeallow = true;
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+      
+       
+        
+    }
+   
 
 }
    

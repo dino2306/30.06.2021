@@ -11,6 +11,7 @@ public class PlayerChoose : MonoBehaviour
 
     public GameObject BtnSwapBlue;
     public GameObject BtnSwapRed;
+    public GameObject Panel_Win;
 
     public GameObject PausePanel;
 
@@ -32,8 +33,13 @@ public class PlayerChoose : MonoBehaviour
     {
         SwapBlueKey();
         SwapRedkey();
-
+        HandPause();
         StartCoroutine( NexMapp2xx());
+        if (Input.GetKey(KeyCode.W))
+        {
+            _player1.Opening = true;
+            _player2.Opening = true
+            ;        }
     }
 
 
@@ -46,6 +52,9 @@ public class PlayerChoose : MonoBehaviour
 
         BtnSwapBlue.SetActive(false);
         BtnSwapRed.SetActive(true);
+
+        _player1.StopMoving();
+        _player1.PlayAninmation(_player1.happy);
     }
 
     public void SwapBlue()
@@ -58,7 +67,8 @@ public class PlayerChoose : MonoBehaviour
         BtnSwapBlue.SetActive(true);
         BtnSwapRed.SetActive(false);
 
-
+        _player2.StopMoving();
+        _player2.PlayAninmation(_player2.happy);
     }
 
     private void SwapBlueKey()      ////click key
@@ -72,6 +82,9 @@ public class PlayerChoose : MonoBehaviour
 
             BtnSwapBlue.SetActive(true);
             BtnSwapRed.SetActive(false);
+
+            _player2.StopMoving();
+            _player2.PlayAninmation(_player2.happy);
         }
     }
 
@@ -88,6 +101,9 @@ public class PlayerChoose : MonoBehaviour
 
             BtnSwapBlue.SetActive(false);
             BtnSwapRed.SetActive(true);
+
+            _player1.StopMoving();
+            _player1.PlayAninmation(_player1.happy);
         }
     }
 
@@ -100,6 +116,15 @@ public class PlayerChoose : MonoBehaviour
     {
         PausePanel.SetActive(true);
        Time.timeScale = 0;
+    }
+
+    public void HandPause()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            PausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 
     public void Resum()
@@ -119,11 +144,18 @@ public class PlayerChoose : MonoBehaviour
        
         if (_player1.Opening && _player2.Opening )
         {
+            _player1.PlayAninmation(_player1.Win);
+            _player2.PlayAninmation(_player1.Win);
             yield return new WaitForSeconds(1.5f);
-            SceneManager.LoadScene(Map2);
+            Panel_Win.SetActive(true);
         }
        
     }
+    public void Nextmap()
+    {
+        SceneManager.LoadScene(Map2);
+    }
+
 
 }
     

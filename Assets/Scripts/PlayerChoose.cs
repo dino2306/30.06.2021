@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class PlayerChoose : MonoBehaviour
 {
 
     public MoveAni _player1, _player2;
    
-
     public GameObject BtnSwapBlue;
     public GameObject BtnSwapRed;
     public GameObject Panel_Win;
 
     public GameObject PausePanel;
-
+    public winMission winmission;
 
     public Color clRed, clBlue;
     public Image imBg;
 
     public string Map2;
     public string welcomHome;
+
+    public int missionId;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +40,9 @@ public class PlayerChoose : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             _player1.Opening = true;
-            _player2.Opening = true
-            ;        }
+            _player2.Opening = true;
+        }
+      //  winmission.UnlockNextMission(missionId);
     }
 
 
@@ -54,7 +57,7 @@ public class PlayerChoose : MonoBehaviour
         BtnSwapRed.SetActive(true);
 
         _player1.StopMoving();
-        _player1.PlayAninmation(_player1.happy);
+      //  _player1.PlayAninmation(_player1.happy);
     }
 
     public void SwapBlue()
@@ -68,7 +71,7 @@ public class PlayerChoose : MonoBehaviour
         BtnSwapRed.SetActive(false);
 
         _player2.StopMoving();
-        _player2.PlayAninmation(_player2.happy);
+       // _player2.PlayAninmation(_player2.happy);
     }
 
     private void SwapBlueKey()      ////click key
@@ -103,13 +106,14 @@ public class PlayerChoose : MonoBehaviour
             BtnSwapRed.SetActive(true);
 
             _player1.StopMoving();
-            _player1.PlayAninmation(_player1.happy);
+           _player1.PlayAninmation(_player1.happy);
         }
     }
 
     public void home()
     {
         SceneManager.LoadScene(welcomHome);
+        Time.timeScale = 1;
     }
 
     public void Pause()
@@ -148,6 +152,9 @@ public class PlayerChoose : MonoBehaviour
             _player2.PlayAninmation(_player1.Win);
             yield return new WaitForSeconds(1.5f);
             Panel_Win.SetActive(true);
+
+
+            winmission.UnlockNextMission(missionId);        //UnlockMap
         }
        
     }

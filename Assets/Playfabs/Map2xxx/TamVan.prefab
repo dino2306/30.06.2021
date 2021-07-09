@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5280434208500457728}
   m_Layer: 3
   m_Name: VanVang
-  m_TagString: Matdat
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,6 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   vDes: {x: -0.2, y: 2.5, z: 0}
+  vCurrent: {x: 0, y: 0, z: 0}
 --- !u!1 &5280434208770384276
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +88,7 @@ GameObject:
   - component: {fileID: 5280434208770384273}
   m_Layer: 3
   m_Name: VanTIm
-  m_TagString: Matdat
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   vDes: {x: 4.7, y: -0.5, z: 0}
+  vCurrent: {x: 0, y: 0, z: 0}
 --- !u!1 &5280434208891001595
 GameObject:
   m_ObjectHideFlags: 0

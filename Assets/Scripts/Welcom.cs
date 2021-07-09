@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class Welcom : MonoBehaviour
 {
     public GameObject Panel_seLecMap;
+
     public GameObject Panel_Level_Easy;
     public GameObject Panel_Level_Easy2;
     public GameObject Panel_Level_Normal;
+public GameObject Panel_Level_Normal2;
 
     public Image Sound;
     public Sprite on, off;
-
-    //public string Scencename;
+  
+    public string Scencename;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +26,8 @@ public class Welcom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(input.getmousebutton(0)){
-        //    panel_selecmap.setactive(false);
-        //   // panel_level_easy.setactive(false);
-        //  //  panel_level_normal.setactive(false);
-        //}
+      // btnlevel.sprite = Unlock;
+       
     }
     public void Open(int ScenID)
     {
@@ -38,7 +37,9 @@ public class Welcom : MonoBehaviour
 
     public void ChoosePlay()
     {
-        Panel_seLecMap.SetActive(true);
+       
+            Panel_seLecMap.SetActive(true);
+        
     }
 
     public void Easy()
@@ -63,8 +64,23 @@ public class Welcom : MonoBehaviour
         Panel_Level_Easy2.SetActive(false);
         Panel_Level_Easy.SetActive(true);
     }
-   public bool ischange;
-public void Music(){
+
+    public void Next2()
+    {
+        Panel_Level_Normal2.SetActive(true);
+        Panel_Level_Normal.SetActive(false);
+    }
+
+    public void Back2()
+    {
+        Panel_Level_Normal2.SetActive(false);
+        Panel_Level_Normal.SetActive(true);
+    }
+
+
+    public bool ischange;
+    public void Music()
+    {
         if (ischange)
         {
             Sound.sprite = on;
@@ -74,5 +90,10 @@ public void Music(){
             Sound.sprite = off;
         }
         ischange = !ischange;
+    }
+
+    public void Thoat()
+    {
+        SceneManager.LoadScene(Scencename);
     }
 }

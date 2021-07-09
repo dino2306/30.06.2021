@@ -19,13 +19,13 @@ public class LoopVat : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Matdat")){
+        if(collision.gameObject.CompareTag("Platform")){
             player.transform.parent = collision.gameObject.transform;                           
         }
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Matdat"))
+        if (collision.gameObject.CompareTag("Platform"))
         {
             player.transform.parent = null;
         }

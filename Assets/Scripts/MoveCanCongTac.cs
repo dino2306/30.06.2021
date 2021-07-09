@@ -12,6 +12,9 @@ public class MoveCanCongTac : MonoBehaviour
     public Transform TamvanTim;
     public Vector3 Vstar, Vend;
     public float speed;
+    public float speedRotate;
+
+    Vector3 alo = new Vector3(0, 0, 40);
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +28,18 @@ public class MoveCanCongTac : MonoBehaviour
         {
             if (isLeft)
             {
-                _trParent.eulerAngles = new Vector3(0, 0, -40);
                 TamvanTim.position = Vector3.MoveTowards(TamvanTim.position, Vend, Time.deltaTime * speed);
+
+                 _trParent.eulerAngles = new Vector3(0, 0, -40);
+               // _trParent.Rotate(new Vector3(0, 0, -40) * Time.deltaTime * speedRotate);
+              //  TamvanTim.position = Vector3.MoveTowards(TamvanTim.position, Vend, Time.deltaTime * speed);
 
             }
             else
             {
-                _trParent.eulerAngles = new Vector3(0, 0, 40);
                 TamvanTim.position = Vector3.MoveTowards(TamvanTim.position, Vstar, Time.deltaTime * speed);
+                _trParent.eulerAngles = new Vector3(0, 0, 40);
+              //  TamvanTim.position = Vector3.MoveTowards(TamvanTim.position, Vstar, Time.deltaTime * speed);
             }
         }
     }

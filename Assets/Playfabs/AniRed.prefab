@@ -121,7 +121,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: 100_1_idle
+  _animationName: 100_1_idle_home
   loop: 1
   timeScale: 1
 --- !u!114 &1645968500887896305
@@ -141,6 +141,7 @@ MonoBehaviour:
   Opening: 0
   gamecontroller: {fileID: 8916570815367710847, guid: d7c73190f3a96c64c9c5a3bd972e282d, type: 3}
   dooranmation: {fileID: 5687479365202353865, guid: aedf0955d01e16c4c9a8439cb44ea200, type: 3}
+  Panel_GameOver: {fileID: 0}
   anim: {fileID: 8718683371799341784}
   speed: 4
   jumpForce: 8
@@ -148,10 +149,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  Scenename: 
-  right: {fileID: 0}
-  left: {fileID: 0}
-  jump: {fileID: 0}
   IdleAnim: 100_1_idle_home
   walkAnim: 100_run(magnet)
   jumpAnim: jump(magnet)

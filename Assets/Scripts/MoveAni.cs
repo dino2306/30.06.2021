@@ -26,9 +26,6 @@ public class MoveAni : MonoBehaviour
     //load scene
    // public string Scenename;
 
-
-   
-
     [SpineAnimation] public string IdleAnim; //cac hanh dong
     [SpineAnimation] public string walkAnim;
     [SpineAnimation] public string jumpAnim;
@@ -54,12 +51,13 @@ public class MoveAni : MonoBehaviour
         // Nextmap();
         if (!choose) return;
         Handmove();
+        //HandMove2();
         HandJump();
         MoveManage();
-
-        //checkChamdat
+       
         isGrounded = Physics2D.OverlapCircle(groundCehck.position, 0.2f, groundLayer);
-
+      
+        
        
     }
 
@@ -95,11 +93,7 @@ public class MoveAni : MonoBehaviour
                 Opening = true;
               
             }
-            else
-            {
-                dooranmation.CloseDoor2();
-                Opening = false;
-            }
+           
             if (collision.gameObject.tag == "Dieblue")
             {
                 rb.velocity = new Vector3(0f, 0f);
@@ -135,11 +129,6 @@ public class MoveAni : MonoBehaviour
                 Opening = true;
               
             }
-            else
-            {
-                dooranmation.CloseDoor1();
-                Opening = false;
-            }
             if (collision.gameObject.tag == "DieRed")
             {
                 rb.velocity = new Vector3(0f, 0f);
@@ -160,6 +149,27 @@ public class MoveAni : MonoBehaviour
                 //Panel_GameOver.SetActive(true);
             }
 
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (check)
+        {
+            if (collision.gameObject.tag == "Finish2")
+            {
+                dooranmation.CloseDoor2();
+                Opening = false;
+
+            }
+        }
+        else
+        {
+            if (collision.gameObject.tag == "Finish")
+            {
+                dooranmation.CloseDoor1();
+                Opening = false;
+            }
         }
     }
 
@@ -213,11 +223,11 @@ public class MoveAni : MonoBehaviour
         {
             if (isGrounded)
             {
-                //  if (rb.velocity.y == 0)
-                {
+                  //if (rb.velocity.y == 0)
+                
                     rb.velocity = Vector2.up * jumpForce;
                     PlayAninmation(jumpAnim);
-                }
+                
             }
             
         }
@@ -238,14 +248,15 @@ public class MoveAni : MonoBehaviour
         {
             moveleft = false;
             moveRight = false;
-            rb.velocity = Vector2.zero;
-            if (isGrounded)
-            {
+            rb.velocity = new Vector3(0, rb.velocity.y);
+           // if (isGrounded)
+           // {
 
                 PlayAninmation(IdleAnim);
-            }
+          //  }
         }
     }
+ 
 
     public void Handmove()
     {
@@ -262,11 +273,11 @@ public class MoveAni : MonoBehaviour
                     PlayAninmation(walkAnim);
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
             {
                 PlayAninmation(IdleAnim);
             }
-            else
+            else 
             {
                 rb.velocity = new Vector2(0f, rb.velocity.y);
                 //  PlayAninmation(IdleAnim);
@@ -281,7 +292,7 @@ public class MoveAni : MonoBehaviour
                     PlayAninmation(walkAnim);
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
             {
                 PlayAninmation(IdleAnim);
             }
@@ -296,6 +307,40 @@ public class MoveAni : MonoBehaviour
             }
         }
     }
+    private void HandMove2()
+    {
+        if (!die)
+        {
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                rb.velocity = new Vector3(speed, rb.velocity.y);
+                anim.skeleton.ScaleX = 1;
+                if (isGrounded)
+                {
+                    PlayAninmation(walkAnim);
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                {
+                    rb.velocity = new Vector3(-speed, rb.velocity.y);
+                    anim.skeleton.ScaleX = -1;
+                    if (isGrounded)
+                    {
+                        PlayAninmation(walkAnim);
+                    }
+                }
+                else
+                {
+                    rb.velocity = new Vector3(0, rb.velocity.y);
+                    PlayAninmation(IdleAnim);
+                }
+
+            }
+        }
+    }
+    
     bool dbjump;
     private void HandJump()
     {
@@ -315,6 +360,7 @@ public class MoveAni : MonoBehaviour
                 {
                     jumpForce = jumpForce / 1.5f;
                     rb.velocity = Vector2.up * jumpForce;
+                    PlayAninmation(jumpAnim);
                     dbjump = false;
                     jumpForce = jumpForce * 1.5f;
 
@@ -327,7 +373,6 @@ public class MoveAni : MonoBehaviour
             }
         }
     }
-
 
     IEnumerator Dieing()
     {

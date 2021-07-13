@@ -141,6 +141,7 @@ MonoBehaviour:
   Opening: 0
   gamecontroller: {fileID: 8916570815367710847, guid: d7c73190f3a96c64c9c5a3bd972e282d, type: 3}
   dooranmation: {fileID: 8718647005479960518, guid: 1716e38f88bfe5b428ded68a294542ab, type: 3}
+  Panel_GameOver: {fileID: 0}
   anim: {fileID: 3843210989072330011}
   speed: 4
   jumpForce: 8
@@ -148,10 +149,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  Scenename: 
-  right: {fileID: 0}
-  left: {fileID: 0}
-  jump: {fileID: 0}
   IdleAnim: 100_1_idle
   walkAnim: 100_run
   jumpAnim: jump
@@ -192,7 +189,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.049999997, y: 0.5038902}
+  m_Offset: {x: 0.0013065338, y: 0.44377065}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -203,7 +200,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.0022196}
+  m_Size: {x: 0.15485477, y: 0.8545556}
   m_EdgeRadius: 0
 --- !u!1001 &225576745017216648
 PrefabInstance:

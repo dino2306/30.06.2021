@@ -12,18 +12,63 @@ EditorBuildSettings:
     path: Assets/Scenes/today.unity
     guid: fa4c3c763eec769488c297a601de25a1
   - enabled: 1
+    path: Assets/Scenes/Map2.unity
+    guid: 93e420711d407f84faa7d993086a8620
+  - enabled: 1
+    path: Assets/Scenes/Map3.unity
+    guid: 149e47ac6490ca244af6526b27f9e867
+  - enabled: 1
+    path: Assets/Scenes/Map4.unity
+    guid: 27668a08d66e8854589faf7262ad5d66
+  - enabled: 1
     path: Assets/Scenes/Map5.unity
     guid: a02713b224ae63144adb207c82c1b9c0
   - enabled: 1
     path: Assets/Scenes/Map6.unity
     guid: 52c83446ba0e44c4f957174bdccec5a3
   - enabled: 1
+    path: Assets/Scenes/Map7.unity
+    guid: fd2ce6e812a46c64fb7e8638f603d49f
+  - enabled: 1
+    path: Assets/Scenes/Map8.unity
+    guid: d95bef3dd6b3de242955e87aa16afd1e
+  - enabled: 1
     path: Assets/Scenes/Map9.unity
     guid: e3176fbf7de2ad34baaf703f3d482c43
+  - enabled: 1
+    path: Assets/Scenes/Map10.unity
+    guid: aac6dd54628032c408cbbfafaa7c10c0
+  - enabled: 1
+    path: Assets/Scenes/Map11.unity
+    guid: 645abdfa1b4cebd45ba3ce4a2e7616d3
   - enabled: 1
     path: Assets/Scenes/Map12.unity
     guid: c92f66af4e319f24e8172799f959a3f3
   - enabled: 1
+    path: Assets/Scenes/Map13.unity
+    guid: 888c701cb89172f49969a7fb9cbc133d
+  - enabled: 1
+    path: Assets/Scenes/Map14.unity
+    guid: 6e31fef365cc1a34fbd9618398d56e8d
+  - enabled: 1
+    path: Assets/Scenes/Map15.unity
+    guid: 03b86c24c76a23444bb503f59161a27e
+  - enabled: 1
+    path: Assets/Scenes/map16.unity
+    guid: 2623e5414eeecd040ace7a9072e86f6f
+  - enabled: 1
+    path: Assets/Scenes/Map17.unity
+    guid: c9c8729ab5578ee4ab8a5df629c3e01c
+  - enabled: 1
+    path: Assets/Scenes/Map18.unity
+    guid: cb2e7d22d67c9d04384ecdb89782d2ce
+  - enabled: 1
+    path: Assets/Scenes/map19.unity
+    guid: 624436ce15963b34195b2bbfd0ef8f0a
+  - enabled: 1
     path: Assets/Scenes/Map22.unity
     guid: aa7d58c4549404c449da8083a2ac93ba
+  - enabled: 1
+    path: Assets/Scenes/Map20.unity
+    guid: 3ed9b318646e54e44895cde415d29214
   m_configObjects: {}

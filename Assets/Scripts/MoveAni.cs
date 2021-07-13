@@ -8,6 +8,8 @@ public class MoveAni : MonoBehaviour
 
     public GameController gamecontroller;
     public CongAnimation dooranmation;
+   
+
     public GameObject Panel_GameOver;
 
     public SkeletonAnimation anim;
@@ -114,7 +116,7 @@ public class MoveAni : MonoBehaviour
                 StartCoroutine(Dieing());
                 //Panel_GameOver.SetActive(true);
             }
-
+          
         }
         else
         {
@@ -150,6 +152,7 @@ public class MoveAni : MonoBehaviour
             }
 
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -171,6 +174,7 @@ public class MoveAni : MonoBehaviour
                 Opening = false;
             }
         }
+      
     }
 
     private void MoveManage()

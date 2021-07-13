@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Camera))]
 public class FollowCamera : MonoBehaviour
@@ -17,11 +18,47 @@ public class FollowCamera : MonoBehaviour
     private Vector3 velocity;
     private Camera cam;
 
+
+
+    public Vector2 touchPosition;
+    private float swipeResistance = 200.0f;
+
     private void Start()
     {
         cam = GetComponent<Camera>();
+       
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        {
+            touchPosition = Input.mousePosition;
+          
+        }
+        if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
+        {
+            float swipeForce = touchPosition.x - Input.mousePosition.x;
+            if (Mathf.Abs(swipeForce) > swipeResistance)
+            {
+                if (swipeForce < 0)
+                {
+                    SlideCamera(true);
+
+                }
+                else
+                {
+                    SlideCamera(false);
+                }
+            }
+        }
+        
+
+    }
+    public void SlideCamera(bool left)
+    {
+        
+    }
     private void LateUpdate()
     {
         if (targets.Count == 0)

@@ -17,7 +17,8 @@ public class PlayerChoose : MonoBehaviour
     public winMission winmission;
 
     public Color clRed, clBlue;
-    public Image imBg;
+    public Image imBg, jumpBtn, leftBtn, rightBtn;
+    private Color RGBColor;
 
     public string Map2;
     public string welcomHome;
@@ -27,7 +28,7 @@ public class PlayerChoose : MonoBehaviour
     void Start()
     {
         imBg.color = clBlue;
-       
+      
     }
 
     // Update is called once per frame
@@ -163,12 +164,63 @@ public class PlayerChoose : MonoBehaviour
         SceneManager.LoadScene(Map2);
     }
 
+    public void HightjumpBtn()
+    {
+        RGBColor.a = 1;
+        RGBColor.r = 1;
+        RGBColor.g = 1;
+        RGBColor.b = 1;
+       jumpBtn.color = RGBColor;
+    }
+    public void LowBtn()
+    {
+        RGBColor.a = 0.3f;
+        RGBColor.r = 1;
+        RGBColor.g = 1;
+        RGBColor.b = 1;
+        jumpBtn.color = RGBColor;
+    }
+
+    public void HightLeftbtn()
+    {
+
+        RGBColor.a = 1;
+        RGBColor.r = 1;
+        RGBColor.g = 1;
+        RGBColor.b = 1;
+       leftBtn.color = RGBColor;
+    }
+    public void LowLeftBtn()
+    {
+        RGBColor.a = 0.3f;
+        RGBColor.r = 1;
+        RGBColor.g = 1;
+        RGBColor.b = 1;
+        leftBtn.color = RGBColor;
+    }
+    public void HightRightBtn()
+    {
+
+        RGBColor.a = 1;
+        RGBColor.r = 1;
+        RGBColor.g = 1;
+        RGBColor.b = 1;
+       rightBtn.color = RGBColor;
+    }
+    public void LowRightBtn()
+    {
+        RGBColor.a = 0.3f;
+        RGBColor.r = 1;
+        RGBColor.g = 1;
+        RGBColor.b = 1;
+       rightBtn.color = RGBColor;
+    }
 
 }
-    
 
 
 
 
-   
+
+
 

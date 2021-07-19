@@ -22,7 +22,7 @@ public class FollowCamera : MonoBehaviour
 //toch move camre
     private Vector3 touchStart;
     public float groundZ;
-
+    public bool btn_0;
 
 
     private void Start()
@@ -33,15 +33,23 @@ public class FollowCamera : MonoBehaviour
 
     private void Update()
     {
+        if (btn_0)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                touchStart = GetWorldPosition(groundZ);
+                // btn_0 = true;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 direction = touchStart - GetWorldPosition(groundZ);
+                Camera.main.transform.position += direction;
+            }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            touchStart = GetWorldPosition(groundZ);
-        }
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 direction = touchStart - GetWorldPosition(groundZ);
-            Camera.main.transform.position += direction;
+            if (Input.GetMouseButtonUp(0))
+            {
+                btn_0 = true;
+            }
         }
     }
     private Vector3 GetWorldPosition(float z)

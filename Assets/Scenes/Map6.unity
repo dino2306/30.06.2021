@@ -1492,6 +1492,8 @@ MonoBehaviour:
   minZoom: 5
   maxZoom: 5
   zoomLimiter: 10
+  groundZ: 0
+  btn_0: 0
   Check: 1
 --- !u!114 &497704619 stripped
 MonoBehaviour:
@@ -1953,6 +1955,10 @@ PrefabInstance:
       propertyPath: Win
       value: idle3
       objectReference: {fileID: 0}
+    - target: {fileID: 5853426504793292700, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
+      propertyPath: flcam
+      value: 
+      objectReference: {fileID: 457307812}
     - target: {fileID: 5853426504793292700, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
       propertyPath: happy
       value: idle5_1
@@ -2609,6 +2615,10 @@ PrefabInstance:
       propertyPath: Win
       value: idle3
       objectReference: {fileID: 0}
+    - target: {fileID: 1645968500887896305, guid: 1950011235edf37419165709c4059ebf, type: 3}
+      propertyPath: flcam
+      value: 
+      objectReference: {fileID: 457307812}
     - target: {fileID: 1645968500887896305, guid: 1950011235edf37419165709c4059ebf, type: 3}
       propertyPath: happy
       value: idle5_2

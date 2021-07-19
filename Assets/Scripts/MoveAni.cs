@@ -2,9 +2,12 @@ using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
+using GoogleAdMod;
 public class MoveAni : MonoBehaviour
 {
-    public bool choose, check, Opening;
+  //  public ggAdmos gg;                                  //Quang cao
+    public bool choose, check, Opening, die, eventbtndow;
 
     public GameController gamecontroller;
     public CongAnimation dooranmation;
@@ -24,7 +27,7 @@ public class MoveAni : MonoBehaviour
     public LayerMask groundLayer;
 
     //kiem tra di chuyen
-    private bool moveRight, moveleft, die;
+    private bool moveRight, moveleft;
     //load scene
    // public string Scenename;
 
@@ -207,7 +210,7 @@ public class MoveAni : MonoBehaviour
         {
             moveleft = true;
         }
-        
+        eventbtndow = true;
     }
 
     public void MoveRight()
@@ -216,8 +219,8 @@ public class MoveAni : MonoBehaviour
         {
             moveRight = true;
         }
-      
-      
+
+        eventbtndow = true;
     }
 
     public void Jump()
@@ -235,7 +238,7 @@ public class MoveAni : MonoBehaviour
             }
             
         }
-       
+        eventbtndow = true;
         
     }
     public void stopjum()
@@ -381,6 +384,8 @@ public class MoveAni : MonoBehaviour
     IEnumerator Dieing()
     {
         yield return new WaitForSeconds(1.5f);
+       // gg.GameOver();
+      //  QuanCaoAdMods.GameOver2();
         Panel_GameOver.SetActive(true);
         
     }

@@ -220,6 +220,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 173348345}
     - target: {fileID: 4353979120383108584, guid: 31b7a778e3cba7649bb707227219eb90, type: 3}
+      propertyPath: flCam
+      value: 
+      objectReference: {fileID: 572066542}
+    - target: {fileID: 4353979120383108584, guid: 31b7a778e3cba7649bb707227219eb90, type: 3}
       propertyPath: jumpBtn
       value: 
       objectReference: {fileID: 398041937}
@@ -1042,11 +1046,13 @@ MonoBehaviour:
   targets:
   - {fileID: 1240321528}
   - {fileID: 1999411617}
+  pl1: {fileID: 1240321528}
+  pl2: {fileID: 1999411617}
   offset: {x: 0, y: 0, z: -30}
   smoothTime: 0.5
-  minZoom: 8
+  minZoom: 5
   maxZoom: 5
-  zoomLimiter: 5.5
+  zoomLimiter: 10
   touchPosition: {x: 0, y: 0}
   Check: 1
 --- !u!4 &577213262 stripped

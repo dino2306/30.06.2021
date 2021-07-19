@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class PlayerChoose : MonoBehaviour
 {
-
+   // public ggAdmos gg;                      //quangcao
     public MoveAni _player1, _player2;
-   
+  //  public ListCongTac check_1, check_2;
     public GameObject BtnSwapBlue;
     public GameObject BtnSwapRed;
     public GameObject Panel_Win;
 
     public GameObject PausePanel;
     public winMission winmission;
+    public FollowCamera flCam;
 
     public Color clRed, clBlue;
     public Image imBg, jumpBtn, leftBtn, rightBtn;
@@ -24,11 +25,15 @@ public class PlayerChoose : MonoBehaviour
     public string welcomHome;
 
     public int missionId;
+
+    public string play2;
+
+  
     // Start is called before the first frame update
     void Start()
     {
         imBg.color = clBlue;
-      
+        PlayerPrefs.GetString("Player", "Play1").ToString();
     }
 
     // Update is called once per frame
@@ -43,7 +48,13 @@ public class PlayerChoose : MonoBehaviour
             _player1.Opening = true;
             _player2.Opening = true;
         }
-      //  winmission.UnlockNextMission(missionId);
+        //  winmission.UnlockNextMission(missionId);
+        if (play2 != PlayerPrefs.GetString("Player", "Play1"))
+        {
+            PlayerPrefs.SetString("Player", play2);
+        }
+       
+
     }
 
 
@@ -58,7 +69,12 @@ public class PlayerChoose : MonoBehaviour
         BtnSwapRed.SetActive(true);
 
         _player1.StopMoving();
-      //  _player1.PlayAninmation(_player1.happy);
+        flCam.Check = false;    //check camera
+
+        //check_1.check = false;   // check cong tac
+        //check_2.check = true;
+      
+
     }
 
     public void SwapBlue()
@@ -72,7 +88,11 @@ public class PlayerChoose : MonoBehaviour
         BtnSwapRed.SetActive(false);
 
         _player2.StopMoving();
-       // _player2.PlayAninmation(_player2.happy);
+        flCam.Check = true;
+
+        //check_1.check = true;
+        //check_2.check = false;
+      
     }
 
     private void SwapBlueKey()      ////click key
@@ -89,6 +109,11 @@ public class PlayerChoose : MonoBehaviour
 
             _player2.StopMoving();
             _player2.PlayAninmation(_player2.happy);
+
+            flCam.Check = true;
+
+            //check_1.check = true;
+            //check_2.check = false;
         }
     }
 
@@ -108,6 +133,12 @@ public class PlayerChoose : MonoBehaviour
 
             _player1.StopMoving();
            _player1.PlayAninmation(_player1.happy);
+
+            flCam.Check = false;
+
+            //check_1.check = false;   // check cong tac
+            //check_2.check = true;
+
         }
     }
 
@@ -142,7 +173,22 @@ public class PlayerChoose : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneID);
+       
     }
+    void Reset2()
+    {
+        if (_player2.choose)
+        {
+            Debug.Log("Red");
+            SwapRed();
+        }
+        if (_player1.choose)
+        {
+            Debug.Log("blue");
+            SwapBlue();
+        }
+    }
+    
 
     IEnumerator NexMapp2xx()
     {
@@ -153,7 +199,7 @@ public class PlayerChoose : MonoBehaviour
             _player2.PlayAninmation(_player1.Win);
             yield return new WaitForSeconds(1.5f);
             Panel_Win.SetActive(true);
-
+           // gg.GameOver();
 
             winmission.UnlockNextMission(missionId);        //UnlockMap
         }

@@ -45,11 +45,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player1: {fileID: 5853426504793292700, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
   _player2: {fileID: 1645968500887896305, guid: 1950011235edf37419165709c4059ebf, type: 3}
+  check_1: {fileID: 0}
+  check_2: {fileID: 0}
   BtnSwapBlue: {fileID: 0}
   BtnSwapRed: {fileID: 0}
+  Panel_Win: {fileID: 0}
   PausePanel: {fileID: 0}
+  winmission: {fileID: 0}
+  flCam: {fileID: 0}
   clRed: {r: 0.5372549, g: 0.40784317, b: 0.3803922, a: 1}
-  clBlue: {r: 0.121568635, g: 0.30588236, b: 0.42352945, a: 1}
+  clBlue: {r: 0.1764706, g: 0.50980395, b: 0.78431374, a: 0.98039216}
   imBg: {fileID: 0}
+  jumpBtn: {fileID: 0}
+  leftBtn: {fileID: 0}
+  rightBtn: {fileID: 0}
   Map2: 
   welcomHome: 
+  missionId: 0

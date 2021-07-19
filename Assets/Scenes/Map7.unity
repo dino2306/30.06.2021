@@ -382,12 +382,14 @@ MonoBehaviour:
   targets:
   - {fileID: 1333208795}
   - {fileID: 332382897}
+  pl1: {fileID: 1333208795}
+  pl2: {fileID: 332382897}
   offset: {x: 0, y: 1, z: -30}
   smoothTime: 0.5
-  minZoom: 7
+  minZoom: 5
   maxZoom: 5
-  zoomLimiter: 5.5
-  touchPosition: {x: 0, y: 0}
+  zoomLimiter: 10
+  groundZ: 0
   Check: 1
 --- !u!1 &261490141
 GameObject:
@@ -779,7 +781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256137615588531871, guid: 881c78f64760c0a4abfd3ac636eb40aa, type: 3}
       propertyPath: vitri2_1.x
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4256137615588531871, guid: 881c78f64760c0a4abfd3ac636eb40aa, type: 3}
       propertyPath: vitri2_1.y
@@ -787,7 +789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256137615588531871, guid: 881c78f64760c0a4abfd3ac636eb40aa, type: 3}
       propertyPath: vitri2_2.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4256137615588531871, guid: 881c78f64760c0a4abfd3ac636eb40aa, type: 3}
       propertyPath: vitri2_2.y
@@ -3294,6 +3296,10 @@ PrefabInstance:
       propertyPath: imBg
       value: 
       objectReference: {fileID: 1827486278}
+    - target: {fileID: 4353979120383108584, guid: 31b7a778e3cba7649bb707227219eb90, type: 3}
+      propertyPath: flCam
+      value: 
+      objectReference: {fileID: 241589804}
     - target: {fileID: 4353979120383108584, guid: 31b7a778e3cba7649bb707227219eb90, type: 3}
       propertyPath: jumpBtn
       value: 

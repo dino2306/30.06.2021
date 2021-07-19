@@ -403,6 +403,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 379704774}
     - target: {fileID: 4353979120383108584, guid: 31b7a778e3cba7649bb707227219eb90, type: 3}
+      propertyPath: flCam
+      value: 
+      objectReference: {fileID: 805093316}
+    - target: {fileID: 4353979120383108584, guid: 31b7a778e3cba7649bb707227219eb90, type: 3}
       propertyPath: jumpBtn
       value: 
       objectReference: {fileID: 1595825135}
@@ -1413,6 +1417,8 @@ MonoBehaviour:
   targets:
   - {fileID: 175597177}
   - {fileID: 416257358}
+  pl1: {fileID: 175597177}
+  pl2: {fileID: 416257358}
   offset: {x: 0, y: 1, z: -30}
   smoothTime: 0.5
   minZoom: 8

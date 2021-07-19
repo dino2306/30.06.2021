@@ -1608,13 +1608,15 @@ MonoBehaviour:
   targets:
   - {fileID: 1015615332}
   - {fileID: 160529354}
+  pl1: {fileID: 1015615332}
+  pl2: {fileID: 160529354}
   offset: {x: 0, y: 0, z: -30}
   smoothTime: 0.5
   minZoom: 8
   maxZoom: 5
   zoomLimiter: 5.5
   touchPosition: {x: 0, y: 0}
-  Check: 0
+  Check: 1
 --- !u!1001 &989130887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3334,6 +3336,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1650831842}
     - target: {fileID: 4353979120383108584, guid: 31b7a778e3cba7649bb707227219eb90, type: 3}
+      propertyPath: flCam
+      value: 
+      objectReference: {fileID: 978054415}
+    - target: {fileID: 4353979120383108584, guid: 31b7a778e3cba7649bb707227219eb90, type: 3}
       propertyPath: jumpBtn
       value: 
       objectReference: {fileID: 249611072}
@@ -3605,7 +3611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309221678399732056, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3419271509695424915, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3613,7 +3619,7 @@ PrefabInstance:
       objectReference: {fileID: 780741165}
     - target: {fileID: 3419271509695424915, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3788279033410353473, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3669,7 +3675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5082499541073873911, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5082499542011147651, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3999,6 +4005,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2020768246084491032, guid: 4a398906881abe246be7e7628668827f, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2020768246084491032, guid: 4a398906881abe246be7e7628668827f, type: 3}
       propertyPath: vdes.x
       value: 7.95

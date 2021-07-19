@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class Welcom : MonoBehaviour
 {
     public GameObject Panel_seLecMap;
@@ -10,24 +11,35 @@ public class Welcom : MonoBehaviour
     public GameObject Panel_Level_Easy;
     public GameObject Panel_Level_Easy2;
     public GameObject Panel_Level_Normal;
-public GameObject Panel_Level_Normal2;
+    public GameObject Panel_Level_Normal2;
 
     public Image Sound;
     public Sprite on, off;
   
     public string Scencename;
+    GameObject ggadmob;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       
+        if (ggadmob == null)
+        {
+            ggadmob = GameObject.FindGameObjectWithTag("ggAdmob");
+        }
+
     }
+    
+  
 
     // Update is called once per frame
     void Update()
     {
-      // btnlevel.sprite = Unlock;
-       
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(Scencename);
+        }
+        ggadmob.GetComponent<ggAdmob>().HelloWorld();
     }
     public void Open(int ScenID)
     {
@@ -97,3 +109,4 @@ public GameObject Panel_Level_Normal2;
         SceneManager.LoadScene(Scencename);
     }
 }
+

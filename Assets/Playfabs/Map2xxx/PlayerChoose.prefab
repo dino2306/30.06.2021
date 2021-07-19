@@ -47,9 +47,12 @@ MonoBehaviour:
   _player2: {fileID: 1645968500887896305, guid: 1950011235edf37419165709c4059ebf, type: 3}
   BtnSwapBlue: {fileID: 0}
   BtnSwapRed: {fileID: 0}
+  Panel_Win: {fileID: 0}
   PausePanel: {fileID: 0}
+  winmission: {fileID: 0}
   clRed: {r: 0.5372549, g: 0.40784317, b: 0.3803922, a: 1}
-  clBlue: {r: 0.121568635, g: 0.30588236, b: 0.42352945, a: 1}
+  clBlue: {r: 0.052758954, g: 0.3199919, b: 0.49056602, a: 1}
   imBg: {fileID: 0}
   Map2: 
   welcomHome: 
+  missionId: 0

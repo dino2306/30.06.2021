@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Assets;
 
 public class Welcom : MonoBehaviour
 {
+   // public winMission mission;
+
+    public GameObject panel_Menu;
     public GameObject Panel_seLecMap;
 
     public GameObject Panel_Level_Easy;
@@ -13,11 +17,21 @@ public class Welcom : MonoBehaviour
     public GameObject Panel_Level_Normal;
     public GameObject Panel_Level_Normal2;
 
+    public GameObject panel_Report;
+
+    private AudioSource audioS;
+    public AudioClip welcom, click;
+    public AudioSource audioClik;
+
     public Image Sound;
     public Sprite on, off;
   
     public string Scencename;
     GameObject ggadmob;
+
+    private int missionID;
+
+    public bool check;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +41,23 @@ public class Welcom : MonoBehaviour
         {
             ggadmob = GameObject.FindGameObjectWithTag("ggAdmob");
         }
+        audioS = GetComponent<AudioSource>();
+       
+        audioS.clip = welcom;
+        audioS.Play();
+       
 
+        if (!PlayerPrefs.HasKey("muted"))
+        {
+            PlayerPrefs.SetInt("muted", 0);
+            Load();
+        }
+        else
+        {
+            Load();
+        }
+        UpdateButtonIcon();
+        AudioListener.pause = muted;
     }
     
   
@@ -35,65 +65,130 @@ public class Welcom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+  
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(Scencename);
+            if (check)
+            {
+                SceneManager.LoadScene(Scencename);
+                check = false;
+
+            }
+            else
+            {
+                Application.Quit();
+            }
         }
-        ggadmob.GetComponent<ggAdmob>().HelloWorld();
+     
     }
     public void Open(int ScenID)
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(ScenID);
+
+        audioClik.clip = click;
+        audioClik.Play();
+
+        AdsManager.Instance.bannerView.Destroy();
     }
 
     public void ChoosePlay()
     {
-       
-            Panel_seLecMap.SetActive(true);
-        
+
+        // Panel_seLecMap.SetActive(true);
+        panel_Menu.SetActive(true);
+        check = true;
+
+        audioClik.clip = click;
+        audioClik.Play();
+
+        audioS.volume = 0.3f;
     }
 
     public void Easy()
     {
         Panel_Level_Easy.SetActive(true);
         Panel_seLecMap.SetActive(false);
+
+        audioClik.clip = click;
+        audioClik.Play();
     }
 
     public void Normal()
     {
-        Panel_Level_Normal.SetActive(true);
-        Panel_seLecMap.SetActive(false);
+        if (GameSetting.GetLastMission >= 20)
+        {
+            Panel_Level_Normal.SetActive(true);
+            Panel_seLecMap.SetActive(false);
+      
+        }
+        else
+        {
+            panel_Report.SetActive(true);
+        }
+
+        audioClik.clip = click;
+        audioClik.Play();
+      
     }
     public void Next()
     {
         Panel_Level_Easy2.SetActive(true);
         Panel_Level_Easy.SetActive(false);
+
+        audioClik.clip = click;
+        audioClik.Play();
     }
 
     public void Back()
     {
         Panel_Level_Easy2.SetActive(false);
         Panel_Level_Easy.SetActive(true);
+
+        audioClik.clip = click;
+        audioClik.Play();
     }
 
     public void Next2()
     {
         Panel_Level_Normal2.SetActive(true);
         Panel_Level_Normal.SetActive(false);
+
+        audioClik.clip = click;
+        audioClik.Play();
     }
 
     public void Back2()
     {
         Panel_Level_Normal2.SetActive(false);
         Panel_Level_Normal.SetActive(true);
+
+        audioClik.clip = click;
+        audioClik.Play();
     }
 
 
-    public bool ischange;
+    public bool muted= false;
     public void Music()
     {
-        if (ischange)
+        if (muted== false)
+        {        
+            muted = true;
+            AudioListener.pause = true;
+        }
+        else
+        {
+            muted = false;
+            AudioListener.pause = false;
+        }
+       // muted = !muted;
+        Save();
+        UpdateButtonIcon();
+    }
+
+    private void UpdateButtonIcon()
+    {
+        if (muted == false)
         {
             Sound.sprite = on;
         }
@@ -101,12 +196,25 @@ public class Welcom : MonoBehaviour
         {
             Sound.sprite = off;
         }
-        ischange = !ischange;
+        
+    }
+    private void Load()
+    {
+        muted = PlayerPrefs.GetInt("muted") == 1;
+    }
+
+    private void Save()
+    {
+        PlayerPrefs.SetInt("muted", muted ? 1 : 0);
     }
 
     public void Thoat()
     {
         SceneManager.LoadScene(Scencename);
+
+        audioClik.clip = click;
+        audioClik.Play();
+        
     }
 }
 

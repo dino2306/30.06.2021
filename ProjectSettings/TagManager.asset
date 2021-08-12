@@ -23,6 +23,7 @@ TagManager:
   - Fire1
   - Platform
   - ggAdmob
+  - trap
   layers:
   - Default
   - TransparentFX

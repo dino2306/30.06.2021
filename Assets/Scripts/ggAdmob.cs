@@ -15,7 +15,7 @@ public class ggAdmob : MonoBehaviour
 
         this.RequestBanner();
 
-      //  this.RequestRewarded();
+        this.RequestRewarded();
        // UserChoseToWatchAd();
     }
 
@@ -51,12 +51,9 @@ public class ggAdmob : MonoBehaviour
         // Load the rewarded ad with the request.
         this.rewardedAd.LoadAd(request);
 
-        if (this.rewardedAd.IsLoaded())
-        {
-            this.rewardedAd.Show();
-        }
+       
     }
-    private void UserChoseToWatchAd()
+    public void UserChoseToWatchAd()
     {
         if (this.rewardedAd.IsLoaded())
         {
@@ -64,8 +61,5 @@ public class ggAdmob : MonoBehaviour
         }
     }
 
-    public void HelloWorld()
-    {
-        Debug.Log("HelloWorld");
-    }
+    
 }

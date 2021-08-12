@@ -55,8 +55,8 @@ public class CongTac : MonoBehaviour
 
 
             isMovingDown = true;
-        isMovingUp = false;
-
+            isMovingUp = false;
+       
 
 
         if (yeallow)
@@ -64,7 +64,7 @@ public class CongTac : MonoBehaviour
             //// dieu khien tan van
             isMovingRight = true;
             isMovingLeft = false;
-
+          
         }
         if (red)
         {
@@ -179,4 +179,5 @@ public class CongTac : MonoBehaviour
             TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri2_2, Autospeed * Time.deltaTime);
         }
     }
+   
 }

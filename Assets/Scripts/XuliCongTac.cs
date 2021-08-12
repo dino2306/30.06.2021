@@ -5,11 +5,11 @@ using UnityEngine;
 public class XuliCongTac : MonoBehaviour
 {
     public CongTac congtac1, congtac3;
-    public GameObject player;
+  
     // Start is called before the first frame update
     void Start()
     {
-        player = gameObject;
+     
     }
 
     // Update is called once per frame

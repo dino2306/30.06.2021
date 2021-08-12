@@ -2,13 +2,19 @@ using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
 public class MoveAni : MonoBehaviour
 {
-    public bool choose, check, Opening;
+    public FollowCamera flcam;                          
+    public bool choose, check, Opening, die;
 
     public GameController gamecontroller;
     public CongAnimation dooranmation;
+
+
     public GameObject Panel_GameOver;
+    public GameObject gameOver;
+    public GameObject watch_Video;
 
     public SkeletonAnimation anim;
     private Rigidbody2D rb;
@@ -16,15 +22,18 @@ public class MoveAni : MonoBehaviour
     public float speed;
     public float jumpForce;
 
-//Kiem tra va cham --> Jump
+    //Kiem tra va cham --> Jump
     bool isGrounded;
     public Transform groundCehck;
     public LayerMask groundLayer;
 
     //kiem tra di chuyen
-    private bool moveRight, moveleft, die;
-    //load scene
-   // public string Scenename;
+     bool moveRight, moveleft;
+
+    public Vector3 vstart;
+
+    private AudioSource audioS;
+    public AudioClip Select_Diamon, hoi_sinh, audio_die;
 
     [SpineAnimation] public string IdleAnim; //cac hanh dong
     [SpineAnimation] public string walkAnim;
@@ -32,6 +41,7 @@ public class MoveAni : MonoBehaviour
     [SpineAnimation] public string isDie;
     [SpineAnimation] public string happy;
     [SpineAnimation] public string Win;
+    [SpineAnimation] public string Fall_Down;
 
     [SpineAtlasRegion] public SpineSkin skin;
 
@@ -39,26 +49,55 @@ public class MoveAni : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-       moveRight = false;
+        moveRight = false;
         moveleft = false;
         GetComponent<Image>();
-     
+
+        audioS = GetComponent<AudioSource>();
+
+        //if (AdsManager.Instance != null)
+        //{
+        //    AdsManager.Instance.acVideoComplete += HandleVideoReward;
+        //}
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideoComplete += Revive;
+        }
+        //vstart = transform.position;      
+    }
+    private void OnDisable()
+    {
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideoComplete -= HandleVideoReward;
+
+        }
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideoComplete -= Revive;
+        }
+    }
+    private void HandleVideoReward()
+    {
+       // Application.LoadLevel(Application.loadedLevel);
     }
     // Update is called once per frame
+
     void Update()
     {
 
         // Nextmap();
         if (!choose) return;
         Handmove();
-        //HandMove2();
         HandJump();
         MoveManage();
-       
+
         isGrounded = Physics2D.OverlapCircle(groundCehck.position, 0.2f, groundLayer);
-      
-        
-       
+
+        if (rb.velocity == Vector2.zero && !die)
+        {
+            flcam.hyo = true;
+        }     
     }
 
     public void PlayAninmation(string _strAnim)
@@ -86,34 +125,38 @@ public class MoveAni : MonoBehaviour
             {
                 Destroy(collision.gameObject);
                 gamecontroller.getScore2();
+
+                audioS.clip = Select_Diamon;
+                audioS.Play();
             }
-            if (collision.gameObject.tag == "Finish2" && gamecontroller.num2 == 0 )
+            if (collision.gameObject.tag == "Finish2" && gamecontroller.num2 == 0)
             {
                 dooranmation.OpenDoor2();
                 Opening = true;
-              
-            }
-           
-            if (collision.gameObject.tag == "Dieblue")
-            {
-                rb.velocity = new Vector3(0f, 0f);
-                Died();
-                die = true;
-                
-                PlayAninmationDie(isDie);
-                 StartCoroutine(Dieing());
-               // Panel_GameOver.SetActive(true);
 
             }
-            if (collision.gameObject.tag == "Die")
+
+            if (collision.gameObject.tag.Equals ( "Dieblue") || collision.gameObject.tag.Equals( "Die")
+                            || collision.gameObject.tag.Equals("trap") )
             {
-                rb.velocity = new Vector3(0f, 0f);
+               rb.velocity = new Vector3(0f, 0f);
                 Died();
                 die = true;
                 PlayAninmationDie(isDie);
                 StartCoroutine(Dieing());
-                //Panel_GameOver.SetActive(true);
+                // Panel_GameOver.SetActive(true);
+                audioS.clip = audio_die;
+                audioS.Play();
             }
+            //if (collision.gameObject.tag == "Die")
+            //{
+            //    rb.velocity = new Vector3(0f, 0f);
+            //    Died();
+            //    die = true;
+            //    PlayAninmationDie(isDie);
+            //    StartCoroutine(Dieing());
+            //    //Panel_GameOver.SetActive(true);
+            //}
 
         }
         else
@@ -122,34 +165,30 @@ public class MoveAni : MonoBehaviour
             {
                 Destroy(collision.gameObject);
                 gamecontroller.getScore1();
+
+                audioS.clip = Select_Diamon;
+                audioS.Play();
             }
             if (collision.gameObject.tag == "Finish" && gamecontroller.num == 0)
             {
                 dooranmation.OpenDoor1();
                 Opening = true;
-              
+
             }
-            if (collision.gameObject.tag == "DieRed")
+            if (collision.gameObject.tag.Equals( "DieRed") || collision.gameObject.tag.Equals( "Die") 
+                        || collision.gameObject.tag.Equals("trap") )
             {
                 rb.velocity = new Vector3(0f, 0f);
                 Died();
                 die = true;
                 PlayAninmationDie(isDie);
                 StartCoroutine(Dieing());
-               // Panel_GameOver.SetActive(true);
 
-            }
-            if (collision.gameObject.tag == "Die")
-            {
-                rb.velocity = new Vector3(0f, 0f);
-                Died();
-                die = true;
-                PlayAninmationDie(isDie);
-                 StartCoroutine(Dieing());
-                //Panel_GameOver.SetActive(true);
-            }
-
+                audioS.clip = audio_die;
+                audioS.Play();
+            }        
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -171,6 +210,7 @@ public class MoveAni : MonoBehaviour
                 Opening = false;
             }
         }
+
     }
 
     private void MoveManage()
@@ -184,6 +224,10 @@ public class MoveAni : MonoBehaviour
             {
                 PlayAninmation(walkAnim);
             }
+            else
+            {
+                PlayAninmationDie(Fall_Down);
+            }
         }
 
         if (moveleft)
@@ -194,16 +238,23 @@ public class MoveAni : MonoBehaviour
             {
                 PlayAninmation(walkAnim);
             }
+            else
+            {
+                PlayAninmationDie(Fall_Down);
+            }
         }
 
     }
     public void MoveLeft()
     {
-        if (!die)
-        {
+
+        if (!die )
+        { 
             moveleft = true;
-        }
-        
+
+            flcam.hyo = false;
+            
+        }  
     }
 
     public void MoveRight()
@@ -211,34 +262,46 @@ public class MoveAni : MonoBehaviour
         if (!die)
         {
             moveRight = true;
-        }
-      
-      
+
+            flcam.hyo = false;
+        }      
     }
 
+   public bool falldown;
     public void Jump()
     {
+        
         if (!choose) return;
         if (!die)
         {
-            if (isGrounded)
-            {
-                  //if (rb.velocity.y == 0)
-                
-                    rb.velocity = Vector2.up * jumpForce;
-                    PlayAninmation(jumpAnim);
-                
-            }
             
+            if (isGrounded)
+            {            
+                    PlayAninmation(jumpAnim);
+                    rb.velocity = Vector2.up * jumpForce;
+                    flcam.hyo = false;
+                    isGrounded = false;
+                    falldown = true;       
+            }
         }
-       
-        
     }
     public void stopjum()
     {
+      
+        if (!choose) return;
         if (!die)
         {
-            PlayAninmation(IdleAnim);
+
+            if (falldown)
+            {
+                PlayAninmationDie(Fall_Down);
+               
+            }
+            if (rb.velocity.x == 0)
+            {
+                falldown = false;
+                PlayAninmation(IdleAnim);
+            }
         }
     }
 
@@ -248,15 +311,13 @@ public class MoveAni : MonoBehaviour
         {
             moveleft = false;
             moveRight = false;
+           // rb.velocity = Vector2.zero;
             rb.velocity = new Vector3(0, rb.velocity.y);
-           // if (isGrounded)
-           // {
+            PlayAninmation(IdleAnim);
 
-                PlayAninmation(IdleAnim);
-          //  }
+           // flcam.hyo = true;         
         }
     }
- 
 
     public void Handmove()
     {
@@ -272,12 +333,16 @@ public class MoveAni : MonoBehaviour
                 {
                     PlayAninmation(walkAnim);
                 }
+                else
+                {
+                    PlayAninmationDie(Fall_Down);
+                }
             }
             else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
             {
                 PlayAninmation(IdleAnim);
             }
-            else 
+            else
             {
                 rb.velocity = new Vector2(0f, rb.velocity.y);
                 //  PlayAninmation(IdleAnim);
@@ -290,11 +355,18 @@ public class MoveAni : MonoBehaviour
                 if (isGrounded)
                 {
                     PlayAninmation(walkAnim);
+
+                }
+                else
+                {
+                    PlayAninmationDie(Fall_Down);
                 }
             }
             else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
             {
-                PlayAninmation(IdleAnim);
+                
+                    PlayAninmation(IdleAnim);
+              
             }
 
             if (Input.GetKey(KeyCode.H))
@@ -307,46 +379,13 @@ public class MoveAni : MonoBehaviour
             }
         }
     }
-    private void HandMove2()
-    {
-        if (!die)
-        {
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                rb.velocity = new Vector3(speed, rb.velocity.y);
-                anim.skeleton.ScaleX = 1;
-                if (isGrounded)
-                {
-                    PlayAninmation(walkAnim);
-                }
-            }
-            else
-            {
-                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                {
-                    rb.velocity = new Vector3(-speed, rb.velocity.y);
-                    anim.skeleton.ScaleX = -1;
-                    if (isGrounded)
-                    {
-                        PlayAninmation(walkAnim);
-                    }
-                }
-                else
-                {
-                    rb.velocity = new Vector3(0, rb.velocity.y);
-                    PlayAninmation(IdleAnim);
-                }
 
-            }
-        }
-    }
-    
     bool dbjump;
     private void HandJump()
     {
         if (!die)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (isGrounded)
                 {
@@ -355,7 +394,9 @@ public class MoveAni : MonoBehaviour
                     rb.velocity = Vector2.up * jumpForce;
                     PlayAninmation(jumpAnim);
                     dbjump = true;
-                }
+                    falldown = true;
+                    isGrounded = false;
+                }            
                 else if (dbjump)
                 {
                     jumpForce = jumpForce / 1.5f;
@@ -365,11 +406,21 @@ public class MoveAni : MonoBehaviour
                     jumpForce = jumpForce * 1.5f;
 
                 }
+                
             }
 
-            else if (Input.GetKeyUp(KeyCode.Space))
+            else if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
             {
-                PlayAninmation(IdleAnim);
+                if (falldown)
+                {
+                    PlayAninmationDie(Fall_Down);
+                }
+
+                if (rb.velocity.x == 0)
+                {
+                    falldown = false;
+                    PlayAninmation(IdleAnim);
+                }
             }
         }
     }
@@ -377,8 +428,11 @@ public class MoveAni : MonoBehaviour
     IEnumerator Dieing()
     {
         yield return new WaitForSeconds(1.5f);
+
+       // AdsManager.Instance.ShowVideoReward();
+      
         Panel_GameOver.SetActive(true);
-        
+
     }
 
     public void Died()
@@ -387,12 +441,37 @@ public class MoveAni : MonoBehaviour
         moveRight = false;
     }
 
+    public void WatchVideo() /// ham goi quang cao 
+    {
+        AdsManager.Instance.ShowVideoReward();
 
-    
+    }
+
+    private void Revive() /// sau kho xem xong video se hoi sinh nhan vat
+    {
+        if (choose)
+        {
+            die = false;
+            PlayAninmation(IdleAnim);
+            transform.position = AdsManager.Instance.vRevive;
+            Panel_GameOver.SetActive(false);
+
+            audioS.clip = hoi_sinh;
+            audioS.Play();
+        }
+      
+    }
+
+    public void Close_WatchVideo() /// dong quang cao
+    {
+        gameOver.SetActive(true);
+        watch_Video.SetActive(false);
+    }
+   
 }
 
-    
 
-   
+
+
 
 

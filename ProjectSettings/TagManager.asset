@@ -24,6 +24,8 @@ TagManager:
   - Platform
   - ggAdmob
   - trap
+  - Wind
+  - Snow
   layers:
   - Default
   - TransparentFX

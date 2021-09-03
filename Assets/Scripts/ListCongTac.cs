@@ -22,6 +22,8 @@ public class ListCongTac : MonoBehaviour
                 vStart[i] = congTac[i].position;
             }
     }
+    public bool checkeed = false;
+   // public bool yes;
 
     // Update is called once per frame
     void Update()
@@ -32,18 +34,25 @@ public class ListCongTac : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("CongTac1"))
         {
-            
+            checkeed = true;
         }
+
+       
+       
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
 
+
         if (collision.gameObject.CompareTag("CongTac1"))
         {
-         
+            checkeed = false;
         }
+       
+
     }
 
     public void Move()

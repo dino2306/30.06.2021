@@ -7,8 +7,9 @@ public class test : MonoBehaviour
     Vector3 vitricu;
     public float speed = 5f;
 
-    public Vector3 vDes;
     public Vector3 vCurrent;
+    public Vector3 vDes;
+    
 
     // Start is called before the first frame update
     void Start()

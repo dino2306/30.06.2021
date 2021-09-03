@@ -103,10 +103,10 @@ TextureImporter:
       name: 1052_0
       rect:
         serializedVersion: 2
-        x: 512
-        y: 527
-        width: 105
-        height: 161
+        x: 640
+        y: 460
+        width: 135
+        height: 159
       alignment: 9
       pivot: {x: 0.48450863, y: 0.4953728}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,10 +124,10 @@ TextureImporter:
       name: 1052_1
       rect:
         serializedVersion: 2
-        x: 617
-        y: 527
-        width: 320
-        height: 206
+        x: 776
+        y: 460
+        width: 180
+        height: 137
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,9 +146,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 391
-        y: 527
-        width: 117
-        height: 115
+        y: 460
+        width: 251
+        height: 183
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,9 +167,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 257
-        y: 527
-        width: 134
-        height: 69
+        y: 460
+        width: 136
+        height: 136
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,10 +187,10 @@ TextureImporter:
       name: 1052_4
       rect:
         serializedVersion: 2
-        x: 122
-        y: 527
-        width: 136
-        height: 25
+        x: 76
+        y: 460
+        width: 183
+        height: 92
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,10 +208,10 @@ TextureImporter:
       name: 1052_5
       rect:
         serializedVersion: 2
-        x: 123
+        x: 55
         y: 167
-        width: 812
-        height: 24
+        width: 879
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,12 +229,12 @@ TextureImporter:
       name: Map1_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 53
+        x: 32
+        y: 52
         width: 23
         height: 680
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

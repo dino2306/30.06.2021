@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class CongTac : MonoBehaviour
 {
+   // public CheckCT_Singer check_single1, check_single2;
 
+    public MoveAni player_1, player_2;
     public float Autospeed;
     public float speed;
-    public Vector3 vStart, vEnd, vitri1_1, vitri2_1, vitri1_2, vitri2_2;
-    public Transform Tamvan1, TamVan2;
+    public Vector3 vStart, vEnd, vitri1_1, vitri2_1;
+    public Transform  tamVan ;
 
     // Start is called before the first frame update
     void Start()
     {
         vStart = transform.position;
-        vitri1_1 = Tamvan1.position;
-        vitri1_2 = TamVan2.position;
-
+        vitri1_1 = tamVan.position;
+       // vitri1_2 = TamVan2.position;
+       
     }
 
     // Update is called once per frame
@@ -34,68 +36,70 @@ public class CongTac : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, vStart, speed * Time.deltaTime);
         }
+
+
         MoveTamvanTim();
+
         MoveTamVanXanh();
+
         MoveTamvantim2();
-        /////
-        if (!yeallow) return;
-        //if (!ismovingright) return;
-        //if (!ismovingleft) return;
+           
         MoveTamVanVang();
 
     }
 
 
-    private bool isMovingDown, isMovingUp, isTimup, isMovingLeft, isMovingRight, isMovingLeft2, isMovingRight2, isTimdown2, isTimup2;
-    public bool yeallow, red, red2, green, green2, isTimdown;
+    private bool   isMovingLeft, isMovingRight, isMovingLeft2, isMovingRight2, isTimdown2, isTimup2;
+    public bool yeallow, red, red2, green, green2, isTimdown, isMovingDown, isMovingUp, isTimup;
 
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Contains("Player"))
-
-
+        if (collision.gameObject.tag.Equals("Player") && !player_1.downded || !player_2.downded )
+        {
+           
             isMovingDown = true;
             isMovingUp = false;
-       
 
 
-        if (yeallow)
-        {
-            //// dieu khien tan van
-            isMovingRight = true;
-            isMovingLeft = false;
-          
-        }
-        if (red)
-        {
 
-            isTimup = true;
-            isTimdown = false;
+            if (yeallow)
+            {
+                isMovingRight = true;
+                isMovingLeft = false;
 
-        }
-        if (green)
-        {
-            isTimdown = true;
-            isTimup = false;
-        }
-        if (green2)
-        {
-            isMovingLeft2 = true;
-            isMovingRight2 = false;
-        }
-        if (red2)
-        {
-            isTimup2 = true;
-            isTimdown2 = false;
+            }
+            if (red)
+            {
+
+                isTimup = true;
+                isTimdown = false;
+
+            }
+            if (green)
+            {
+                isTimdown = true;
+                isTimup = false;
+            }
+            if (green2)
+            {
+                isMovingLeft2 = true;
+                isMovingRight2 = false;
+            }
+            if (red2)
+            {
+                isTimup2 = true;
+                isTimdown2 = false;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Contains("Player"))
+        if (collision.gameObject.tag.Equals("Player") &&  !player_1.downded && !player_2.downded)
 
         {
-
+           
             isMovingDown = false;
             isMovingUp = true;
 
@@ -134,24 +138,24 @@ public class CongTac : MonoBehaviour
 
         if (isMovingRight)
         {
-            TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri2_2, Autospeed * Time.deltaTime);
+            tamVan.position = Vector3.MoveTowards(tamVan.position, vitri2_1, Autospeed * Time.deltaTime);
         }
 
         if (isMovingLeft)
         {
-            TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri1_2, Autospeed * Time.deltaTime);
+           tamVan.position = Vector3.MoveTowards(tamVan.position, vitri1_1, Autospeed * Time.deltaTime);
         }
     }
     public void MoveTamvanTim()
     {
         if (isTimdown)
         {
-            Tamvan1.position = Vector3.MoveTowards(Tamvan1.position, vitri2_1, Autospeed * Time.deltaTime);
+            tamVan.position = Vector3.MoveTowards(tamVan.position, vitri2_1, Autospeed * Time.deltaTime);
 
         }
         if (isTimup)
         {
-            Tamvan1.position = Vector3.MoveTowards(Tamvan1.position, vitri1_1, Autospeed * Time.deltaTime);
+            tamVan.position = Vector3.MoveTowards(tamVan.position, vitri1_1, Autospeed * Time.deltaTime);
 
         }
     }
@@ -160,24 +164,25 @@ public class CongTac : MonoBehaviour
 
         if (isMovingRight2)
         {
-            TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri1_2, Autospeed * Time.deltaTime);
+            tamVan.position = Vector3.MoveTowards(tamVan.position, vitri1_1, Autospeed * Time.deltaTime);
         }
 
         if (isMovingLeft2)
         {
-            TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri2_2, Autospeed * Time.deltaTime);
+            tamVan.position = Vector3.MoveTowards(tamVan.position, vitri2_1, Autospeed * Time.deltaTime);
         }
     }
+
     public void MoveTamvantim2()
     {
         if (isTimdown2)
         {
-            TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri1_2, Autospeed * Time.deltaTime);
+           tamVan.position = Vector3.MoveTowards(tamVan.position, vitri1_1, Autospeed * Time.deltaTime);
         }
         if (isTimup2)
         {
-            TamVan2.position = Vector3.MoveTowards(TamVan2.position, vitri2_2, Autospeed * Time.deltaTime);
+            tamVan.position = Vector3.MoveTowards(tamVan.position, vitri2_1, Autospeed * Time.deltaTime);
         }
     }
-   
+
 }

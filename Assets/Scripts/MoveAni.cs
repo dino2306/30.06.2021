@@ -10,7 +10,7 @@ public class MoveAni : MonoBehaviour
 
     public GameController gamecontroller;
     public CongAnimation dooranmation;
-
+    public TurretAl turret;
 
     public GameObject Panel_GameOver;
     public GameObject gameOver;
@@ -30,6 +30,7 @@ public class MoveAni : MonoBehaviour
     //kiem tra di chuyen
      bool moveRight, moveleft;
 
+    public bool downded = false; // check cong tac da dc dam~ xuong'
     public Vector3 vstart;
 
     private AudioSource audioS;
@@ -81,25 +82,29 @@ public class MoveAni : MonoBehaviour
     {
        // Application.LoadLevel(Application.loadedLevel);
     }
-    // Update is called once per frame
 
+    // Update is called once per frame
     void Update()
     {
-
-        // Nextmap();
-        if (!choose) return;
+        if (!choose)
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+            return;
+        }
         Handmove();
+
         HandJump();
         MoveManage();
 
         isGrounded = Physics2D.OverlapCircle(groundCehck.position, 0.2f, groundLayer);
 
-        if (rb.velocity == Vector2.zero && !die)
+        if (rb.velocity == Vector2.zero && !die && cam_Fail & Time.timeScale != 0)
         {
             flcam.hyo = true;
-        }     
-    }
+        }
 
+    }
+    bool cam_Fail = true;
     public void PlayAninmation(string _strAnim)
     {
         if (!anim.AnimationName.Equals(_strAnim))
@@ -136,10 +141,10 @@ public class MoveAni : MonoBehaviour
 
             }
 
-            if (collision.gameObject.tag.Equals ( "Dieblue") || collision.gameObject.tag.Equals( "Die")
-                            || collision.gameObject.tag.Equals("trap") )
+            if (collision.gameObject.tag.Equals("Dieblue") || collision.gameObject.tag.Equals("Die")
+                            || collision.gameObject.tag.Equals("trap"))
             {
-               rb.velocity = new Vector3(0f, 0f);
+                rb.velocity = new Vector3(0f, 0f);
                 Died();
                 die = true;
                 PlayAninmationDie(isDie);
@@ -147,18 +152,41 @@ public class MoveAni : MonoBehaviour
                 // Panel_GameOver.SetActive(true);
                 audioS.clip = audio_die;
                 audioS.Play();
+              //  StartCoroutine(Destroy_Player());
             }
-            //if (collision.gameObject.tag == "Die")
-            //{
-            //    rb.velocity = new Vector3(0f, 0f);
-            //    Died();
-            //    die = true;
-            //    PlayAninmationDie(isDie);
-            //    StartCoroutine(Dieing());
-            //    //Panel_GameOver.SetActive(true);
-            //}
 
+            //check cong tac
+            if (collision.gameObject.tag.Equals("Swich2"))
+            {
+                downded = true;
+            }
+            //check enemy
+            if (collision.gameObject.tag.Equals("Enemy") && !die)
+            {
+                turret.turret_Awake();
+                turret.check = false;
+               
+            }
+
+            //check gio
+            if (collision.gameObject.tag.Equals("Wind"))
+            {
+                if (rb.velocity.y == 0)
+                {
+                    rb.velocity = Vector2.up * 10f;
+
+                }
+                else
+                {
+
+                    rb.velocity = Vector2.up * 1.5f;
+                }
+                PlayAninmationDie(Fall_Down);
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
         }
+
+
         else
         {
             if (collision.gameObject.tag == "Dimon")
@@ -175,8 +203,8 @@ public class MoveAni : MonoBehaviour
                 Opening = true;
 
             }
-            if (collision.gameObject.tag.Equals( "DieRed") || collision.gameObject.tag.Equals( "Die") 
-                        || collision.gameObject.tag.Equals("trap") )
+            if (collision.gameObject.tag.Equals("DieRed") || collision.gameObject.tag.Equals("Die")
+                        || collision.gameObject.tag.Equals("trap"))
             {
                 rb.velocity = new Vector3(0f, 0f);
                 Died();
@@ -186,11 +214,52 @@ public class MoveAni : MonoBehaviour
 
                 audioS.clip = audio_die;
                 audioS.Play();
-            }        
+
+              //  StartCoroutine(Destroy_Player());
+            }
+            //check cong tac
+            if (collision.gameObject.tag.Equals("Swich2"))
+            {
+                downded = true;
+            }
+//check enemy
+            if (collision.gameObject.tag.Equals("Enemy") )
+            {
+               
+                turret.turret_Awake();
+                turret.check = true;
+            }
+
+//check gio
+            if (collision.gameObject.tag.Equals("Wind"))
+            {
+                if (rb.velocity.y == 0)
+                {
+                    rb.velocity = Vector2.up * 10f;
+                 
+                }
+                else
+                {
+                   
+                    rb.velocity = Vector2.up * 1.5f;
+                }
+                PlayAninmationDie(Fall_Down);
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
         }
 
     }
 
+    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Wind")) {
+            rb.velocity =  Vector2.up* 1.5f;
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+            PlayAninmationDie(Fall_Down);
+
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (check)
@@ -201,6 +270,17 @@ public class MoveAni : MonoBehaviour
                 Opening = false;
 
             }
+
+
+            if (collision.gameObject.tag.Equals("Swich2"))
+            {
+                downded = false;
+            }
+
+            if (collision.gameObject.tag.Equals("Enemy"))
+            {
+                turret.turret_Sleep();
+            }
         }
         else
         {
@@ -209,13 +289,23 @@ public class MoveAni : MonoBehaviour
                 dooranmation.CloseDoor1();
                 Opening = false;
             }
+
+
+            if (collision.gameObject.tag.Equals("Swich2"))
+            {
+                downded = false;
+            }
+
+            if (collision.gameObject.tag.Equals("Enemy"))
+            {
+                turret.turret_Sleep();
+            }
         }
 
     }
 
     private void MoveManage()
     {
-
         if (moveRight)
         {
             rb.velocity = new Vector2(+speed, rb.velocity.y);
@@ -229,6 +319,10 @@ public class MoveAni : MonoBehaviour
                 PlayAninmationDie(Fall_Down);
             }
         }
+        //else
+        //{
+        //    rb.velocity = new Vector2(0f, rb.velocity.y);
+        //}
 
         if (moveleft)
         {
@@ -243,7 +337,6 @@ public class MoveAni : MonoBehaviour
                 PlayAninmationDie(Fall_Down);
             }
         }
-
     }
     public void MoveLeft()
     {
@@ -283,6 +376,7 @@ public class MoveAni : MonoBehaviour
                     isGrounded = false;
                     falldown = true;       
             }
+            cam_Fail = false;
         }
     }
     public void stopjum()
@@ -302,6 +396,7 @@ public class MoveAni : MonoBehaviour
                 falldown = false;
                 PlayAninmation(IdleAnim);
             }
+            cam_Fail = true;
         }
     }
 
@@ -311,11 +406,9 @@ public class MoveAni : MonoBehaviour
         {
             moveleft = false;
             moveRight = false;
-           // rb.velocity = Vector2.zero;
-            rb.velocity = new Vector3(0, rb.velocity.y);
+          
             PlayAninmation(IdleAnim);
-
-           // flcam.hyo = true;         
+         
         }
     }
 
@@ -429,7 +522,7 @@ public class MoveAni : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-       // AdsManager.Instance.ShowVideoReward();
+        // AdsManager.Instance.ShowVideoReward();
       
         Panel_GameOver.SetActive(true);
 
@@ -467,7 +560,42 @@ public class MoveAni : MonoBehaviour
         gameOver.SetActive(true);
         watch_Video.SetActive(false);
     }
-   
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Snow"))
+        {
+            Debug.Log("Snowmotion");
+
+            speed = 1;
+            jumpForce = 4;
+
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Snow"))
+        {
+            Debug.Log("Snowmotion");       
+          
+                speed = 1;
+                jumpForce = 4;
+            
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Snow"))
+        {
+            Debug.Log("Not Snowmotion");
+            
+                speed = 4;
+                jumpForce = 8;
+            
+        }
+    }
+
 }
 
 

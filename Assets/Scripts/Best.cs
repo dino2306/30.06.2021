@@ -18,34 +18,34 @@ public class Best : MonoBehaviour
     {
          
     }
-    bool check= false;
+  
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Player") && !check)
+        if (collision.gameObject.tag.Equals("Player") && !listCT1.checkeed || !ListCT2.checkeed)
         {
-           // if (!collision.gameObject.tag.Contains("Player"))
-            {
+           
                 listCT1.isMovingDown = true;
                 ListCT2.isMovingDown = true;
 
                 listCT1.isMovingUp = false;
                 ListCT2.isMovingUp = false;
+      
 
-                check = true;
-            }
-            
         }
+      
     }
+
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if ( collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals("Player") && !listCT1.checkeed && !ListCT2.checkeed )
         {
             listCT1.isMovingDown = false;
             ListCT2.isMovingDown = false;
 
             listCT1.isMovingUp = true;
             ListCT2.isMovingUp = true;
-            check = false;
+           
         }
     }
 }

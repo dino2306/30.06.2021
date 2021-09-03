@@ -18,7 +18,8 @@ public class AdsManager : MonoBehaviour
 
     public Vector3 vRevive;
 
-   // public bool traped; // dính bẫy
+
+    // public bool traped; // dính bẫy
     private void Awake()
     {
         if (Instance == null)
@@ -33,7 +34,7 @@ public class AdsManager : MonoBehaviour
     {
         MobileAds.Initialize(initStatus => { });
 
-        this.RequestBanner();
+        // this.RequestBanner();
         this.RequestInterstitial();
         this.RequesRewarded();
     }
@@ -45,29 +46,29 @@ public class AdsManager : MonoBehaviour
 
     private void RewardedAd_OnAdFailedToShow(object sender, AdErrorEventArgs e)
     {
-        
+
     }
 
     private void RewardedAd_OnAdOpening(object sender, EventArgs e)
     {
-        
+
     }
 
     private void RewardedAd_OnAdFailedToLoad(object sender, AdFailedToLoadEventArgs e)
     {
-        
+
     }
 
     private void RewardedAd_OnAdLoaded(object sender, EventArgs e)
     {
-        
+
     }
 
 
     public void RequestBanner()
     {
 #if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+        string adUnitId = "ca-app-pub-6690619384524838/9586418935";
 #elif UNITY_IPHONE
             string adUnitId = "ca-app-pub-3940256099942544/2934735716";
 #else
@@ -87,16 +88,18 @@ public class AdsManager : MonoBehaviour
         this.bannerView.LoadAd(request);
     }
 
-  public void BannerView_OnAdClosed(object sender, EventArgs e)
+    public void BannerView_OnAdClosed(object sender, EventArgs e)
     {
         bannerView.Destroy();
-       
+        bannerView.Hide();
+
     }
+
 
     private void RequestInterstitial()
     {
 #if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+        string adUnitId = "ca-app-pub-6690619384524838/8614110438";
 #elif UNITY_IPHONE
         string adUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else
@@ -106,12 +109,25 @@ public class AdsManager : MonoBehaviour
         // Initialize an InterstitialAd.
         this.interstitial = new InterstitialAd(adUnitId);
 
+        this.interstitial.OnAdClosed += Interstitial_OnAdClosed; ;
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
     }
 
+    private void Interstitial_OnAdClosed(object sender, EventArgs e)
+    {
+         RequestInterstitial();
+      //  StartCoroutine(Time_inters());
+
+        if (acIntersClose != null) acIntersClose(true);
+    }
+    IEnumerator Time_inters()
+    {
+        yield return new WaitForSeconds(300f);
+        RequestInterstitial();
+    }
     public void ShowVideoReward()
     {
         if (rewardedAd.IsLoaded())
@@ -134,10 +150,26 @@ public class AdsManager : MonoBehaviour
             Debug.Log("Interstitial is not ready yet");
         }
     }
+
+    public Action<bool> acIntersClose;
+
+    public void ShowInters(Action<bool> _ac){
+        if (interstitial.IsLoaded())
+        {
+            acIntersClose = _ac;
+            interstitial.Show();
+        }
+        else
+        {
+            _ac(true);
+            acIntersClose(true);
+        }
+        
+    }
     
     private void RequesRewarded()
     {
-        string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+        string adUnitId = "ca-app-pub-6690619384524838/6294935403";
         this.rewardedAd = new RewardedAd(adUnitId);
 
         rewardedAd.OnUserEarnedReward += RewardedAd_OnUserEarnedReward;

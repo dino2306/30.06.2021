@@ -44,7 +44,7 @@ public class MoveCanCongTac : MonoBehaviour
                 //  TamvanTim.position = Vector3.MoveTowards(TamvanTim.position, Vstar, Time.deltaTime * speed);
             }
         }
-        if (_trParent.rotation.z < 0)
+        if (_trParent.rotation.z > 0)
         {
             TamvanTim.position = Vector3.MoveTowards(TamvanTim.position, Vend, Time.deltaTime * speed);
         }

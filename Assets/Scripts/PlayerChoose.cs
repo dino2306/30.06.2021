@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 using Assets;
 public class PlayerChoose : MonoBehaviour
 {
-   // public ggAdmos gg;                      //quangcao
+    // public ggAdmos gg;                      //quangcao
     public MoveAni _player1, _player2;
-  //  public ListCongTac check_1, check_2;
-   
+    //  public ListCongTac check_1, check_2;
+
     public GameObject Panel_Win;
 
     public GameObject PausePanel;
@@ -17,8 +17,8 @@ public class PlayerChoose : MonoBehaviour
     public FollowCamera flCam;
 
     public Color clRed, clBlue;
-    public Image imBg, jumpBtn_Hight,jumpBtn_Low, leftBtn_high, leftBtn_low, rightBtn_hight, rightBtn_low, swap1, swap2;
-   // private Color RGBColor;
+    public Image imBg, jumpBtn_Hight, jumpBtn_Low, leftBtn_high, leftBtn_low, rightBtn_hight, rightBtn_low, swap1, swap2;
+    // private Color RGBColor;
 
     public string Map2;
     public string welcomHome;
@@ -29,12 +29,15 @@ public class PlayerChoose : MonoBehaviour
     public AudioClip easy, normal;
 
     public bool choose_Player = false;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
         imBg.color = clBlue;
         audioSource = GetComponent<AudioSource>();
-        if (missionId < 21)
+        if (missionId < 20)
         {
             audioSource.clip = easy;
             audioSource.Play();
@@ -49,40 +52,41 @@ public class PlayerChoose : MonoBehaviour
         {
             PlayerPrefs.SetInt("choose_Player", 0);
             Load();
-            
+
         }
         else
         {
             Load();
         }
         updateswap();
-        
+
+      
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W) )
+        if (Input.GetKey(KeyCode.W))
         {
             _player1.Opening = true;
             _player2.Opening = true;
         }
-        SwapKey();    
+        SwapKey();
         HandPause();
-        StartCoroutine( NexMapp2xx());
+        StartCoroutine(NexMapp2xx());
 
        
-        //  winmission.UnlockNextMission(missionId);
     }
 
 
     public void Load()
     {
-      choose_Player = PlayerPrefs.GetInt("choose_Player") == 1;
+        choose_Player = PlayerPrefs.GetInt("choose_Player") == 1;
     }
     public void Save()
     {
-        PlayerPrefs.SetInt("choose_Player",choose_Player ? 1 : 0);
+        PlayerPrefs.SetInt("choose_Player", choose_Player ? 1 : 0);
     }
 
     public void ClickSwap()
@@ -111,7 +115,7 @@ public class PlayerChoose : MonoBehaviour
             swap2.enabled = false;
             imBg.color = clBlue;
 
-           // _player2.StopMoving();
+            // _player2.StopMoving();
             flCam.Check = true;    //check camera
         }
         else
@@ -120,7 +124,7 @@ public class PlayerChoose : MonoBehaviour
             _player2.choose = true;
             swap2.enabled = true;
             swap1.enabled = false;
-            imBg.color =clRed;
+            imBg.color = clRed;
 
             //_player1.StopMoving();
             flCam.Check = false;    //check camera
@@ -135,6 +139,7 @@ public class PlayerChoose : MonoBehaviour
             if (choose_Player == false)
             {
                 choose_Player = true;
+                _player1.StopMoving();
             }
         }
         if (Input.GetKey(KeyCode.Alpha1))
@@ -142,25 +147,28 @@ public class PlayerChoose : MonoBehaviour
             if (choose_Player)
             {
                 choose_Player = false;
+                _player2.StopMoving();
             }
         }
         Save();
         updateswap();
     }
 
- 
+
 
     public void home()
     {
         SceneManager.LoadScene(welcomHome);
         Time.timeScale = 1;
-       // AdsManager.Instance.traped = false;
+        // AdsManager.Instance.traped = false;
     }
 
     public void Pause()
     {
         PausePanel.SetActive(true);
-       Time.timeScale = 0;
+        Time.timeScale = 0;
+
+        flCam.hyo = false;
     }
 
     public void HandPause()
@@ -178,33 +186,54 @@ public class PlayerChoose : MonoBehaviour
         PausePanel.SetActive(false);
     }
 
+
+
     public void Reset(int sceneID)
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(sceneID);
-       //AdsManager.Instance.traped = false;
+        Debug.LogError("Reset--------- " + (AdsManager.Instance == null?"NULL":"Eo NULL"));
+        AdsManager.Instance.ShowInters((b) =>
+        {
+            if (b)
+            {
+                Debug.LogError("Reset");
+                Time.timeScale = 1;
+                SceneManager.LoadScene(sceneID);
+            }
+        });
+
     }
 
     IEnumerator NexMapp2xx()
     {
-       
-        if (_player1.Opening && _player2.Opening )
+
+        if (_player1.Opening && _player2.Opening)
         {
             _player1.PlayAninmation(_player1.Win);
             _player2.PlayAninmation(_player2.Win);
-           
+
             yield return new WaitForSeconds(1.5f);
             Panel_Win.SetActive(true);
-           // gg.GameOver();
+            // gg.GameOver();
 
             winmission.UnlockNextMission(missionId);        //UnlockMap
         }
-        
+
     }
+  
+    
     public void Nextmap()
     {
-        SceneManager.LoadScene(Map2);
+        AdsManager.Instance.ShowInters((b) =>
+        {
+            if (b)
+            {
+                Debug.LogError("Nextmap");
+                SceneManager.LoadScene(Map2);
+            }
+        });
+
     }
+  
 
     public void HightjumpBtn()
     {
@@ -224,7 +253,7 @@ public class PlayerChoose : MonoBehaviour
         //RGBColor.g = 1;
         //RGBColor.b = 1;
         //jumpBtn.color = RGBColor;
-        jumpBtn_Hight.enabled =false;
+        jumpBtn_Hight.enabled = false;
         jumpBtn_Low.enabled = true;
     }
 
@@ -268,6 +297,7 @@ public class PlayerChoose : MonoBehaviour
         rightBtn_hight.enabled = false;
         rightBtn_low.enabled = true;
     }
+
 
 }
 

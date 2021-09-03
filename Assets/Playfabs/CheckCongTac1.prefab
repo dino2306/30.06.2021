@@ -98,3 +98,4 @@ MonoBehaviour:
   vStart: []
   Vend: []
   speed: 0
+  checkeed: 0

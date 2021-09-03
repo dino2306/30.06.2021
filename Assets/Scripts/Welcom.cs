@@ -7,7 +7,7 @@ using Assets;
 
 public class Welcom : MonoBehaviour
 {
-   // public winMission mission;
+    // public winMission mission;
 
     public GameObject panel_Menu;
     public GameObject Panel_seLecMap;
@@ -25,27 +25,28 @@ public class Welcom : MonoBehaviour
 
     public Image Sound;
     public Sprite on, off;
-  
+
     public string Scencename;
     GameObject ggadmob;
+   
 
-    private int missionID;
+    private int missionID = 40;
 
     public bool check;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
         if (ggadmob == null)
         {
             ggadmob = GameObject.FindGameObjectWithTag("ggAdmob");
         }
         audioS = GetComponent<AudioSource>();
-       
+
         audioS.clip = welcom;
         audioS.Play();
-       
+
 
         if (!PlayerPrefs.HasKey("muted"))
         {
@@ -58,14 +59,19 @@ public class Welcom : MonoBehaviour
         }
         UpdateButtonIcon();
         AudioListener.pause = muted;
+      //  AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
+
+        AdsManager.Instance.RequestBanner();
+
+        PlayerPrefs.SetInt("LastMission", missionID);
     }
-    
-  
+
+
 
     // Update is called once per frame
     void Update()
     {
-  
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (check)
@@ -79,7 +85,12 @@ public class Welcom : MonoBehaviour
                 Application.Quit();
             }
         }
-     
+
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
     }
     public void Open(int ScenID)
     {
@@ -89,7 +100,8 @@ public class Welcom : MonoBehaviour
         audioClik.clip = click;
         audioClik.Play();
 
-        AdsManager.Instance.bannerView.Destroy();
+        //AdsManager.Instance.bannerView.Destroy();
+        //AdsManager.Instance.bannerView.Hide();
     }
 
     public void ChoosePlay()
@@ -103,7 +115,12 @@ public class Welcom : MonoBehaviour
         audioClik.Play();
 
         audioS.volume = 0.3f;
+
+        AdsManager.Instance.bannerView.Destroy();
+        AdsManager.Instance.bannerView.Hide();
     }
+
+   
 
     public void Easy()
     {
@@ -116,20 +133,21 @@ public class Welcom : MonoBehaviour
 
     public void Normal()
     {
-        if (GameSetting.GetLastMission >= 20)
-        {
-            Panel_Level_Normal.SetActive(true);
-            Panel_seLecMap.SetActive(false);
-      
-        }
-        else
-        {
-            panel_Report.SetActive(true);
-        }
+        //if (GameSetting.GetLastMission >= 20)
+        //{
+        //    Panel_Level_Normal.SetActive(true);
+        //    Panel_seLecMap.SetActive(false);
 
+        //}
+        //else
+        //{
+        //    panel_Report.SetActive(true);
+        //}
+        Panel_Level_Normal.SetActive(true);
+        Panel_Level_Normal2.SetActive(false);
         audioClik.clip = click;
         audioClik.Play();
-      
+
     }
     public void Next()
     {
@@ -152,7 +170,7 @@ public class Welcom : MonoBehaviour
     public void Next2()
     {
         Panel_Level_Normal2.SetActive(true);
-        Panel_Level_Normal.SetActive(false);
+        Panel_Level_Easy2.SetActive(false);
 
         audioClik.clip = click;
         audioClik.Play();
@@ -161,18 +179,26 @@ public class Welcom : MonoBehaviour
     public void Back2()
     {
         Panel_Level_Normal2.SetActive(false);
-        Panel_Level_Normal.SetActive(true);
+        Panel_Level_Easy2.SetActive(true);
 
         audioClik.clip = click;
         audioClik.Play();
     }
 
+    public void Back3()
+    {
+        Panel_Level_Normal2.SetActive(true);
+        Panel_Level_Normal.SetActive(false);
 
-    public bool muted= false;
+        audioClik.clip = click;
+        audioClik.Play();
+    }
+
+    public bool muted = false;
     public void Music()
     {
-        if (muted== false)
-        {        
+        if (muted == false)
+        {
             muted = true;
             AudioListener.pause = true;
         }
@@ -181,14 +207,14 @@ public class Welcom : MonoBehaviour
             muted = false;
             AudioListener.pause = false;
         }
-       // muted = !muted;
+        // muted = !muted;
         Save();
         UpdateButtonIcon();
     }
 
     private void UpdateButtonIcon()
     {
-        if (muted == false)
+        if (muted == false )
         {
             Sound.sprite = on;
         }
@@ -196,7 +222,7 @@ public class Welcom : MonoBehaviour
         {
             Sound.sprite = off;
         }
-        
+
     }
     private void Load()
     {
@@ -214,7 +240,12 @@ public class Welcom : MonoBehaviour
 
         audioClik.clip = click;
         audioClik.Play();
-        
+
     }
+    public void Danh_Gia()
+    {
+        Application.OpenURL(Application.identifier);
+    }
+
 }
 

@@ -1831,12 +1831,12 @@ MonoBehaviour:
   pl1: {fileID: 0}
   pl2: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
-  smoothTime: 0.5
   minZoom: 0
   maxZoom: 0
   zoomLimiter: 0
   hyo: 1
   groundZ: 0
+  First_touch: 1
   Check: 0
 --- !u!1 &1023203817
 GameObject:

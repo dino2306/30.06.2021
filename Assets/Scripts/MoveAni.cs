@@ -141,8 +141,8 @@ public class MoveAni : MonoBehaviour
 
             }
 
-            if (collision.gameObject.tag.Equals("Dieblue") || collision.gameObject.tag.Equals("Die")
-                            || collision.gameObject.tag.Equals("trap"))
+            if (collision.gameObject.tag.Equals("Dieblue") || collision.gameObject.tag.Equals("Die") 
+                                                    || (collision.gameObject.tag.Equals("trap")))
             {
                 rb.velocity = new Vector3(0f, 0f);
                 Died();
@@ -154,6 +154,7 @@ public class MoveAni : MonoBehaviour
                 audioS.Play();
               //  StartCoroutine(Destroy_Player());
             }
+          
 
             //check cong tac
             if (collision.gameObject.tag.Equals("Swich2"))
@@ -203,8 +204,9 @@ public class MoveAni : MonoBehaviour
                 Opening = true;
 
             }
-            if (collision.gameObject.tag.Equals("DieRed") || collision.gameObject.tag.Equals("Die")
-                        || collision.gameObject.tag.Equals("trap"))
+            if (collision.gameObject.tag.Equals("DieRed") || collision.gameObject.tag.Equals("Die") 
+                                                    || (collision.gameObject.tag.Equals("trap")))
+                     
             {
                 rb.velocity = new Vector3(0f, 0f);
                 Died();
@@ -214,9 +216,9 @@ public class MoveAni : MonoBehaviour
 
                 audioS.clip = audio_die;
                 audioS.Play();
-
               //  StartCoroutine(Destroy_Player());
             }
+    
             //check cong tac
             if (collision.gameObject.tag.Equals("Swich2"))
             {
@@ -591,7 +593,7 @@ public class MoveAni : MonoBehaviour
             Debug.Log("Not Snowmotion");
             
                 speed = 4;
-                jumpForce = 8;
+                jumpForce = 9;
             
         }
     }

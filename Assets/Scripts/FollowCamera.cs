@@ -10,7 +10,7 @@ public class FollowCamera : MonoBehaviour
     public List<Transform> targets;
     public Transform pl1, pl2;
     public Vector3 offset;           // phan bu
-    public float smoothTime = .5f;
+    private float smoothTime = 1f;
     public float minZoom;
     public float maxZoom;
     public float zoomLimiter;
@@ -18,6 +18,7 @@ public class FollowCamera : MonoBehaviour
     public bool hyo = true;
     private Vector3 velocity  = Vector3.zero;
     private Camera cam;
+   // private Vector3 Vstart;
 
 //toch move camre
     private Vector3 touchStart;
@@ -27,23 +28,27 @@ public class FollowCamera : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         ani = GetComponent<MoveAni>();
+
+        smoothTime = 1f;
     }
 
     private void Update()
     {
-
-        if (Input.GetMouseButtonDown(0) & hyo)
+        if (hyo)
         {
-            touchStart = GetWorldPosition(groundZ);
-            
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                touchStart = GetWorldPosition(groundZ);
+                //  cam.transform.position = Vector3.Lerp(cam.transform.position, /*vitri*/ smoothTime);
+            }
 
-        if (Input.GetMouseButton(0) & hyo)
+            if (Input.GetMouseButton(0))
             {
                 Vector3 direction = touchStart - GetWorldPosition(groundZ);
                 Camera.main.transform.position += direction;
             }
-           
+        }
+               
     }
     private Vector3 GetWorldPosition(float z)
     {
@@ -68,9 +73,11 @@ public class FollowCamera : MonoBehaviour
 
     void Zoom()
     {
-        float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
+       // float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
          // cam.fieldOfView =Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
-       cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime );
+       cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, minZoom, Time.deltaTime );
+
+        
     }
 
     float GetGreatestDistance()
@@ -83,22 +90,39 @@ public class FollowCamera : MonoBehaviour
         return bounds.size.x;
     }
 
-
+    public bool First_touch = true;
     void Move()
     {
         // Vector3 centerPoint = GetCenterPoint();
         if (Check)
         {
             Vector3 newPosition = pl1.position + offset;
+            if (First_touch)
+            {
+                
 
-            transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+                transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+            }
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime - 0.5f);
+            }
         }
         else
         {
             Vector3 newPosition2 = pl2.position + offset;
+            if (First_touch)
+            {
+               
 
-            transform.position = Vector3.SmoothDamp(transform.position, newPosition2, ref velocity, smoothTime);
+                transform.position = Vector3.SmoothDamp(transform.position, newPosition2, ref velocity, smoothTime);
+            }
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, newPosition2, ref velocity, smoothTime - 0.5f);
+            }
         }
+
     }
     public bool Check;
     Vector3 GetCenterPoint()

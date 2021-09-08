@@ -2405,7 +2405,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.3951707, y: 0.018268824}
+  - {x: -0.08759308, y: 0.73727894}
+  - {x: 0.5757694, y: 0.018268824}
   - {x: 1.3618875, y: 0.018268585}
   - {x: 1.359211, y: -0.61285996}
   - {x: 0.594841, y: -0.605595}
@@ -4269,6 +4270,10 @@ PrefabInstance:
     - target: {fileID: 7465662417620448690, guid: eb7dc3f4e24ab794490dca6f90ad3909, type: 3}
       propertyPath: m_LocalPosition.y
       value: 14.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465662417620448691, guid: eb7dc3f4e24ab794490dca6f90ad3909, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb7dc3f4e24ab794490dca6f90ad3909, type: 3}
@@ -8407,12 +8412,12 @@ MonoBehaviour:
   pl1: {fileID: 532995619}
   pl2: {fileID: 477704857}
   offset: {x: 0, y: 0, z: -30}
-  smoothTime: 0.5
   minZoom: 5
   maxZoom: 5
   zoomLimiter: 10
   hyo: 1
   groundZ: 0
+  First_touch: 1
   Check: 1
 --- !u!81 &2020835525
 AudioListener:

@@ -61,7 +61,7 @@ public class Welcom : MonoBehaviour
         AudioListener.pause = muted;
       //  AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
 
-        AdsManager.Instance.RequestBanner();
+       AdsManager.Instance.RequestBanner();
 
         PlayerPrefs.SetInt("LastMission", missionID);
     }

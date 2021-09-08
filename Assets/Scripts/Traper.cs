@@ -10,6 +10,13 @@ public class Traper : MonoBehaviour
 
     [SpineAnimation] public string attack;
 
+    private BoxCollider2D box;
+
+    private void Start()
+    {
+        box = GetComponent<BoxCollider2D>();
+    }
+
     public void PlayAninmationAttack(string _strAnim)
     {
         if (!anim.AnimationName.Equals(_strAnim))
@@ -24,7 +31,7 @@ public class Traper : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             PlayAninmationAttack( attack);
-           // AdsManager.Instance.traped = true;
+            box.isTrigger = false;
         }
     }
     

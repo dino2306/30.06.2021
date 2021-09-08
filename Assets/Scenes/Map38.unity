@@ -1013,7 +1013,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1645968500887896305, guid: 1950011235edf37419165709c4059ebf, type: 3}
   m_PrefabInstance: {fileID: 1212625827}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 262010557}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebcbd88faf3824547a8948c69d8872cc, type: 3}
@@ -2268,6 +2268,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5670975918209916954, guid: c566c01c3c2fe4d4da788b5692ba1ad1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c566c01c3c2fe4d4da788b5692ba1ad1, type: 3}
+--- !u!1 &262010557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2032401565737840232, guid: 1950011235edf37419165709c4059ebf, type: 3}
+  m_PrefabInstance: {fileID: 1212625827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &263310057
 GameObject:
   m_ObjectHideFlags: 0
@@ -5425,7 +5430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 40.179832, y: -56.54596}
+  m_AnchoredPosition: {x: 40.179832, y: -56.5459}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906857813
@@ -5444,7 +5449,11 @@ MonoBehaviour:
   Seconds: {fileID: 873986419}
   minutes: {fileID: 568622947}
   late: 1
+  player1: {fileID: 1264392693}
+  player2: {fileID: 262010557}
   gameOver: {fileID: 398133550}
+  V_pl1: {x: 0, y: 0}
+  V_pl2: {x: 0, y: 0}
 --- !u!1 &907185053
 GameObject:
   m_ObjectHideFlags: 0
@@ -5636,12 +5645,12 @@ MonoBehaviour:
   pl1: {fileID: 2031502071}
   pl2: {fileID: 157577884}
   offset: {x: 0, y: 0, z: -30}
-  smoothTime: 0.5
   minZoom: 5
   maxZoom: 5
   zoomLimiter: 10
   hyo: 1
   groundZ: 0
+  First_touch: 1
   Check: 1
 --- !u!81 &929123065
 AudioListener:
@@ -6535,6 +6544,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5670975918209916954, guid: c566c01c3c2fe4d4da788b5692ba1ad1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c566c01c3c2fe4d4da788b5692ba1ad1, type: 3}
+--- !u!1 &1264392693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7181612286344398844, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
+  m_PrefabInstance: {fileID: 638883096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1278752754
 GameObject:
   m_ObjectHideFlags: 0
@@ -9743,7 +9757,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5853426504793292700, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
   m_PrefabInstance: {fileID: 638883096}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1264392693}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebcbd88faf3824547a8948c69d8872cc, type: 3}

@@ -526,6 +526,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &141205554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2032401565737840232, guid: 1950011235edf37419165709c4059ebf, type: 3}
+  m_PrefabInstance: {fileID: 1252767223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &147997217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3217,6 +3222,11 @@ Transform:
   m_Father: {fileID: 1403590711}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &663695505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7181612286344398844, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
+  m_PrefabInstance: {fileID: 1811252889}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &735325681
 GameObject:
   m_ObjectHideFlags: 0
@@ -5334,12 +5344,12 @@ MonoBehaviour:
   pl1: {fileID: 1811252891}
   pl2: {fileID: 1252767225}
   offset: {x: 0, y: 0, z: -30}
-  smoothTime: 0.5
   minZoom: 5
   maxZoom: 5
   zoomLimiter: 10
   hyo: 1
   groundZ: 0
+  First_touch: 1
   Check: 1
 --- !u!81 &1196948744
 AudioListener:
@@ -5830,7 +5840,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1645968500887896305, guid: 1950011235edf37419165709c4059ebf, type: 3}
   m_PrefabInstance: {fileID: 1252767223}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 141205554}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebcbd88faf3824547a8948c69d8872cc, type: 3}
@@ -8268,11 +8278,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f43fbe7e6f01742a039cb274f77e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current_time: 31
+  current_time: 30
   Seconds: {fileID: 990804709}
   minutes: {fileID: 365584885}
   late: 1
+  player1: {fileID: 663695505}
+  player2: {fileID: 141205554}
   gameOver: {fileID: 529088196}
+  V_pl1: {x: 0, y: 0}
+  V_pl2: {x: 0, y: 0}
 --- !u!1001 &1811252889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8399,7 +8413,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5853426504793292700, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
   m_PrefabInstance: {fileID: 1811252889}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 663695505}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebcbd88faf3824547a8948c69d8872cc, type: 3}

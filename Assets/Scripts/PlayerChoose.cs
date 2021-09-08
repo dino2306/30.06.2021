@@ -37,7 +37,7 @@ public class PlayerChoose : MonoBehaviour
     {
         imBg.color = clBlue;
         audioSource = GetComponent<AudioSource>();
-        if (missionId < 20)
+        if (missionId < 21)
         {
             audioSource.clip = easy;
             audioSource.Play();
@@ -103,6 +103,7 @@ public class PlayerChoose : MonoBehaviour
         }
         Save();
         updateswap();
+        flCam.First_touch = false;
     }
 
     private void updateswap()
@@ -117,6 +118,7 @@ public class PlayerChoose : MonoBehaviour
 
             // _player2.StopMoving();
             flCam.Check = true;    //check camera
+          
         }
         else
         {
@@ -128,6 +130,7 @@ public class PlayerChoose : MonoBehaviour
 
             //_player1.StopMoving();
             flCam.Check = false;    //check camera
+         
         }
     }
 
@@ -140,6 +143,8 @@ public class PlayerChoose : MonoBehaviour
             {
                 choose_Player = true;
                 _player1.StopMoving();
+
+                flCam.First_touch = false;
             }
         }
         if (Input.GetKey(KeyCode.Alpha1))
@@ -148,10 +153,13 @@ public class PlayerChoose : MonoBehaviour
             {
                 choose_Player = false;
                 _player2.StopMoving();
+
+                flCam.First_touch = false;
             }
         }
         Save();
         updateswap();
+      
     }
 
 

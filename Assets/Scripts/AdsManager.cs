@@ -68,7 +68,8 @@ public class AdsManager : MonoBehaviour
     public void RequestBanner()
     {
 #if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-6690619384524838/9586418935";
+       string adUnitId = "ca-app-pub-6690619384524838/9586418935";
+      //  string adUnitId = "ca-app-pub-8296383146698662/1287797523";
 #elif UNITY_IPHONE
             string adUnitId = "ca-app-pub-3940256099942544/2934735716";
 #else
@@ -100,6 +101,7 @@ public class AdsManager : MonoBehaviour
     {
 #if UNITY_ANDROID
         string adUnitId = "ca-app-pub-6690619384524838/8614110438";
+        //string adUnitId = "ca-app-pub-8296383146698662/4157503440";
 #elif UNITY_IPHONE
         string adUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else
@@ -170,6 +172,7 @@ public class AdsManager : MonoBehaviour
     private void RequesRewarded()
     {
         string adUnitId = "ca-app-pub-6690619384524838/6294935403";
+       // string adUnitId = "ca-app-pub-8296383146698662/4843236440";
         this.rewardedAd = new RewardedAd(adUnitId);
 
         rewardedAd.OnUserEarnedReward += RewardedAd_OnUserEarnedReward;

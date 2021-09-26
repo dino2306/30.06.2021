@@ -12,6 +12,9 @@ public class MoveCanCongTac : MonoBehaviour
     public Transform TamvanTim;
     public Vector3 Vstar, Vend;
     public float speed;
+
+    private AudioSource audioS;
+    public AudioClip cancongtac;
    // public float speedRotate;
 
   //  Vector3 alo = new Vector3(0, 0, 40);
@@ -19,6 +22,7 @@ public class MoveCanCongTac : MonoBehaviour
     void Start()
     {
         Vstar = TamvanTim.position;
+        audioS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,7 +32,8 @@ public class MoveCanCongTac : MonoBehaviour
         {
             if (isLeft)
             {
-
+                audioS.clip = cancongtac;
+                audioS.Play();
 
                 _trParent.eulerAngles = new Vector3(0, 0, -40);
 
@@ -38,7 +43,8 @@ public class MoveCanCongTac : MonoBehaviour
             }
             else
             {
-
+                audioS.clip = cancongtac;
+                audioS.Play();
                 _trParent.eulerAngles = new Vector3(0, 0, 40);
 
                 //  TamvanTim.position = Vector3.MoveTowards(TamvanTim.position, Vstar, Time.deltaTime * speed);

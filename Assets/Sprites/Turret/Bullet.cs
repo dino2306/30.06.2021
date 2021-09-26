@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float lifetime = 2;
-    private BoxCollider2D box;
+
 
     void Start()
     {
-        box = GetComponent<BoxCollider2D>();
+
     }
 
 
@@ -17,9 +17,10 @@ public class Bullet : MonoBehaviour
     {
         if (col.isTrigger == false)
         {
-            if (col.CompareTag("Player"))           
+            if (col.CompareTag("Player"))
+            
             Destroy(gameObject);
-           
+          
         }
 
     }

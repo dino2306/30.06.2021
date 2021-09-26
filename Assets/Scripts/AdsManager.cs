@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleMobileAds.Api;
 using System;
+
+using GoogleMobileAds.Api;
 
 public class AdsManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class AdsManager : MonoBehaviour
 
     private RewardedAd rewardedAd;
 
-    public Action acVideoComplete;
+    public Action acVideoComplete, acVideo_buy;
 
     public Vector3 vRevive;
 
@@ -37,6 +38,7 @@ public class AdsManager : MonoBehaviour
         // this.RequestBanner();
         this.RequestInterstitial();
         this.RequesRewarded();
+  //  idAPP: "ca-app-pub-3940256099942544~3347511713 ";
     }
 
     private void RewardedAd_OnAdClosed(object sender, EventArgs e)
@@ -68,8 +70,8 @@ public class AdsManager : MonoBehaviour
     public void RequestBanner()
     {
 #if UNITY_ANDROID
-       string adUnitId = "ca-app-pub-6690619384524838/9586418935";
-      //  string adUnitId = "ca-app-pub-8296383146698662/1287797523";
+        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+         // string adUnitId = "ca-app-pub-8296383146698662/1287797523";
 #elif UNITY_IPHONE
             string adUnitId = "ca-app-pub-3940256099942544/2934735716";
 #else
@@ -97,10 +99,10 @@ public class AdsManager : MonoBehaviour
     }
 
 
-    private void RequestInterstitial()
+    public void RequestInterstitial()
     {
 #if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-6690619384524838/8614110438";
+       string adUnitId = "ca-app-pub-3940256099942544/1033173712";
         //string adUnitId = "ca-app-pub-8296383146698662/4157503440";
 #elif UNITY_IPHONE
         string adUnitId = "ca-app-pub-3940256099942544/4411468910";
@@ -111,30 +113,37 @@ public class AdsManager : MonoBehaviour
         // Initialize an InterstitialAd.
         this.interstitial = new InterstitialAd(adUnitId);
 
-        this.interstitial.OnAdClosed += Interstitial_OnAdClosed; ;
+        // Called when an ad request has successfully loaded.
+        this.interstitial.OnAdLoaded += Interstitial_OnAdLoaded;
+
+        this.interstitial.OnAdClosed += Interstitial_OnAdClosed; 
+
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
     }
 
+    private void Interstitial_OnAdLoaded(object sender, EventArgs e)
+    {
+      
+    }
+
     private void Interstitial_OnAdClosed(object sender, EventArgs e)
     {
-         RequestInterstitial();
-      //  StartCoroutine(Time_inters());
+        RequestInterstitial();
+
 
         if (acIntersClose != null) acIntersClose(true);
     }
-    IEnumerator Time_inters()
-    {
-        yield return new WaitForSeconds(300f);
-        RequestInterstitial();
-    }
+
+
     public void ShowVideoReward()
     {
         if (rewardedAd.IsLoaded())
         {
             rewardedAd.Show();
+            Debug.Log("Reward is ready");
         }
         else
         {
@@ -155,24 +164,27 @@ public class AdsManager : MonoBehaviour
 
     public Action<bool> acIntersClose;
 
-    public void ShowInters(Action<bool> _ac){
+    public void ShowInters(Action<bool> _ac)
+    {
         if (interstitial.IsLoaded())
         {
             acIntersClose = _ac;
             interstitial.Show();
+            Debug.Log("Interstitial is ready");
         }
         else
         {
             _ac(true);
             acIntersClose(true);
+            Debug.Log("Interstitial is not ready yet");
         }
-        
+
     }
-    
+
     private void RequesRewarded()
     {
-        string adUnitId = "ca-app-pub-6690619384524838/6294935403";
-       // string adUnitId = "ca-app-pub-8296383146698662/4843236440";
+        string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+         //string adUnitId = "ca-app-pub-8296383146698662/4843236440";
         this.rewardedAd = new RewardedAd(adUnitId);
 
         rewardedAd.OnUserEarnedReward += RewardedAd_OnUserEarnedReward;
@@ -195,12 +207,31 @@ public class AdsManager : MonoBehaviour
 
     private void RewardedAd_OnUserEarnedReward(object sender, Reward e)
     {
-        if (acVideoComplete !=null)
+        if (acVideoComplete != null)
         {
             acVideoComplete();
+         
         }
         //string type = e.Type;
         //double amount = e.Amount;
+        if (ac_rewardedClose != null) ac_rewardedClose(true);
     }
-    
+
+    public Action<bool> ac_rewardedClose;
+
+    public void ShowRewarded(Action<bool> _ac)
+    {
+        if (rewardedAd.IsLoaded())
+        {
+            ac_rewardedClose = _ac;
+            rewardedAd.Show();
+            Debug.Log("Rewarded is ready");
+        }
+        else
+        {
+            _ac(true);
+            ac_rewardedClose(true);
+            Debug.Log("Rewarded is not ready yet");
+        }
+    }
 }

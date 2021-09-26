@@ -11,7 +11,7 @@ public class CongTac : MonoBehaviour
     public float speed;
     public Vector3 vStart, vEnd, vitri1_1, vitri2_1;
     public Transform  tamVan ;
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +45,6 @@ public class CongTac : MonoBehaviour
         MoveTamvantim2();
            
         MoveTamVanVang();
-
     }
 
 

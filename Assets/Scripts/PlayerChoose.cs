@@ -26,7 +26,8 @@ public class PlayerChoose : MonoBehaviour
     public int missionId;
 
     private AudioSource audioSource;
-    public AudioClip easy, normal;
+    public AudioSource audio_win;
+    public AudioClip easy, normal, win;
 
     public bool choose_Player = false;
 
@@ -71,6 +72,8 @@ public class PlayerChoose : MonoBehaviour
         {
             _player1.Opening = true;
             _player2.Opening = true;
+            audio_win.clip = win;
+            audio_win.Play();
         }
         SwapKey();
         HandPause();
@@ -216,18 +219,28 @@ public class PlayerChoose : MonoBehaviour
 
         if (_player1.Opening && _player2.Opening)
         {
+            _player1.win = true;
+            _player2.win = true;            
+
             _player1.PlayAninmation(_player1.Win);
             _player2.PlayAninmation(_player2.Win);
 
+           
             yield return new WaitForSeconds(1.5f);
+            if (_player1.win && _player2.win)
+            {
+                audio_win.clip = win;
+                audio_win.Play();
+            }
             Panel_Win.SetActive(true);
             // gg.GameOver();
-
+           
             winmission.UnlockNextMission(missionId);        //UnlockMap
+         
         }
 
     }
-  
+   
     
     public void Nextmap()
     {

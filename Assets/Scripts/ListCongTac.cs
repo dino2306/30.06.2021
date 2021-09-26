@@ -11,11 +11,12 @@ public class ListCongTac : MonoBehaviour
     public List<Vector3> Vend;
     public float speed;
 
+  
    // public bool player;
     // Start is called before the first frame update
     void Start()
     {
-
+       
             for (int i = 0; i < congTac.Count; i++)
 
             {
@@ -38,6 +39,7 @@ public class ListCongTac : MonoBehaviour
         if (collision.gameObject.CompareTag("CongTac1"))
         {
             checkeed = true;
+         
         }
 
        

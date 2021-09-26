@@ -31,7 +31,7 @@ public class Welcom : MonoBehaviour
    
 
     private int missionID = 40;
-
+    private int n = 1;
     public bool check;
 
     // Start is called before the first frame update
@@ -64,6 +64,12 @@ public class Welcom : MonoBehaviour
        AdsManager.Instance.RequestBanner();
 
         PlayerPrefs.SetInt("LastMission", missionID);
+
+        if (PlayerPrefs.GetInt("SELECTED") == 0)
+        {
+            PlayerPrefs.SetInt("selectOption", n);
+
+        }
     }
 
 
@@ -118,8 +124,9 @@ public class Welcom : MonoBehaviour
 
         AdsManager.Instance.bannerView.Destroy();
         AdsManager.Instance.bannerView.Hide();
-    }
 
+     
+    }
    
 
     public void Easy()
@@ -236,8 +243,8 @@ public class Welcom : MonoBehaviour
 
     public void Thoat()
     {
-        SceneManager.LoadScene(Scencename);
-
+        // SceneManager.LoadScene(Scencename);
+        panel_Menu.SetActive(false);
         audioClik.clip = click;
         audioClik.Play();
 

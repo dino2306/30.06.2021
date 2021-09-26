@@ -147,6 +147,14 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -164,7 +172,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.couple.adventure.stickman
+    Android: com.pgame.couple.stick.adventure
     Standalone: com.HyoGD.BoyAndGirl
     iPhone: com.HyoGD.BoyAndGirl
   buildNumber:
@@ -267,7 +275,7 @@ PlayerSettings:
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 1
+  androidUseCustomKeystore: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -283,7 +291,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: e0badb7a2fe5d4d4f90e5fd12a19e2f3, type: 3}
+      m_Icon: {fileID: 2800000, guid: 85432272e919e954ba310234b7b7a074, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -658,7 +666,7 @@ PlayerSettings:
   ps4IncludedModules: []
   ps4attribVROutputEnabled: 0
   monoEnv: 
-  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: e0badb7a2fe5d4d4f90e5fd12a19e2f3, type: 3}
+  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: 85432272e919e954ba310234b7b7a074, type: 3}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   blurSplashScreenBackground: 1
   spritePackerPolicy: 

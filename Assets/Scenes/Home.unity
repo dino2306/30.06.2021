@@ -4080,7 +4080,7 @@ RectTransform:
   m_Children:
   - {fileID: 478987847}
   m_Father: {fileID: 1865633192}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14659,8 +14659,8 @@ RectTransform:
   m_Father: {fileID: 1249574028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.3760852}
+  m_AnchorMax: {x: 1, y: 0.9993088}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -30334,7 +30334,7 @@ RectTransform:
   m_Children:
   - {fileID: 1346671552}
   m_Father: {fileID: 1865633192}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30910,6 +30910,7 @@ MonoBehaviour:
   bought: 0
   panel_menu: {fileID: 1266394679}
   clik: {fileID: 8300000, guid: 449b181b7ebdf054f8ebcd579c8d63a5, type: 3}
+  list: []
   s: 0
   selected: 0
 --- !u!82 &1253104694
@@ -34438,6 +34439,7 @@ MonoBehaviour:
   bought: 0
   panel_menu: {fileID: 1266394679}
   clik: {fileID: 8300000, guid: 449b181b7ebdf054f8ebcd579c8d63a5, type: 3}
+  list: []
   s: 0
   selected: 0
 --- !u!82 &1395902767
@@ -37891,6 +37893,7 @@ MonoBehaviour:
   - {fileID: 781968022}
   click: {fileID: 8300000, guid: 449b181b7ebdf054f8ebcd579c8d63a5, type: 3}
   n: 0
+  bought: 0
   list:
   - name: Sasuke
     index: 0
@@ -37961,6 +37964,8 @@ MonoBehaviour:
   - name: ?10
     index: 22
     Bought: 0
+  selected: 0
+  s: 0
 --- !u!4 &1548743571
 Transform:
   m_ObjectHideFlags: 0
@@ -46345,7 +46350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1865633192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46369,8 +46374,8 @@ RectTransform:
   - {fileID: 1103542391}
   - {fileID: 1165919999}
   - {fileID: 1282379866}
-  - {fileID: 1248052933}
   - {fileID: 180862773}
+  - {fileID: 1248052933}
   m_Father: {fileID: 1318328840}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

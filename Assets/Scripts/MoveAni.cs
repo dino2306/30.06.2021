@@ -67,10 +67,10 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
         //{
         //    AdsManager.Instance.acVideoComplete += HandleVideoReward;
         //}
-        if (AdsManager.Instance != null)
-        {
-            AdsManager.Instance.acVideoComplete += Revive;
-        }
+        //if (AdsManager.Instance != null)
+        //{
+        //    AdsManager.Instance.acVideoComplete += Revive;
+        //}
         //vstart = transform.position;   
         if (!PlayerPrefs.HasKey("selectOption"))
         {
@@ -83,18 +83,18 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
         }
         Choose_skin();
     }
-    private void OnDisable()
-    {
-        if (AdsManager.Instance != null)
-        {
-            AdsManager.Instance.acVideoComplete -= HandleVideoReward;
+    //private void OnDisable()
+    //{
+    //    if (AdsManager.Instance != null)
+    //    {
+    //        AdsManager.Instance.acVideoComplete -= HandleVideoReward;
 
-        }
-        if (AdsManager.Instance != null)
-        {
-            AdsManager.Instance.acVideoComplete -= Revive;
-        }
-    }
+    //    }
+    //    if (AdsManager.Instance != null)
+    //    {
+    //        AdsManager.Instance.acVideoComplete -= Revive;
+    //    }
+    //}
     private void HandleVideoReward()
     {
         // Application.LoadLevel(Application.loadedLevel);
@@ -199,6 +199,11 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
                 audioS.clip = audio_die;
                 audioS.Play();
                 //  StartCoroutine(Destroy_Player());
+               
+            }
+            if (collision.gameObject.tag.Equals("Bullet"))
+            {
+                turret.bulletspeed = 0;
             }
 
 
@@ -280,6 +285,11 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
                 audioS.clip = audio_die;
                 audioS.Play();
                 //  StartCoroutine(Destroy_Player());
+               
+            }
+            if (collision.gameObject.tag.Equals("Bullet"))
+            {
+                turret.bulletspeed = 0;
             }
 
             //check cong tac
@@ -628,15 +638,15 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
 
     public void WatchVideo() /// ham goi quang cao 
     {
-        AdsManager.Instance.ShowVideoReward();
+        // AdsManager.Instance.ShowVideoReward();
 
-        //AdsManager.Instance.ShowRewarded((a) =>
-        //{ 
-        //    if (a)
-        //    {
-        //        Revive();
-        //    }
-        //});
+        AdsManager.Instance.ShowRewarded((a) =>
+        {
+            if (a)
+            {
+                Revive();
+            }
+        });
     }
     
 
@@ -648,6 +658,7 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
             PlayAninmation(IdleAnim);
             transform.position = AdsManager.Instance.vRevive;
             Panel_GameOver.SetActive(false);
+            turret.bulletspeed = 5;
 
             audioS.clip = hoi_sinh;
             audioS.Play();

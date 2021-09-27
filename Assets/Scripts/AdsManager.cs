@@ -207,11 +207,11 @@ public class AdsManager : MonoBehaviour
 
     private void RewardedAd_OnUserEarnedReward(object sender, Reward e)
     {
-        if (acVideoComplete != null)
-        {
-            acVideoComplete();
+        //if (acVideoComplete != null)
+        //{
+        //    acVideoComplete();
          
-        }
+        //}
         //string type = e.Type;
         //double amount = e.Amount;
         if (ac_rewardedClose != null) ac_rewardedClose(true);

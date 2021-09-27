@@ -145,9 +145,10 @@ MonoBehaviour:
   check: 0
   Opening: 0
   die: 0
+  win: 0
   gamecontroller: {fileID: 8916570815367710847, guid: d7c73190f3a96c64c9c5a3bd972e282d, type: 3}
   dooranmation: {fileID: 8718647005479960518, guid: 1716e38f88bfe5b428ded68a294542ab, type: 3}
-  turret: {fileID: 0}
+  turret: {fileID: 4923549329926818839, guid: e0b32083d83684944a60b628e2f3ffe3, type: 3}
   Panel_GameOver: {fileID: 0}
   gameOver: {fileID: 0}
   watch_Video: {fileID: 0}

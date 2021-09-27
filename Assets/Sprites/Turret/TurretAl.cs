@@ -10,7 +10,7 @@ public class TurretAl : MonoBehaviour
     public float distance;
     public float wakerange;
     public float shootinterval;
-    public float bulletspeed = 5;
+    public float bulletspeed ;
     public float bullettimer;
 
     public bool awake = false;
@@ -139,4 +139,5 @@ public class TurretAl : MonoBehaviour
             }
         }
     }
+  
 }

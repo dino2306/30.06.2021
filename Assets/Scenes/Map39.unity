@@ -2257,18 +2257,18 @@ PrefabInstance:
     - target: {fileID: 3390824235321781756, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1811252890}
+      objectReference: {fileID: 1810366440}
     - target: {fileID: 3390824235321781756, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3390824235321781756, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: WatchVideo
+      value: WatachVideo
       objectReference: {fileID: 0}
     - target: {fileID: 3390824235321781756, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MoveAni, Assembly-CSharp
+      value: Run_time, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3390824235321781756, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -8259,7 +8259,7 @@ RectTransform:
   - {fileID: 990804708}
   - {fileID: 365584884}
   m_Father: {fileID: 529088183}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}

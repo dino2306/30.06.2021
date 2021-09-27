@@ -4045,6 +4045,10 @@ PrefabInstance:
       propertyPath: target2
       value: 
       objectReference: {fileID: 495053763}
+    - target: {fileID: 4923549329926818839, guid: e0b32083d83684944a60b628e2f3ffe3, type: 3}
+      propertyPath: bulletspeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4923549330952644669, guid: e0b32083d83684944a60b628e2f3ffe3, type: 3}
       propertyPath: m_TagString
       value: Enemy
@@ -4293,11 +4297,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7939328273792294744, guid: 60c9c78ba234e814a8f9d3e671689749, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.09
+      value: -9.53
       objectReference: {fileID: 0}
     - target: {fileID: 7939328273792294744, guid: 60c9c78ba234e814a8f9d3e671689749, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.86
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 7939328273792294744, guid: 60c9c78ba234e814a8f9d3e671689749, type: 3}
       propertyPath: m_LocalPosition.z

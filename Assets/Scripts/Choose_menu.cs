@@ -56,8 +56,19 @@ public class Choose_menu : MonoBehaviour
         }
         Update_boughtSkin();
         //UpdateUi();
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideo_buy += Bought_skin;
+        }
     }
+    private void OnDisable()
+    {
 
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideo_buy -= Bought_skin;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -89,6 +100,7 @@ public class Choose_menu : MonoBehaviour
     public void Close_skin()
     {
         Panel_Skin.SetActive(false);
+       
     }
 
     public void Unlock_Premium()
@@ -163,26 +175,27 @@ public class Choose_menu : MonoBehaviour
 
     public void Buy_skin()
     {
-        AdsManager.Instance.ShowRewarded((a) =>
+        AdsManager.Instance.ShowVideoReward();
+        if (AdsManager.Instance.acVideoComplete != null)
         {
-            if (a)
-            {
-                ListSkin l = list[n];
-
-                if (l.Bought == false)
-                {
-                    l.Bought = true;
-                }
-              
-                Update_boughtSkin();
-                // Save();
-                PlayerPrefs.GetInt("buy", 1);
-                Save_bought();
-
-            }
-        });
+            AdsManager.Instance.acVideoComplete = null;
+        }
+       
     }
+    private void Bought_skin()
+    {
+        ListSkin l = list[n];
 
+        if (l.Bought == false)
+        {
+            l.Bought = true;
+        }
+
+        Update_boughtSkin();
+        // Save();
+        PlayerPrefs.GetInt("buy", 1);
+        Save_bought();
+    }
     private void Update_boughtSkin()
     {
         ListSkin l = list[n];

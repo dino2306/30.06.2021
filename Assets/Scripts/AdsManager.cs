@@ -15,7 +15,7 @@ public class AdsManager : MonoBehaviour
 
     private RewardedAd rewardedAd;
 
-    public Action acVideoComplete, acVideo_buy;
+    public Action acVideoComplete, acVideo_timeUp, acVideo_buy;
 
     public Vector3 vRevive;
 
@@ -207,31 +207,20 @@ public class AdsManager : MonoBehaviour
 
     private void RewardedAd_OnUserEarnedReward(object sender, Reward e)
     {
-        //if (acVideoComplete != null)
-        //{
-        //    acVideoComplete();
-         
-        //}
-        //string type = e.Type;
-        //double amount = e.Amount;
-        if (ac_rewardedClose != null) ac_rewardedClose(true);
-    }
-
-    public Action<bool> ac_rewardedClose;
-
-    public void ShowRewarded(Action<bool> _ac)
-    {
-        if (rewardedAd.IsLoaded())
+        if (acVideoComplete != null)
         {
-            ac_rewardedClose = _ac;
-            rewardedAd.Show();
-            Debug.Log("Rewarded is ready");
+            acVideoComplete();
+
         }
-        else
+        if (acVideo_timeUp != null)
         {
-            _ac(true);
-            ac_rewardedClose(true);
-            Debug.Log("Rewarded is not ready yet");
+            acVideo_timeUp();
+        }
+        if (acVideo_buy != null)
+        {
+            acVideo_buy();
         }
     }
+
+   
 }

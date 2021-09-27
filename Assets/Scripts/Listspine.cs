@@ -68,19 +68,19 @@ public class Listspine : MonoBehaviour
 
         s = n;
 
-        //if (AdsManager.Instance != null)
-        //{
-        //    AdsManager.Instance.acVideoComplete += Tried;
-        //}
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideoComplete += Tried;
+        }
     }
 
     private void OnDisable()
     {
-       
-        //if (AdsManager.Instance != null)
-        //{
-        //    AdsManager.Instance.acVideoComplete -= Tried;
-        //}
+
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideoComplete -= Tried;
+        }
     }
 
     // Update is called once per frame
@@ -286,7 +286,7 @@ public class Listspine : MonoBehaviour
         if (n == 1)
         {
             n = 26;
-
+          
         }
         n -= 1;
         audioS.clip = clik;
@@ -358,28 +358,24 @@ public class Listspine : MonoBehaviour
         audioS.clip = clik;
         audioS.Play();
 
-        AdsManager.Instance.ShowRewarded((a) =>
+        AdsManager.Instance.ShowVideoReward();
+        if (AdsManager.Instance.acVideo_buy != null)
         {
-            if (a)
-            {
-                s = n;
-                Save();
-                panel_menu.SetActive(true);
-                selected = false;
-                Save_selected();
-            }
-        });
-  
+            AdsManager.Instance.acVideo_buy = null;
+        }
+      
+           
+       
     }
 
-    //private void Tried()
-    //{
-    //    s = n;
-    //    Save();
-    //    panel_menu.SetActive(true);
-    //    selected = false;
-    //    Save_selected();
-    //}
+    private void Tried()
+    {
+        s = n;
+        Save();
+        panel_menu.SetActive(true);
+        selected = false;
+        Save_selected();
+    }
 
     public void Buyskin()
     {
@@ -443,7 +439,4 @@ public class Listspine : MonoBehaviour
     {
         PlayerPrefs.SetInt("SELECTED", selected ? 1 : 0);
     }
-
-
-
 }

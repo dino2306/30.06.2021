@@ -2102,7 +2102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 564438816842391907, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1114449207292708569, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_RootOrder
@@ -2170,7 +2170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1635714541441519044, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1957919761150686584, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_Text
@@ -4229,7 +4229,7 @@ PrefabInstance:
     - target: {fileID: 1645968500887896305, guid: 1950011235edf37419165709c4059ebf, type: 3}
       propertyPath: turret
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4923549329926818839, guid: e0b32083d83684944a60b628e2f3ffe3, type: 3}
     - target: {fileID: 1645968500887896305, guid: 1950011235edf37419165709c4059ebf, type: 3}
       propertyPath: gameOver
       value: 
@@ -4466,7 +4466,7 @@ PrefabInstance:
     - target: {fileID: 5853426504793292700, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
       propertyPath: turret
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4923549329926818839, guid: e0b32083d83684944a60b628e2f3ffe3, type: 3}
     - target: {fileID: 5853426504793292700, guid: 5ae5f83eee406d54d9b957ef4b88d92c, type: 3}
       propertyPath: gameOver
       value: 

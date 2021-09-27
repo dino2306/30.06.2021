@@ -6,7 +6,7 @@ public class Run_time : MonoBehaviour
 {
     public float current_time;
     public Text Seconds, minutes;
-    public int late ;
+    public int late;
     public GameObject player1, player2;
     public GameObject gameOver;
 
@@ -14,13 +14,25 @@ public class Run_time : MonoBehaviour
     private bool Over_Time = false;
     private void Start()
     {
-       Seconds.text = current_time.ToString();
+        Seconds.text = current_time.ToString();
         minutes.text = "0" + late.ToString() + ":";
 
         V_pl1 = player1.transform.position;
 
         V_pl2 = player2.transform.position;
 
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideo_timeUp += TimeUp;
+        }
+    }
+    private void OnDisable()
+    {
+
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideo_timeUp -= TimeUp;
+        }
     }
 
     // Update is called once per frame
@@ -63,15 +75,14 @@ public class Run_time : MonoBehaviour
 
     public void WatachVideo()
     {
-        AdsManager.Instance.ShowRewarded((a) =>
-        {
-            if (a)
-            {
-                gameOver.SetActive(false);
-                current_time = 20f;
-                Over_Time = false;
+        AdsManager.Instance.acVideoComplete = null;
+        AdsManager.Instance.ShowVideoReward();
+    }
 
-            }
-        });
+    private void TimeUp()
+    {
+        gameOver.SetActive(false);
+        current_time = 20f;
+        Over_Time = false;
     }
 }

@@ -26,6 +26,7 @@ TagManager:
   - trap
   - Wind
   - Snow
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -52,11 +52,26 @@ public class Run_time : MonoBehaviour
         EndTime();
     }
 
-    void EndTime(){
-        if (late == 0f && current_time < 1  )
+    void EndTime()
+    {
+        if (late == 0f && current_time < 1)
         {
             Over_Time = true;
             gameOver.SetActive(true);
         }
+    }
+
+    public void WatachVideo()
+    {
+        AdsManager.Instance.ShowRewarded((a) =>
+        {
+            if (a)
+            {
+                gameOver.SetActive(false);
+                current_time = 20f;
+                Over_Time = false;
+
+            }
+        });
     }
 }

@@ -62,15 +62,12 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
         GetComponent<Image>();
 
         audioS = GetComponent<AudioSource>();
-        //   water_loop = GetComponent<AudioSource>();
-        //if (AdsManager.Instance != null)
-        //{
-        //    AdsManager.Instance.acVideoComplete += HandleVideoReward;
-        //}
-        //if (AdsManager.Instance != null)
-        //{
-        //    AdsManager.Instance.acVideoComplete += Revive;
-        //}
+      
+
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideoComplete += Revive;
+        }
         //vstart = transform.position;   
         if (!PlayerPrefs.HasKey("selectOption"))
         {
@@ -83,22 +80,15 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
         }
         Choose_skin();
     }
-    //private void OnDisable()
-    //{
-    //    if (AdsManager.Instance != null)
-    //    {
-    //        AdsManager.Instance.acVideoComplete -= HandleVideoReward;
-
-    //    }
-    //    if (AdsManager.Instance != null)
-    //    {
-    //        AdsManager.Instance.acVideoComplete -= Revive;
-    //    }
-    //}
-    private void HandleVideoReward()
+    private void OnDisable()
     {
-        // Application.LoadLevel(Application.loadedLevel);
+
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideoComplete -= Revive;
+        }
     }
+  
 
     // Update is called once per frame
     void Update()
@@ -204,6 +194,14 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
             if (collision.gameObject.tag.Equals("Bullet"))
             {
                 turret.bulletspeed = 0;
+                rb.velocity = new Vector3(0f, 0f);
+                Died();
+                die = true;
+                PlayAninmationDie(isDie);
+                StartCoroutine(Dieing());
+                // Panel_GameOver.SetActive(true);
+                audioS.clip = audio_die;
+                audioS.Play();
             }
 
 
@@ -290,6 +288,14 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
             if (collision.gameObject.tag.Equals("Bullet"))
             {
                 turret.bulletspeed = 0;
+                rb.velocity = new Vector3(0f, 0f);
+                Died();
+                die = true;
+                PlayAninmationDie(isDie);
+                StartCoroutine(Dieing());
+
+                audioS.clip = audio_die;
+                audioS.Play();
             }
 
             //check cong tac
@@ -638,28 +644,22 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
 
     public void WatchVideo() /// ham goi quang cao 
     {
-        // AdsManager.Instance.ShowVideoReward();
-
-        AdsManager.Instance.ShowRewarded((a) =>
-        {
-            if (a)
-            {
-                Revive();
-            }
-        });
+         AdsManager.Instance.ShowVideoReward();
+   
     }
     
 
-    private void Revive() /// sau kho xem xong video se hoi sinh nhan vat
+    private void Revive() /// sau khi xem xong video se hoi sinh nhan vat
     {
         if (choose)
         {
             die = false;
             PlayAninmation(IdleAnim);
             transform.position = AdsManager.Instance.vRevive;
-            Panel_GameOver.SetActive(false);
-            turret.bulletspeed = 5;
 
+            Panel_GameOver.SetActive(false);
+
+            turret.bulletspeed = 5;
             audioS.clip = hoi_sinh;
             audioS.Play();
         }

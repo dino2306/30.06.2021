@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
 using GoogleMobileAds.Api;
-
+using TMPro;
 public class AdsManager : MonoBehaviour
 {
     public static AdsManager Instance;
@@ -15,10 +14,12 @@ public class AdsManager : MonoBehaviour
 
     private RewardedAd rewardedAd;
 
-    public Action acVideoComplete, acVideo_timeUp, acVideo_buy;
+    public Action acVideoComplete, acVideo_timeUp, acVideo_buy, acTryVideo;
 
     public Vector3 vRevive;
 
+    public int Sum_diamon;
+ 
 
     // public bool traped; // dính bẫy
     private void Awake()
@@ -38,12 +39,19 @@ public class AdsManager : MonoBehaviour
         // this.RequestBanner();
         this.RequestInterstitial();
         this.RequesRewarded();
-  //  idAPP: "ca-app-pub-3940256099942544~3347511713 ";
+        //  idAPP: "ca-app-pub-3940256099942544~3347511713 ";
+        Sum_diamon = PlayerPrefs.GetInt("SUMDIAMON", 0);
+     
     }
+   
 
     private void RewardedAd_OnAdClosed(object sender, EventArgs e)
     {
         RequesRewarded();
+        //acVideoComplete = null;
+        //acVideo_buy = null;
+        //acTryVideo = null;
+        //acVideo_timeUp = null;
     }
 
     private void RewardedAd_OnAdFailedToShow(object sender, AdErrorEventArgs e)
@@ -215,6 +223,10 @@ public class AdsManager : MonoBehaviour
         if (acVideo_timeUp != null)
         {
             acVideo_timeUp();
+        }
+        if (acTryVideo != null)
+        {
+            acTryVideo();
         }
         if (acVideo_buy != null)
         {

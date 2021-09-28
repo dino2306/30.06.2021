@@ -68,10 +68,7 @@ public class Listspine : MonoBehaviour
 
         s = n;
 
-        if (AdsManager.Instance != null)
-        {
-            AdsManager.Instance.acVideoComplete += Tried;
-        }
+      
     }
 
     private void OnDisable()
@@ -79,7 +76,7 @@ public class Listspine : MonoBehaviour
 
         if (AdsManager.Instance != null)
         {
-            AdsManager.Instance.acVideoComplete -= Tried;
+            AdsManager.Instance.acTryVideo -= Tried;
         }
     }
 
@@ -357,15 +354,12 @@ public class Listspine : MonoBehaviour
     {
         audioS.clip = clik;
         audioS.Play();
-
-        AdsManager.Instance.ShowVideoReward();
-        if (AdsManager.Instance.acVideo_buy != null)
-        {
-            AdsManager.Instance.acVideo_buy = null;
-        }
-      
-           
        
+        AdsManager.Instance.ShowVideoReward();
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acTryVideo += Tried;
+        }
     }
 
     private void Tried()

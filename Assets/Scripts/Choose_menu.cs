@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
+using Assets;
+using TMPro;
 public class Choose_menu : MonoBehaviour
 {
     public GameObject Panel_Skin;
@@ -29,22 +31,32 @@ public class Choose_menu : MonoBehaviour
     public int n  ;
     public bool bought;
     public ListSkin[] list;
-    
+    public bool check;
+
+    public TextMeshProUGUI Diamon_Money;
+
     // Start is called before the first frame update
     void Start()
-    {     
+    {
+        int lastMission = GameSetting.GetLastMission;
+        ListSkin l = list[n];
+        l.Number = PlayerPrefs.GetInt("NUMBER", 0);
+
+        Diamon_Money.text = AdsManager.Instance.Sum_diamon.ToString();
+
         audioS = GetComponent<AudioSource>();
-        //if (!PlayerPrefs.HasKey("selectOption"))
+        //if (!PlayerPrefs.HasKey("SELECTED"))
         //{
-        //    PlayerPrefs.SetInt("selectOption", 1);
-        //    Load();
+        //    PlayerPrefs.SetInt("SELECTED", 0);
+        //    Load_selected();
         //}
         //else
         //{
-        //    Load();
+        //    Load_selected();
         //}
-        
-    
+        //UpdateSelect();
+
+
         if (!PlayerPrefs.HasKey("BOUGHT"))
         {
             PlayerPrefs.SetInt("BOUGHT", 0);
@@ -55,11 +67,8 @@ public class Choose_menu : MonoBehaviour
             Load_bought();
         }
         Update_boughtSkin();
-        //UpdateUi();
-        if (AdsManager.Instance != null)
-        {
-            AdsManager.Instance.acVideo_buy += Bought_skin;
-        }
+      //  UpdateUi();
+
     }
     private void OnDisable()
     {
@@ -88,13 +97,13 @@ public class Choose_menu : MonoBehaviour
 
         }
         UpdateUi();
-     
+       
     }
      
     public void Skin()
     {
         Panel_Skin.SetActive(true);
-        n = 0;
+        //n = 0;
     }
 
     public void Close_skin()
@@ -102,9 +111,10 @@ public class Choose_menu : MonoBehaviour
         Panel_Skin.SetActive(false);
        
     }
-
+   
     public void Unlock_Premium()
     {
+        check = false;
         Premium.SetActive(true);
         Rescue.SetActive(false);
         Premium_high.enabled = true;
@@ -115,10 +125,18 @@ public class Choose_menu : MonoBehaviour
         n = 0;
         audioS.clip = click;
         audioS.Play();
+        switch (n)
+        {
+            default:
+                BuySkin.interactable = true;
+               // Tryskin.interactable = true;
+                break;
+        }
     }
 
     public void Unlock_Resuce()
     {
+        check = true;
         Premium.SetActive(false);
         Rescue.SetActive(true);
 
@@ -133,6 +151,25 @@ public class Choose_menu : MonoBehaviour
         audioS.Play();
 
         n = 14;
+        switch (n)
+        {
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+                {
+                    BuySkin.interactable = false;
+                   // Tryskin.interactable = false;
+                  
+                    break;
+                }
+
+        }
     }
 
     public void Enter_skin(int a)
@@ -140,16 +177,24 @@ public class Choose_menu : MonoBehaviour
         n = a;
         audioS.clip = click;
         audioS.Play();
-        if (s != n)
+        ListSkin l = list[n];
+        if (l.Bought)
         {
-            selected = false;
+            if (s != n)
+            {
+                selected = false;
 
+            }
+            if (s == n)
+            {
+                selected = true;
+            }
         }
-        if (s == n)
+        else
         {
-            selected = true;
+            return;
         }
-
+        UpdateSelect();
     }
     private void Load()
     {
@@ -172,29 +217,35 @@ public class Choose_menu : MonoBehaviour
         ListSkin l = list[n];    
         PlayerPrefs.SetInt("BOUGHT",l.Bought ? 1 : 0);
     }
-
+  
     public void Buy_skin()
     {
         AdsManager.Instance.ShowVideoReward();
-        if (AdsManager.Instance.acVideoComplete != null)
+
+        if (AdsManager.Instance != null)
         {
-            AdsManager.Instance.acVideoComplete = null;
+            AdsManager.Instance.acVideo_buy += Bought_skin;
+            AdsManager.Instance.acTryVideo = null;
         }
-       
+      
     }
     private void Bought_skin()
     {
         ListSkin l = list[n];
+        l.Number ++;
 
-        if (l.Bought == false)
+        if (l.Number == 5)
         {
-            l.Bought = true;
+            if (l.Bought == false)
+            {
+                l.Bought = true;
+            }
+            Update_boughtSkin();
         }
-
-        Update_boughtSkin();
-        // Save();
-        PlayerPrefs.GetInt("buy", 1);
+        AdsManager.Instance.acVideo_buy -= Bought_skin;
+        PlayerPrefs.SetInt("NUMBER", l.Number);
         Save_bought();
+
     }
     private void Update_boughtSkin()
     {
@@ -210,33 +261,39 @@ public class Choose_menu : MonoBehaviour
         {
             image_btn[n].image.enabled = false;
             image_lock[n].SetActive(true);
-            //  SelectSkin.gameObject.SetActive(false);
+           
         }
+        PlayerPrefs.SetInt(l.name, 1);
+      
 
     }
     public bool selected= false;
 
     private void UpdateUi()
     {
-        ListSkin l = list[n];       
-        if (l.Bought)
+        ListSkin l = list[n];
+        
         {
-            BuySkin.gameObject.SetActive(false);
-            Tryskin.gameObject.SetActive(false);
-            SelectSkin.gameObject.SetActive(true);
-            image_btn[n].image.enabled = true;
-            image_lock[n].SetActive(false);
-          
-          
-        }
-        else
-        {
-            BuySkin.gameObject.SetActive(true);
-            Tryskin.gameObject.SetActive(true);
-            SelectSkin.gameObject.SetActive(false);
-            SelectedSkin.gameObject.SetActive(false);
-            image_btn[n].image.enabled = false;
-            image_lock[n].SetActive(true);
+            if (l.Bought)
+            {
+                BuySkin.gameObject.SetActive(false);
+                Tryskin.gameObject.SetActive(false);
+                SelectSkin.gameObject.SetActive(true);
+                image_btn[n].image.enabled = true;
+                image_lock[n].SetActive(false);
+
+
+            }
+            else
+            {
+                BuySkin.gameObject.SetActive(true);
+                Tryskin.gameObject.SetActive(true);
+                SelectSkin.gameObject.SetActive(false);
+                SelectedSkin.gameObject.SetActive(false);
+                image_btn[n].image.enabled = false;
+                image_lock[n].SetActive(true);
+             //   BuySkin.GetComponentInChildren<Text>().text = l.Number + "/";
+            }
         }
     }
     public int s;
@@ -249,7 +306,7 @@ public class Choose_menu : MonoBehaviour
         }
         ListSkin l = list[n];
        UpdateSelect();
-     
+        Save_selected();
 
     }
     public void UpdateSelect()
@@ -266,8 +323,16 @@ public class Choose_menu : MonoBehaviour
             SelectedSkin.gameObject.SetActive(true);
         }
     }
+    private void Load_selected()
+    {
+        selected = PlayerPrefs.GetInt("SELECTED") == 1;
+    }
 
-   
+    private void Save_selected()
+    {
+        PlayerPrefs.SetInt("SELECTED", selected ? 1 : 0);
+    }
+
 }
 
 

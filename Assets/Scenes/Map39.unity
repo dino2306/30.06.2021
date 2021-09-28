@@ -2154,6 +2154,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: home
       objectReference: {fileID: 0}
+    - target: {fileID: 783715793232516789, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
+      propertyPath: m_text
+      value: 'Watch the video get more time?
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 783715793232516789, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
+      propertyPath: m_margin.w
+      value: -6.5317383
+      objectReference: {fileID: 0}
+    - target: {fileID: 783715793232516789, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
+      propertyPath: m_margin.z
+      value: 174.17847
+      objectReference: {fileID: 0}
     - target: {fileID: 1442183090301832857, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2225,6 +2239,10 @@ PrefabInstance:
     - target: {fileID: 3309221677852771108, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309221677852771109, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3309221678399732039, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2634,6 +2652,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1196948742}
+    - target: {fileID: 8344512101307583537, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 89
+      objectReference: {fileID: 0}
     - target: {fileID: 8959253558089929811, guid: db98e5e3f9a356c429fae01792512ce8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5783,11 +5805,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6290072667160746699, guid: 1950011235edf37419165709c4059ebf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.191
+      value: -0.113
       objectReference: {fileID: 0}
     - target: {fileID: 6290072667160746699, guid: 1950011235edf37419165709c4059ebf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.092
+      value: -0.193
       objectReference: {fileID: 0}
     - target: {fileID: 7974100760291793263, guid: 1950011235edf37419165709c4059ebf, type: 3}
       propertyPath: m_RootOrder

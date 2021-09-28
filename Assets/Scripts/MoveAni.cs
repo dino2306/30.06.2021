@@ -160,6 +160,9 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
 
                 audioS.clip = Select_Diamon;
                 audioS.Play();
+
+             int Money=   AdsManager.Instance.Sum_diamon++;
+                PlayerPrefs.SetInt("SUMDIAMON", Money);
             }
             if (collision.gameObject.tag == "Finish2" && gamecontroller.num2 == 0)
             {
@@ -250,6 +253,11 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
 
                 audioS.clip = Select_Diamon;
                 audioS.Play();
+
+
+                int Money = AdsManager.Instance.Sum_diamon++;
+
+                PlayerPrefs.SetInt("SUMDIAMON", Money);
             }
             if (collision.gameObject.tag == "Finish" && gamecontroller.num == 0)
             {

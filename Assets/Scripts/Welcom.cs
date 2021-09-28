@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Assets;
+using TMPro;
 
 public class Welcom : MonoBehaviour
 {
@@ -34,10 +35,13 @@ public class Welcom : MonoBehaviour
     private int n = 1;
     public bool check;
 
+    public TextMeshProUGUI Dimon_Money;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        Dimon_Money.text = AdsManager.Instance.Sum_diamon.ToString();
+        PlayerPrefs.GetInt("SUMDIAMON", 0);
         if (ggadmob == null)
         {
             ggadmob = GameObject.FindGameObjectWithTag("ggAdmob");
@@ -61,7 +65,7 @@ public class Welcom : MonoBehaviour
         AudioListener.pause = muted;
       //  AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
 
-       AdsManager.Instance.RequestBanner();
+    
 
         PlayerPrefs.SetInt("LastMission", missionID);
 
@@ -122,8 +126,7 @@ public class Welcom : MonoBehaviour
 
         audioS.volume = 0.3f;
 
-        AdsManager.Instance.bannerView.Destroy();
-        AdsManager.Instance.bannerView.Hide();
+      
 
      
     }

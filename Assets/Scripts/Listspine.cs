@@ -190,6 +190,7 @@ public class Listspine : MonoBehaviour
             case 25:
                 ChangeSkin(skanim, twenty_five);
                 break;
+          
         }
      
      
@@ -369,6 +370,7 @@ public class Listspine : MonoBehaviour
         panel_menu.SetActive(true);
         selected = false;
         Save_selected();
+        AdsManager.Instance.acTryVideo -= Tried;
     }
 
     public void Buyskin()

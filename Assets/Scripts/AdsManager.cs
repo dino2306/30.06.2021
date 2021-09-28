@@ -14,7 +14,7 @@ public class AdsManager : MonoBehaviour
 
     private RewardedAd rewardedAd;
 
-    public Action acVideoComplete, acVideo_timeUp, acVideo_buy, acTryVideo;
+    public Action acVideoComplete, acVideo_timeUp, acVideo_Donate, acTryVideo;
 
     public Vector3 vRevive;
 
@@ -228,9 +228,9 @@ public class AdsManager : MonoBehaviour
         {
             acTryVideo();
         }
-        if (acVideo_buy != null)
+        if (acVideo_Donate != null)
         {
-            acVideo_buy();
+            acVideo_Donate(); ;
         }
     }
 

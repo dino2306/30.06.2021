@@ -39,23 +39,23 @@ public class Choose_menu : MonoBehaviour
     void Start()
     {
         int lastMission = GameSetting.GetLastMission;
-        ListSkin l = list[n];
-        l.Number = PlayerPrefs.GetInt("NUMBER", 0);
+      
+       
 
         Diamon_Money.text = AdsManager.Instance.Sum_diamon.ToString();
 
         audioS = GetComponent<AudioSource>();
-        //if (!PlayerPrefs.HasKey("SELECTED"))
-        //{
-        //    PlayerPrefs.SetInt("SELECTED", 0);
-        //    Load_selected();
-        //}
-        //else
-        //{
-        //    Load_selected();
-        //}
-        //UpdateSelect();
-
+        foreach (ListSkin l in list)
+        {
+            if (l.Dimon == 0)
+            {
+                l.Bought = true;
+            }
+            else
+            {
+                l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
+            }
+        }
 
         if (!PlayerPrefs.HasKey("BOUGHT"))
         {
@@ -75,7 +75,7 @@ public class Choose_menu : MonoBehaviour
 
         if (AdsManager.Instance != null)
         {
-            AdsManager.Instance.acVideo_buy -= Bought_skin;
+            AdsManager.Instance.acVideo_Donate -= Donated;
         }
     }
 
@@ -220,21 +220,8 @@ public class Choose_menu : MonoBehaviour
   
     public void Buy_skin()
     {
-        AdsManager.Instance.ShowVideoReward();
-
-        if (AdsManager.Instance != null)
-        {
-            AdsManager.Instance.acVideo_buy += Bought_skin;
-            AdsManager.Instance.acTryVideo = null;
-        }
-      
-    }
-    private void Bought_skin()
-    {
         ListSkin l = list[n];
-        l.Number ++;
-
-        if (l.Number == 5)
+        if (l.Dimon == 0)
         {
             if (l.Bought == false)
             {
@@ -242,11 +229,9 @@ public class Choose_menu : MonoBehaviour
             }
             Update_boughtSkin();
         }
-        AdsManager.Instance.acVideo_buy -= Bought_skin;
-        PlayerPrefs.SetInt("NUMBER", l.Number);
-        Save_bought();
 
     }
+   
     private void Update_boughtSkin()
     {
         ListSkin l = list[n];
@@ -309,7 +294,7 @@ public class Choose_menu : MonoBehaviour
         Save_selected();
 
     }
-    public void UpdateSelect()
+   private void UpdateSelect()
     {
 
         if (selected == false)
@@ -331,6 +316,23 @@ public class Choose_menu : MonoBehaviour
     private void Save_selected()
     {
         PlayerPrefs.SetInt("SELECTED", selected ? 1 : 0);
+    }
+
+    public void Donate_Dianon()
+    {
+        AdsManager.Instance.ShowVideoReward();
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideo_Donate += Donated;
+        }
+    }
+
+    private void Donated()
+    {
+        int donate = AdsManager.Instance.Sum_diamon += 10;
+        Diamon_Money.text = donate.ToString();
+        PlayerPrefs.SetInt("SUMDIAMON", donate);
+        AdsManager.Instance.acVideo_Donate -= Donated;
     }
 
 }

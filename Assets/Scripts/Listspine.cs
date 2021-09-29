@@ -56,14 +56,18 @@ public class Listspine : MonoBehaviour
             Load_buy();
         }
         Btn_Skin();
-        //if (n != 1 && n != 5)
-        //{
-        //    bought = false;
-        //}
-        //else
-        //{
-        //    bought = true;
-        //}
+
+        foreach (ListSkin l in list)
+        {
+            if (l.Dimon == 0)
+            {
+                l.Bought = true;
+            }
+            else
+            {
+                l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
+            }
+        }
 
 
         s = n;
@@ -325,7 +329,7 @@ public class Listspine : MonoBehaviour
 
     private void Btn_Skin()
     {
-      
+      //  ListSkin l = list[n];
         if (!bought)
         {
             Buy_skin.SetActive(true);

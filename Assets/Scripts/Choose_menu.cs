@@ -271,31 +271,32 @@ public class Choose_menu : MonoBehaviour
         else
         {
             BuySkin.gameObject.SetActive(true);
-            if (BuySkin.GetComponentInChildren<Text>().text.Length < 5)
+            if (BuySkin.GetComponentInChildren<Text>().text.Length <= 5)
             {
                 BuySkin.GetComponentInChildren<Text>().text = "  " + l.Dimon;
             }
-           if(BuySkin.GetComponentInChildren<Text>().text.Length >= 5)
+            if (BuySkin.GetComponentInChildren<Text>().text.Length >= 5)
             {
                 BuySkin.GetComponentInChildren<Text>().text = " " + l.Dimon;
             }
-        }
-        Tryskin.gameObject.SetActive(true);
-        SelectSkin.gameObject.SetActive(false);
-        SelectedSkin.gameObject.SetActive(false);
-        //image_btn[n].image.enabled = false;
-        //image_lock[n].SetActive(true);
-        if (l.Dimon < PlayerPrefs.GetInt("SUMDIAMON", 0))
-        {
-            BuySkin.interactable = true;
-            Debug.Log("mua dc");
-        }
-        else
-        {
-            BuySkin.interactable = false;
-            Debug.Log("Khong mua dc");
-        }
 
+            Tryskin.gameObject.SetActive(true);
+            SelectSkin.gameObject.SetActive(false);
+            SelectedSkin.gameObject.SetActive(false);
+            //image_btn[n].image.enabled = false;
+            //image_lock[n].SetActive(true);
+            if (l.Dimon < PlayerPrefs.GetInt("SUMDIAMON", 0))
+            {
+                BuySkin.interactable = true;
+                Debug.Log("mua dc");
+            }
+            else
+            {
+                BuySkin.interactable = false;
+                Debug.Log("Khong mua dc");
+            }
+
+        }
     }
     
     public int s;
@@ -346,7 +347,7 @@ public class Choose_menu : MonoBehaviour
 
     private void Donated()
     {
-        int donate = (PlayerPrefs.GetInt("SUMDIAMON",0) + 10);
+        int donate = (PlayerPrefs.GetInt("SUMDIAMON",0) + 1000000);
         Diamon_Money.text = donate.ToString();
         PlayerPrefs.SetInt("SUMDIAMON", donate);
         OnDisable();

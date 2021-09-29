@@ -41,9 +41,14 @@ public class Choose_menu : MonoBehaviour
         int lastMission = GameSetting.GetLastMission;
 
         int updateDiamon = PlayerPrefs.GetInt("SUMDIAMON", 0);
-
-        Diamon_Money.text = updateDiamon.ToString();
-
+        if (updateDiamon >= 10)
+        {
+            Diamon_Money.text = updateDiamon.ToString();
+        }
+        else
+        {
+            Diamon_Money.text = "0 " + updateDiamon.ToString();
+        }
         audioS = GetComponent<AudioSource>();
         foreach (ListSkin l in list)
         {
@@ -241,7 +246,7 @@ public class Choose_menu : MonoBehaviour
         {
             image_btn[n].image.enabled = true;
             image_lock[n].SetActive(false);
-            // SelectSkin.gameObject.SetActive(true);
+           // SelectSkin.gameObject.SetActive(true);
         }
         else
         {
@@ -249,9 +254,6 @@ public class Choose_menu : MonoBehaviour
             image_lock[n].SetActive(true);
            
         }
-     
-      
-
     }
     public bool selected= false;
 
@@ -275,27 +277,28 @@ public class Choose_menu : MonoBehaviour
             {
                 BuySkin.GetComponentInChildren<Text>().text = "  " + l.Dimon;
             }
-           if(BuySkin.GetComponentInChildren<Text>().text.Length >= 5)
+            if (BuySkin.GetComponentInChildren<Text>().text.Length >= 5)
             {
                 BuySkin.GetComponentInChildren<Text>().text = " " + l.Dimon;
             }
-        }
-        Tryskin.gameObject.SetActive(true);
-        SelectSkin.gameObject.SetActive(false);
-        SelectedSkin.gameObject.SetActive(false);
-        //image_btn[n].image.enabled = false;
-        //image_lock[n].SetActive(true);
-        if (l.Dimon < PlayerPrefs.GetInt("SUMDIAMON", 0))
-        {
-            BuySkin.interactable = true;
-            Debug.Log("mua dc");
-        }
-        else
-        {
-            BuySkin.interactable = false;
-            Debug.Log("Khong mua dc");
-        }
 
+            Tryskin.gameObject.SetActive(true);
+            SelectSkin.gameObject.SetActive(false);
+            SelectedSkin.gameObject.SetActive(false);
+            //image_btn[n].image.enabled = false;
+            //image_lock[n].SetActive(true);
+
+            if (l.Dimon < PlayerPrefs.GetInt("SUMDIAMON", 0) && !check)
+            {
+                BuySkin.interactable = true;
+               
+            }
+            else
+            {
+                BuySkin.interactable = false;
+              
+            }
+        }
     }
     
     public int s;
@@ -306,8 +309,8 @@ public class Choose_menu : MonoBehaviour
         {
             selected = true;
         }
-        ListSkin l = list[n];
-       UpdateSelect();
+
+        UpdateSelect();
         Save_selected();
 
     }
@@ -346,7 +349,7 @@ public class Choose_menu : MonoBehaviour
 
     private void Donated()
     {
-        int donate = (PlayerPrefs.GetInt("SUMDIAMON",0) + 10);
+        int donate = (PlayerPrefs.GetInt("SUMDIAMON",0) + 100);
         Diamon_Money.text = donate.ToString();
         PlayerPrefs.SetInt("SUMDIAMON", donate);
         OnDisable();

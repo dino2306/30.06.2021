@@ -1104,7 +1104,6 @@ MonoBehaviour:
   off: {fileID: 21300000, guid: b4692b20313d16b4b8538ff0cb855554, type: 3}
   Scencename: Home
   check: 0
-  Dimon_Money: {fileID: 378538359}
   muted: 0
 --- !u!4 &60812690
 Transform:
@@ -38450,12 +38449,12 @@ MonoBehaviour:
   list:
   - name: Sasuke
     index: 0
-    Dimon: 50
+    Dimon: 100
     Bought: 0
     checkLv: 0
   - name: Spider
     index: 1
-    Dimon: 50
+    Dimon: 100
     Bought: 0
     checkLv: 0
   - name: batman
@@ -38465,7 +38464,7 @@ MonoBehaviour:
     checkLv: 0
   - name: LoL
     index: 3
-    Dimon: 50
+    Dimon: 100
     Bought: 0
     checkLv: 0
   - name: ???
@@ -38480,7 +38479,7 @@ MonoBehaviour:
     checkLv: 0
   - name: PUPG
     index: 6
-    Dimon: 50
+    Dimon: 100
     Bought: 0
     checkLv: 0
   - name: ?2
@@ -38520,47 +38519,47 @@ MonoBehaviour:
     checkLv: 0
   - name: DauBep
     index: 14
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   - name: BongBauduc
     index: 15
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   - name: ?5
     index: 16
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   - name: ?6
     index: 17
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   - name: ?7
     index: 18
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   - name: ?8
     index: 19
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   - name: Sonic
     index: 20
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   - name: ?9
     index: 21
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   - name: ?10
     index: 22
-    Dimon: 50
+    Dimon: 80
     Bought: 0
     checkLv: 0
   check: 0
@@ -43056,8 +43055,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11, y: -23}
-  m_SizeDelta: {x: 62.76, y: 62.96}
+  m_AnchoredPosition: {x: -27.2, y: -23}
+  m_SizeDelta: {x: 80.34, y: 62.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1710225887
 MonoBehaviour:
@@ -43092,7 +43091,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: '  50'
 --- !u!222 &1710225888
 CanvasRenderer:
   m_ObjectHideFlags: 0

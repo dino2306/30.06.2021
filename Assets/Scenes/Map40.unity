@@ -337,8 +337,8 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -0.9260771, y: 0.05565214}
-  - {x: 0.21506488, y: -0.5347905}
-  - {x: 7.5976725, y: -0.5220332}
+  - {x: 0.45952708, y: -0.65148926}
+  - {x: 8.090103, y: -0.6493859}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -7987,7 +7987,8 @@ EdgeCollider2D:
   - {x: -1.4143481, y: -0.7456989}
   - {x: -2.1473327, y: -0.011514187}
   - {x: -0.77557135, y: -0.0062413216}
-  - {x: 0.045896888, y: -0.60966206}
+  - {x: -0.020821571, y: -0.5552516}
+  - {x: 7.53812, y: -0.5494132}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

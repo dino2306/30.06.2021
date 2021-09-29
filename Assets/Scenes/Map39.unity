@@ -8306,7 +8306,9 @@ MonoBehaviour:
   late: 1
   player1: {fileID: 663695505}
   player2: {fileID: 141205554}
-  gameOver: {fileID: 529088196}
+  Panel_gameOver: {fileID: 529088196}
+  Watch_overTime: {fileID: 529088194}
+  gameover: {fileID: 529088195}
   V_pl1: {x: 0, y: 0}
   V_pl2: {x: 0, y: 0}
 --- !u!1001 &1811252889

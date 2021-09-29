@@ -68,7 +68,7 @@ public class Listspine : MonoBehaviour
 
         s = n;
 
-      
+
     }
 
     private void OnDisable()
@@ -77,6 +77,7 @@ public class Listspine : MonoBehaviour
         if (AdsManager.Instance != null)
         {
             AdsManager.Instance.acTryVideo -= Tried;
+            Debug.Log("turn off Trying");
         }
     }
 
@@ -190,6 +191,7 @@ public class Listspine : MonoBehaviour
             case 25:
                 ChangeSkin(skanim, twenty_five);
                 break;
+          
         }
      
      
@@ -360,6 +362,7 @@ public class Listspine : MonoBehaviour
         {
             AdsManager.Instance.acTryVideo += Tried;
         }
+       
     }
 
     private void Tried()
@@ -369,6 +372,8 @@ public class Listspine : MonoBehaviour
         panel_menu.SetActive(true);
         selected = false;
         Save_selected();
+
+        OnDisable();
     }
 
     public void Buyskin()

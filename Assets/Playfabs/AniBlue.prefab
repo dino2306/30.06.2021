@@ -125,7 +125,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: 100_1_idle
+  _animationName: 100_1_idle_home
   loop: 1
   timeScale: 1
 --- !u!114 &5853426504793292700
@@ -170,7 +170,7 @@ MonoBehaviour:
   yeah: {fileID: 8300000, guid: ac607d31441afc4439f6354f90fb531b, type: 3}
   quatgio: {fileID: 8300000, guid: 064f5efa41cbcfd419c29a6feae1d14e, type: 3}
   congtac: {fileID: 8300000, guid: 483941efd7441bb47871fe539ce21398, type: 3}
-  IdleAnim: 100_1_idle
+  IdleAnim: 100_1_idle_home
   walkAnim: 100_run
   jumpAnim: jump
   isDie: die0

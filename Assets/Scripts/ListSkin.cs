@@ -3,7 +3,7 @@
     {
     public string name;
     public int index;
-    public int Number;
+    public int Dimon = 50;
     public bool Bought;
     public bool checkLv;
     }

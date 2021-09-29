@@ -64,10 +64,7 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
         audioS = GetComponent<AudioSource>();
       
 
-        if (AdsManager.Instance != null)
-        {
-            AdsManager.Instance.acVideoComplete += Revive;
-        }
+       
         //vstart = transform.position;   
         if (!PlayerPrefs.HasKey("selectOption"))
         {
@@ -86,6 +83,7 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
         if (AdsManager.Instance != null)
         {
             AdsManager.Instance.acVideoComplete -= Revive;
+            Debug.Log("turn off Revive");
         }
     }
   
@@ -161,7 +159,7 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
                 audioS.clip = Select_Diamon;
                 audioS.Play();
 
-             int Money=   AdsManager.Instance.Sum_diamon++;
+                int Money = PlayerPrefs.GetInt("SUMDIAMON", 0) + 1;
                 PlayerPrefs.SetInt("SUMDIAMON", Money);
             }
             if (collision.gameObject.tag == "Finish2" && gamecontroller.num2 == 0)
@@ -255,7 +253,7 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
                 audioS.Play();
 
 
-                int Money = AdsManager.Instance.Sum_diamon++;
+                int Money = PlayerPrefs.GetInt("SUMDIAMON",0) + 1;
 
                 PlayerPrefs.SetInt("SUMDIAMON", Money);
             }
@@ -653,7 +651,10 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
     public void WatchVideo() /// ham goi quang cao 
     {
          AdsManager.Instance.ShowVideoReward();
-   
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideoComplete += Revive;
+        }
     }
     
 
@@ -670,6 +671,8 @@ sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, t
             turret.bulletspeed = 5;
             audioS.clip = hoi_sinh;
             audioS.Play();
+
+            OnDisable();
         }
 
     }

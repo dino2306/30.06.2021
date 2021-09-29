@@ -35,13 +35,12 @@ public class Welcom : MonoBehaviour
     private int n = 1;
     public bool check;
 
-    public TextMeshProUGUI Dimon_Money;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        Dimon_Money.text = AdsManager.Instance.Sum_diamon.ToString();
-        PlayerPrefs.GetInt("SUMDIAMON", 0);
+       
         if (ggadmob == null)
         {
             ggadmob = GameObject.FindGameObjectWithTag("ggAdmob");

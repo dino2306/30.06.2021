@@ -230,7 +230,7 @@ public class AdsManager : MonoBehaviour
         }
         if (acVideo_Donate != null)
         {
-            acVideo_Donate(); ;
+            acVideo_Donate(); 
         }
     }
 

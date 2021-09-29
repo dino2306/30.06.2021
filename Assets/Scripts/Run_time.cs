@@ -8,7 +8,7 @@ public class Run_time : MonoBehaviour
     public Text Seconds, minutes;
     public int late;
     public GameObject player1, player2;
-    public GameObject gameOver;
+    public GameObject Panel_gameOver, Watch_overTime, gameover;
 
     public Vector2 V_pl1, V_pl2;
     private bool Over_Time = false;
@@ -21,10 +21,7 @@ public class Run_time : MonoBehaviour
 
         V_pl2 = player2.transform.position;
 
-        if (AdsManager.Instance != null)
-        {
-            AdsManager.Instance.acVideo_timeUp += TimeUp;
-        }
+       
     }
     private void OnDisable()
     {
@@ -32,6 +29,7 @@ public class Run_time : MonoBehaviour
         if (AdsManager.Instance != null)
         {
             AdsManager.Instance.acVideo_timeUp -= TimeUp;
+            Debug.Log("turn off TimeUp");
         }
     }
 
@@ -69,20 +67,33 @@ public class Run_time : MonoBehaviour
         if (late == 0f && current_time < 1)
         {
             Over_Time = true;
-            gameOver.SetActive(true);
+          Panel_gameOver.SetActive(true);
+         
         }
     }
 
     public void WatachVideo()
     {
-        AdsManager.Instance.acVideoComplete = null;
+        //AdsManager.Instance.acVideoComplete = null;
         AdsManager.Instance.ShowVideoReward();
+        if (AdsManager.Instance != null)
+        {
+            AdsManager.Instance.acVideo_timeUp += TimeUp;
+        }
     }
 
     private void TimeUp()
     {
-        gameOver.SetActive(false);
+        Panel_gameOver.SetActive(false);      
         current_time = 20f;
         Over_Time = false;
+        OnDisable();
+    }
+
+    public void Close_Video()
+    { 
+            Watch_overTime.SetActive(false);
+            gameover.SetActive(true);       
+       // Watch_gameover.SetActive(true);
     }
 }

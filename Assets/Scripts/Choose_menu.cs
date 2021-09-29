@@ -271,24 +271,33 @@ public class Choose_menu : MonoBehaviour
         else
         {
             BuySkin.gameObject.SetActive(true);
-            Tryskin.gameObject.SetActive(true);
-            SelectSkin.gameObject.SetActive(false);
-            SelectedSkin.gameObject.SetActive(false);
-            //image_btn[n].image.enabled = false;
-            //image_lock[n].SetActive(true);
-            if (l.Dimon < PlayerPrefs.GetInt("SUMDIAMON", 0))
+            if (BuySkin.GetComponentInChildren<Text>().text.Length < 5)
             {
-                BuySkin.interactable = true;
-                Debug.Log("mua dc");
+                BuySkin.GetComponentInChildren<Text>().text = "  " + l.Dimon;
             }
-            else
+           if(BuySkin.GetComponentInChildren<Text>().text.Length >= 5)
             {
-                BuySkin.interactable = false;
-                Debug.Log("Khong mua dc");
+                BuySkin.GetComponentInChildren<Text>().text = " " + l.Dimon;
             }
-
         }
+        Tryskin.gameObject.SetActive(true);
+        SelectSkin.gameObject.SetActive(false);
+        SelectedSkin.gameObject.SetActive(false);
+        //image_btn[n].image.enabled = false;
+        //image_lock[n].SetActive(true);
+        if (l.Dimon < PlayerPrefs.GetInt("SUMDIAMON", 0))
+        {
+            BuySkin.interactable = true;
+            Debug.Log("mua dc");
+        }
+        else
+        {
+            BuySkin.interactable = false;
+            Debug.Log("Khong mua dc");
+        }
+
     }
+    
     public int s;
     public void Select()
     {

@@ -29,9 +29,9 @@ public class Choose_menu : MonoBehaviour
     public AudioClip click;
 
     public int n;
-   
+
     public ListSkin[] list;
-  
+
 
     public TextMeshProUGUI Diamon_Money;
 
@@ -41,11 +41,11 @@ public class Choose_menu : MonoBehaviour
         int lastMission = GameSetting.GetLastMission;
 
         int updateDiamon = PlayerPrefs.GetInt("SUMDIAMON", 0);
-<<<<<<< HEAD
+
 
         Diamon_Money.text = updateDiamon.ToString();
 
-=======
+
         if (updateDiamon >= 10)
         {
             Diamon_Money.text = updateDiamon.ToString();
@@ -54,13 +54,13 @@ public class Choose_menu : MonoBehaviour
         {
             Diamon_Money.text = "0" + updateDiamon.ToString();
         }
->>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
+
         audioS = GetComponent<AudioSource>();
 
 
         n = PlayerPrefs.GetInt("Select", 0);
 
-        s = n; 
+        s = n;
         if (!PlayerPrefs.HasKey("SELECTED"))     // luu bien boo selected voi dieu kien s=n
         {
             PlayerPrefs.SetInt("SELECTED", 0);
@@ -75,7 +75,7 @@ public class Choose_menu : MonoBehaviour
         }
         UpdateSelect();
 
-        foreach (ListSkin l in list) 
+        foreach (ListSkin l in list)
         {
             if (l.Dimon == 0)
             {
@@ -96,7 +96,7 @@ public class Choose_menu : MonoBehaviour
                 image_lock[n].SetActive(false);
             }
         }
-       
+
     }
     private void OnDisable()
     {
@@ -124,7 +124,7 @@ public class Choose_menu : MonoBehaviour
             }
 
         }
-      
+
         UpdateUi();
 
         if (Input.GetKey(KeyCode.D))
@@ -135,10 +135,10 @@ public class Choose_menu : MonoBehaviour
         Debug.Log(a.index);
     }
 
-    public void Skin()      
+    public void Skin()
     {
         Panel_Skin.SetActive(true);
-      //  n = 0;
+        //  n = 0;
     }
 
     public void Close_skin()
@@ -149,7 +149,7 @@ public class Choose_menu : MonoBehaviour
 
     public void Unlock_Premium()
     {
-      
+
         Premium.SetActive(true);
         Rescue.SetActive(false);
         Premium_high.enabled = true;
@@ -171,7 +171,7 @@ public class Choose_menu : MonoBehaviour
 
     public void Unlock_Resuce()
     {
-      
+
         Premium.SetActive(false);
         Rescue.SetActive(true);
 
@@ -213,7 +213,7 @@ public class Choose_menu : MonoBehaviour
         audioS.clip = click;
         audioS.Play();
         ListSkin l = list[n];
-        if (l.Bought )
+        if (l.Bought)
         {
             if (s != n)
             {
@@ -229,7 +229,7 @@ public class Choose_menu : MonoBehaviour
         {
             return;
         }
-     
+
         UpdateSelect();
     }
 
@@ -241,11 +241,11 @@ public class Choose_menu : MonoBehaviour
         int updateDimon = (PlayerPrefs.GetInt("SUMDIAMON", 0) - l.Dimon);
         Diamon_Money.text = updateDimon.ToString();
         PlayerPrefs.SetInt("SUMDIAMON", updateDimon);
-<<<<<<< HEAD
+
 
 
     }
-   
+
     private void Update_boughtSkin()
     {
         ListSkin l = list[n];
@@ -260,16 +260,14 @@ public class Choose_menu : MonoBehaviour
         {
             image_btn[n].image.enabled = false;
             image_lock[n].SetActive(true);
-           
-        }
-     
-      
 
-=======
->>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
+        }
+
+
     }
 
-   
+
+
     private void UpdateUi()     //update so luong skin da dc mua 
     {
         ListSkin l = list[n];
@@ -298,35 +296,36 @@ public class Choose_menu : MonoBehaviour
             Tryskin.gameObject.SetActive(true);
             SelectSkin.gameObject.SetActive(false);
             SelectedSkin.gameObject.SetActive(false);
-<<<<<<< HEAD
+
             //image_btn[n].image.enabled = false;
             //image_lock[n].SetActive(true);
             if (l.Dimon < PlayerPrefs.GetInt("SUMDIAMON", 0))
             {
                 BuySkin.interactable = true;
                 Debug.Log("mua dc");
-=======
-            image_btn[n].image.enabled = false;
-            image_lock[n].SetActive(true);
 
-            if (l.Dimon <= PlayerPrefs.GetInt("SUMDIAMON", 0) )
-            {
-                BuySkin.interactable = true;
+                image_btn[n].image.enabled = false;
+                image_lock[n].SetActive(true);
 
->>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
-            }
-            else
-            {
-                BuySkin.interactable = false;
-<<<<<<< HEAD
-                Debug.Log("Khong mua dc");
-=======
+                if (l.Dimon <= PlayerPrefs.GetInt("SUMDIAMON", 0))
+                {
+                    BuySkin.interactable = true;
 
->>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
+
+                }
+                else
+                {
+                    BuySkin.interactable = false;
+
+                    Debug.Log("Khong mua dc");
+
+
+
+                }
+
             }
 
         }
-       
     }
 
     public int mod;
@@ -344,16 +343,17 @@ public class Choose_menu : MonoBehaviour
         if (selected == false)
         {
             selected = true;
-<<<<<<< HEAD
+
         }
         ListSkin l = list[n];
        UpdateSelect();
-=======
-        }     
+
+            
         UpdateSelect();
->>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
+
         Save_selected();
     }
+    
     private void UpdateSelect()
     {
         
@@ -367,7 +367,8 @@ public class Choose_menu : MonoBehaviour
                 SelectSkin.gameObject.SetActive(false);
                 SelectedSkin.gameObject.SetActive(true);           
             }
-        }
+    }
+
     
 
     public bool selected = false;

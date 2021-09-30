@@ -33,7 +33,6 @@ public class Listspine : MonoBehaviour
             Load();
         }
         Choose_skin();
-      //  seclect();
 
         if (!PlayerPrefs.HasKey("SELECTED"))
         {
@@ -46,29 +45,29 @@ public class Listspine : MonoBehaviour
         }
         Update_select();
 
-        if (!PlayerPrefs.HasKey("buy"))
-        {
-            PlayerPrefs.SetInt("buy", 0);
-            Load_buy();
-        }
-        else
-        {
-            Load_buy();
-        }
+      
         Btn_Skin();
-        //if (n != 1 && n != 5)
-        //{
-        //    bought = false;
-        //}
-        //else
-        //{
-        //    bought = true;
-        //}
 
-
+        foreach (ListSkin l in list)
+        {
+            if (l.Dimon == 0)
+            {
+                l.Bought = true;
+            }
+            else
+            {
+                l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
+            }
+        }
+      
         s = n;
+        if (s == n)
+        {
+            Selected_skin.gameObject.SetActive(true);
+            Select_skin.gameObject.SetActive(false);
+        }
 
-
+      
     }
 
     private void OnDisable()
@@ -85,8 +84,8 @@ public class Listspine : MonoBehaviour
     void Update()
     {
         Choose_skin();
-        Btn_Skin();
-        if (n != 1 && n != 5)
+       Btn_Skin();
+        if (n != 1 )
         {
             bought = false;
         }
@@ -94,6 +93,19 @@ public class Listspine : MonoBehaviour
         {
             bought = true;
         }
+        foreach (ListSkin l in list)
+        {
+            if (l.Dimon == 0)
+            {
+                l.Bought = true;
+            }
+            else
+            {
+                l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
+            }
+        }
+        ListSkin a = list[n];
+        Debug.Log(a.index);
     }
 
 
@@ -128,8 +140,7 @@ public class Listspine : MonoBehaviour
                 ChangeSkin(skanim, four);
                 break;
             case 5:
-                ChangeSkin(skanim, five);
-              
+                ChangeSkin(skanim, five);              
                 break;
             case 6:
                 ChangeSkin(skanim, six);
@@ -193,8 +204,6 @@ public class Listspine : MonoBehaviour
                 break;
           
         }
-     
-     
 
         ChangeSkin_key();
     }
@@ -267,16 +276,7 @@ public class Listspine : MonoBehaviour
             selected = true;
         }
 
-        //if (n != 1 && n != 5)
-        //{
-        //    bought = false;
-        //}
-        //else
-        //{
-        //    bought = true;
-        //}
-        Update_select();
-      //  Save_selected();
+        Update_select();   
     }
 
 
@@ -300,17 +300,8 @@ public class Listspine : MonoBehaviour
         {
             selected = true;
         }
-
-        //if (n != 1 && n != 5)
-        //{
-        //    bought = false;
-        //}
-        //else
-        //{
-        //    bought = true;
-        //}
         Update_select();
-       // Save_selected();
+     
     }
 
     private void Load()
@@ -323,15 +314,13 @@ public class Listspine : MonoBehaviour
         PlayerPrefs.SetInt("selectOption", n);
     }
 
-    private void Btn_Skin()
-    {
-      
+    private void Btn_Skin() ///***********8888888
+    {   
         if (!bought)
         {
             Buy_skin.SetActive(true);
             Try_skin.SetActive(true);
             Select_skin.SetActive(false);
-
         }
         else
         {
@@ -340,17 +329,6 @@ public class Listspine : MonoBehaviour
             Select_skin.SetActive(true);
         }
     }
-
-    private void Load_buy()
-    {
-       bought = PlayerPrefs.GetInt("buy") == 1;
-    }
-
-    private void Save_buy()
-    {
-        PlayerPrefs.SetInt("buy", bought ? 1 : 0);
-    }
-
 
     public void TrySkin()
     {
@@ -427,6 +405,7 @@ public class Listspine : MonoBehaviour
         }
       
     }
+
     public bool selected = false;
 
     private void Load_selected()

@@ -36623,6 +36623,11 @@ MonoBehaviour:
   panel_menu: {fileID: 1266394679}
   clik: {fileID: 8300000, guid: 449b181b7ebdf054f8ebcd579c8d63a5, type: 3}
   list:
+  - name: Free
+    index: 1
+    Dimon: 0
+    Bought: 0
+    checkLv: 0
   - name: Sasuke
     index: 2
     Dimon: 100
@@ -36636,6 +36641,11 @@ MonoBehaviour:
   - name: batman
     index: 4
     Dimon: 50
+    Bought: 0
+    checkLv: 0
+  - name: vegeta
+    index: 5
+    Dimon: 100
     Bought: 0
     checkLv: 0
   - name: LoL
@@ -36735,16 +36745,6 @@ MonoBehaviour:
     checkLv: 0
   - name: ?10
     index: 25
-    Dimon: 100
-    Bought: 0
-    checkLv: 0
-  - name: vegeta
-    index: 5
-    Dimon: 100
-    Bought: 0
-    checkLv: 0
-  - name: cc
-    index: 5
     Dimon: 100
     Bought: 0
     checkLv: 0
@@ -41384,6 +41384,11 @@ MonoBehaviour:
   panel_menu: {fileID: 1266394679}
   clik: {fileID: 8300000, guid: 449b181b7ebdf054f8ebcd579c8d63a5, type: 3}
   list:
+  - name: Free
+    index: 1
+    Dimon: 0
+    Bought: 0
+    checkLv: 0
   - name: Sasuke
     index: 2
     Dimon: 100
@@ -41397,6 +41402,11 @@ MonoBehaviour:
   - name: batman
     index: 4
     Dimon: 50
+    Bought: 0
+    checkLv: 0
+  - name: vegeta
+    index: 5
+    Dimon: 100
     Bought: 0
     checkLv: 0
   - name: LoL
@@ -41496,16 +41506,6 @@ MonoBehaviour:
     checkLv: 0
   - name: ?10
     index: 25
-    Dimon: 100
-    Bought: 0
-    checkLv: 0
-  - name: vegeta
-    index: 5
-    Dimon: 100
-    Bought: 0
-    checkLv: 0
-  - name: cc
-    index: 5
     Dimon: 100
     Bought: 0
     checkLv: 0

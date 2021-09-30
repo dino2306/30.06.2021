@@ -125,8 +125,7 @@ public class Choose_menu : MonoBehaviour
         {
             PlayerPrefs.DeleteAll();
         }
-        ListSkin a = list[n];
-        Debug.Log(a.index);
+      
     }
 
     public void Skin()      

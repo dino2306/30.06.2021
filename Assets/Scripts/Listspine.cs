@@ -93,17 +93,17 @@ public class Listspine : MonoBehaviour
         {
             bought = true;
         }
-        foreach (ListSkin l in list)
-        {
-            if (l.Dimon == 0)
-            {
-                l.Bought = true;
-            }
-            else
-            {
-                l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
-            }
-        }
+        //foreach (ListSkin l in list)
+        //{
+        //    if (l.Dimon == 0)
+        //    {
+        //        l.Bought = true;
+        //    }
+        //    else
+        //    {
+        //        l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
+        //    }
+        //}
         ListSkin a = list[n];
         Debug.Log(a.index);
     }
@@ -315,8 +315,9 @@ public class Listspine : MonoBehaviour
     }
 
     private void Btn_Skin() ///***********8888888
-    {   
-        if (!bought)
+    {
+        ListSkin l = list[n];
+        if (l.Dimon !=0)
         {
             Buy_skin.SetActive(true);
             Try_skin.SetActive(true);

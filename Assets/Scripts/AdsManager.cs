@@ -41,9 +41,13 @@ public class AdsManager : MonoBehaviour
         this.RequesRewarded();
         //  idAPP: "ca-app-pub-3940256099942544~3347511713 ";
         Sum_diamon = PlayerPrefs.GetInt("SUMDIAMON", 0);
-     
+
     }
-   
+    private void Update()
+    {
+        Sum_diamon = PlayerPrefs.GetInt("SUMDIAMON", 0);
+    }
+
 
     private void RewardedAd_OnAdClosed(object sender, EventArgs e)
     {

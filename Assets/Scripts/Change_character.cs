@@ -9,15 +9,15 @@ public class Change_character : MonoBehaviour
 
     [SpineSkin]
     public string one, two, three, four, five, six, seven, eight, nine, ten,
-        eleven, twelf, thirteen, fourteen, fifteen, sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, twenty_third;
+        eleven, twelf, thirteen, fourteen, fifteen, sixteen, seventeen, eightteen, nineteen, twentie, twenty_first, twenty_second, twenty_third, twenty_four;
 
     public Listspine list_1, list_2;
-
+    public bool selected;
     // Start is called before the first frame update
     void Start()
     {
-        List_skin = 2;
-      
+        PlayerPrefs.GetInt("MODSKIN", 0);
+
     }
 
     public int List_skin;
@@ -37,6 +37,10 @@ public class Change_character : MonoBehaviour
             case 4:
                 ChangeSkin(Skin_anim, three);
             
+                break;
+            case 5:
+                ChangeSkin(Skin_anim, twenty_four);
+
                 break;
             case 6:
                 ChangeSkin(Skin_anim, four);
@@ -146,11 +150,11 @@ public class Change_character : MonoBehaviour
         list_1.n = List_skin;
         list_2.n = List_skin;
 
-        list_1.selected = false;
-        list_2.selected = false;
+        //list_1.selected = false;
+        //list_2.selected = false;
     }
 
    
-    
+
 }
 

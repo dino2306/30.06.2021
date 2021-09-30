@@ -19,7 +19,7 @@ public class Choose_menu : MonoBehaviour
 
     public Button BuySkin, Tryskin, SelectSkin, SelectedSkin;
 
-    public List<GameObject> change;
+    public List<GameObject> change, G_Selected;
 
     public List<Button> image_btn;
     public List<GameObject> image_lock;
@@ -28,10 +28,10 @@ public class Choose_menu : MonoBehaviour
 
     public AudioClip click;
 
-    public int n  ;
-    public bool bought;
+    public int n;
+   
     public ListSkin[] list;
-    public bool check;
+  
 
     public TextMeshProUGUI Diamon_Money;
 
@@ -41,11 +41,41 @@ public class Choose_menu : MonoBehaviour
         int lastMission = GameSetting.GetLastMission;
 
         int updateDiamon = PlayerPrefs.GetInt("SUMDIAMON", 0);
+<<<<<<< HEAD
 
         Diamon_Money.text = updateDiamon.ToString();
 
+=======
+        if (updateDiamon >= 10)
+        {
+            Diamon_Money.text = updateDiamon.ToString();
+        }
+        else
+        {
+            Diamon_Money.text = "0" + updateDiamon.ToString();
+        }
+>>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
         audioS = GetComponent<AudioSource>();
-        foreach (ListSkin l in list)
+
+
+        n = PlayerPrefs.GetInt("Select", 0);
+
+        s = n; 
+        if (!PlayerPrefs.HasKey("SELECTED"))     // luu bien boo selected voi dieu kien s=n
+        {
+            PlayerPrefs.SetInt("SELECTED", 0);
+            Load_selected();
+        }
+        else
+        {
+            ListSkin mod = list[n];
+            change_1.List_skin = mod.index;
+            change_2.List_skin = mod.index;
+            Load_selected();
+        }
+        UpdateSelect();
+
+        foreach (ListSkin l in list) 
         {
             if (l.Dimon == 0)
             {
@@ -53,22 +83,20 @@ public class Choose_menu : MonoBehaviour
             }
             else
             {
-                l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
+                l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;  // luu skin da mua
             }
         }
 
-        //if (!PlayerPrefs.HasKey("BOUGHT"))
-        //{
-        //    PlayerPrefs.SetInt("BOUGHT", 0);
-        //    Load_bought();
-        //}
-        //else
-        //{
-        //    Load_bought();
-        //}
-        //Update_boughtSkin();
-      //  UpdateUi();
-
+        for (int n = 0; n < image_lock.Count; n++) //// mo khoa tung skin
+        {
+            ListSkin l = list[n];
+            if (l.Bought == true)
+            {
+                image_btn[n].image.enabled = true;
+                image_lock[n].SetActive(false);
+            }
+        }
+       
     }
     private void OnDisable()
     {
@@ -82,7 +110,7 @@ public class Choose_menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < change.Count; i++) // chon skin
+        for (int i = 0; i < change.Count; i++) // doi mau` obj skin dc click vao`
         {
             if (n == i)
             {
@@ -96,28 +124,32 @@ public class Choose_menu : MonoBehaviour
             }
 
         }
+      
         UpdateUi();
+
         if (Input.GetKey(KeyCode.D))
         {
             PlayerPrefs.DeleteAll();
         }
+        ListSkin a = list[n];
+        Debug.Log(a.index);
     }
-     
-    public void Skin()
+
+    public void Skin()      
     {
         Panel_Skin.SetActive(true);
-        //n = 0;
+      //  n = 0;
     }
 
     public void Close_skin()
     {
         Panel_Skin.SetActive(false);
-       
+
     }
-   
+
     public void Unlock_Premium()
     {
-        check = false;
+      
         Premium.SetActive(true);
         Rescue.SetActive(false);
         Premium_high.enabled = true;
@@ -132,14 +164,14 @@ public class Choose_menu : MonoBehaviour
         {
             default:
                 BuySkin.interactable = true;
-               // Tryskin.interactable = true;
+                // Tryskin.interactable = true;
                 break;
         }
     }
 
     public void Unlock_Resuce()
     {
-        check = true;
+      
         Premium.SetActive(false);
         Rescue.SetActive(true);
 
@@ -167,21 +199,21 @@ public class Choose_menu : MonoBehaviour
             case 22:
                 {
                     BuySkin.interactable = false;
-                   // Tryskin.interactable = false;
-                  
+                    // Tryskin.interactable = false;
+
                     break;
                 }
 
         }
     }
 
-    public void Enter_skin(int a)
+    public void Enter_skin(int a) // so thu tu cac skin
     {
         n = a;
         audioS.clip = click;
         audioS.Play();
         ListSkin l = list[n];
-        if (l.Bought)
+        if (l.Bought )
         {
             if (s != n)
             {
@@ -197,30 +229,10 @@ public class Choose_menu : MonoBehaviour
         {
             return;
         }
+     
         UpdateSelect();
     }
-    private void Load()
-    {
-        n = PlayerPrefs.GetInt("selectOption");
-    }
 
-    private void Save()
-    {
-        PlayerPrefs.SetInt("selectOption", n);
-    }
-
-    private void Load_bought()
-    {
-        ListSkin l = list[n];
-        l.Bought = PlayerPrefs.GetInt("BOUGHT") == 1;
-    }
-
-    private void Save_bought()
-    {
-        ListSkin l = list[n];    
-        PlayerPrefs.SetInt("BOUGHT",l.Bought ? 1 : 0);
-    }
-  
     public void Buy_skin()
     {
         ListSkin l = list[n];
@@ -229,6 +241,7 @@ public class Choose_menu : MonoBehaviour
         int updateDimon = (PlayerPrefs.GetInt("SUMDIAMON", 0) - l.Dimon);
         Diamon_Money.text = updateDimon.ToString();
         PlayerPrefs.SetInt("SUMDIAMON", updateDimon);
+<<<<<<< HEAD
 
 
     }
@@ -252,10 +265,12 @@ public class Choose_menu : MonoBehaviour
      
       
 
+=======
+>>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
     }
-    public bool selected= false;
 
-    private void UpdateUi()
+   
+    private void UpdateUi()     //update so luong skin da dc mua 
     {
         ListSkin l = list[n];
         if (l.Bought)
@@ -263,9 +278,9 @@ public class Choose_menu : MonoBehaviour
             BuySkin.gameObject.SetActive(false);
             Tryskin.gameObject.SetActive(false);
             SelectSkin.gameObject.SetActive(true);
-            //image_btn[n].image.enabled = true;
-            //image_lock[n].SetActive(false);
 
+            image_btn[n].image.enabled = true;
+            image_lock[n].SetActive(false);
 
         }
         else
@@ -283,49 +298,80 @@ public class Choose_menu : MonoBehaviour
             Tryskin.gameObject.SetActive(true);
             SelectSkin.gameObject.SetActive(false);
             SelectedSkin.gameObject.SetActive(false);
+<<<<<<< HEAD
             //image_btn[n].image.enabled = false;
             //image_lock[n].SetActive(true);
             if (l.Dimon < PlayerPrefs.GetInt("SUMDIAMON", 0))
             {
                 BuySkin.interactable = true;
                 Debug.Log("mua dc");
+=======
+            image_btn[n].image.enabled = false;
+            image_lock[n].SetActive(true);
+
+            if (l.Dimon <= PlayerPrefs.GetInt("SUMDIAMON", 0) )
+            {
+                BuySkin.interactable = true;
+
+>>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
             }
             else
             {
                 BuySkin.interactable = false;
+<<<<<<< HEAD
                 Debug.Log("Khong mua dc");
+=======
+
+>>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
             }
 
         }
+       
     }
-    
-    public int s;
-    public void Select()
+
+    public int mod;
+    public void Modskin(int l)
+    {
+        mod = l;
+       
+    }
+
+    public int s ;
+    public void Select() //skin dc select voi bien S
     {
         s = n;
+        PlayerPrefs.SetInt("Select", s);   
         if (selected == false)
         {
             selected = true;
+<<<<<<< HEAD
         }
         ListSkin l = list[n];
        UpdateSelect();
+=======
+        }     
+        UpdateSelect();
+>>>>>>> 964e206438addb35f4a691386b1ae55ea0db1f54
         Save_selected();
-
     }
-   private void UpdateSelect()
+    private void UpdateSelect()
     {
+        
+            if (selected == false)
+            {
+                SelectSkin.gameObject.SetActive(true);
+                SelectedSkin.gameObject.SetActive(false);         
+            }
+            else
+            {
+                SelectSkin.gameObject.SetActive(false);
+                SelectedSkin.gameObject.SetActive(true);           
+            }
+        }
+    
 
-        if (selected == false)
-        {
-            SelectSkin.gameObject.SetActive(true);
-            SelectedSkin.gameObject.SetActive(false);
-        }
-        else
-        {
-            SelectSkin.gameObject.SetActive(false);
-            SelectedSkin.gameObject.SetActive(true);
-        }
-    }
+    public bool selected = false;
+
     private void Load_selected()
     {
         selected = PlayerPrefs.GetInt("SELECTED") == 1;

@@ -271,7 +271,7 @@ public class Choose_menu : MonoBehaviour
         else
         {
             BuySkin.gameObject.SetActive(true);
-            if (BuySkin.GetComponentInChildren<Text>().text.Length <= 5)
+            if (BuySkin.GetComponentInChildren<Text>().text.Length < 5)
             {
                 BuySkin.GetComponentInChildren<Text>().text = "  " + l.Dimon;
             }

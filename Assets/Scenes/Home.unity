@@ -14567,7 +14567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '+10 '
+  m_text: '+20 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 749b9069dc4742c5bfa5c74644049926, type: 2}
@@ -18596,6 +18596,7 @@ RectTransform:
   - {fileID: 1253104692}
   - {fileID: 1395902765}
   - {fileID: 1692395610}
+  - {fileID: 831492465}
   - {fileID: 1498453529}
   m_Father: {fileID: 366504797}
   m_RootOrder: 0
@@ -23689,13 +23690,13 @@ RectTransform:
   - {fileID: 85410597}
   - {fileID: 1485607739}
   - {fileID: 488060844}
-  m_Father: {fileID: 1498453529}
-  m_RootOrder: 15
+  m_Father: {fileID: 628687983}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 448.59, y: -35}
-  m_SizeDelta: {x: 289.35, y: 85.63}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -468, y: -73}
+  m_SizeDelta: {x: 289.34998, y: 85.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &831492466
 MonoBehaviour:
@@ -23766,7 +23767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -26669,7 +26670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &923228738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36610,7 +36611,7 @@ MonoBehaviour:
   nineteen: 19_1
   twentie: 20_1
   twenty_first: 100_1
-  twenty_second: 100_1
+  twenty_second: 101_1
   twenty_third: 102_1
   twenty_four: 103_1
   twenty_five: 104_1
@@ -38200,7 +38201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 372, y: 108}
+  m_AnchoredPosition: {x: 152, y: 115}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298962091
@@ -43945,9 +43946,8 @@ RectTransform:
   - {fileID: 717741351}
   - {fileID: 631877003}
   - {fileID: 1437526420}
-  - {fileID: 831492465}
   m_Father: {fileID: 628687983}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -31,7 +31,7 @@ public class Welcom : MonoBehaviour
     GameObject ggadmob;
    
 
-    private int missionID = 40;
+  //  private int missionID = 40;
     private int n = 1;
     public bool check;
 
@@ -66,7 +66,7 @@ public class Welcom : MonoBehaviour
 
     
 
-        PlayerPrefs.SetInt("LastMission", missionID);
+    //    PlayerPrefs.SetInt("LastMission", missionID);
 
         if (PlayerPrefs.GetInt("SELECTED") == 0)
         {
@@ -95,10 +95,7 @@ public class Welcom : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            PlayerPrefs.DeleteAll();
-        }
+      
 
     }
     public void Open(int ScenID)
@@ -109,8 +106,7 @@ public class Welcom : MonoBehaviour
         audioClik.clip = click;
         audioClik.Play();
 
-        //AdsManager.Instance.bannerView.Destroy();
-        //AdsManager.Instance.bannerView.Hide();
+      
     }
 
     public void ChoosePlay()

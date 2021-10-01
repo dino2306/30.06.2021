@@ -29,6 +29,10 @@ public class AdsManager : MonoBehaviour
             DontDestroyOnLoad(this);
             Instance = this;
         }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     // Start is called before the first frame update
@@ -51,7 +55,14 @@ public class AdsManager : MonoBehaviour
 
     private void RewardedAd_OnAdClosed(object sender, EventArgs e)
     {
-        RequesRewarded();
+        //RequesRewarded();
+
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the rewarded ad with the request.
+        this.rewardedAd.LoadAd(request);
+
+
         //acVideoComplete = null;
         //acVideo_buy = null;
         //acTryVideo = null;
@@ -114,8 +125,10 @@ public class AdsManager : MonoBehaviour
     public void RequestInterstitial()
     {
 #if UNITY_ANDROID
-       string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+        //  string adUnitId = "ca-app-pub-3940256099942544/1033173712"; // id test
         //string adUnitId = "ca-app-pub-8296383146698662/4157503440";
+        string adUnitId = "ca-app-pub-7459447661833455/7646908463"; // cua cty
+
 #elif UNITY_IPHONE
         string adUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else
@@ -143,8 +156,12 @@ public class AdsManager : MonoBehaviour
 
     private void Interstitial_OnAdClosed(object sender, EventArgs e)
     {
-        RequestInterstitial();
+        //RequestInterstitial();
 
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the interstitial with the request.
+        this.interstitial.LoadAd(request);
 
         if (acIntersClose != null) acIntersClose(true);
     }
@@ -195,8 +212,11 @@ public class AdsManager : MonoBehaviour
 
     private void RequesRewarded()
     {
-        string adUnitId = "ca-app-pub-3940256099942544/5224354917";
-         //string adUnitId = "ca-app-pub-8296383146698662/4843236440";
+       // string adUnitId = "ca-app-pub-3940256099942544/5224354917"; // id test
+        //string adUnitId = "ca-app-pub-8296383146698662/4843236440";
+
+        string adUnitId = "ca-app -pub-7459447661833455 / 6825742814"; // cua cty
+
         this.rewardedAd = new RewardedAd(adUnitId);
 
         rewardedAd.OnUserEarnedReward += RewardedAd_OnUserEarnedReward;

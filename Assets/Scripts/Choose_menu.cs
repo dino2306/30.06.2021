@@ -340,7 +340,7 @@ public class Choose_menu : MonoBehaviour
 
     private void Donated()
     {
-        int donate = (PlayerPrefs.GetInt("SUMDIAMON",0) + 100);
+        int donate = (PlayerPrefs.GetInt("SUMDIAMON",0) + 20);
         Diamon_Money.text = donate.ToString();
         PlayerPrefs.SetInt("SUMDIAMON", donate);
         OnDisable();

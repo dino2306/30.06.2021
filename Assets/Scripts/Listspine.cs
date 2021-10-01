@@ -104,7 +104,7 @@ public class Listspine : MonoBehaviour
                 l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
             }
         }
-        ListSkin a = list[n];
+        ListSkin a = list[n - 1];
         Debug.Log(a.index);
     }
 

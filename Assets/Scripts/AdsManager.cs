@@ -71,7 +71,7 @@ public class AdsManager : MonoBehaviour
 
     private void RewardedAd_OnAdFailedToShow(object sender, AdErrorEventArgs e)
     {
-
+     
     }
 
     private void RewardedAd_OnAdOpening(object sender, EventArgs e)
@@ -86,7 +86,7 @@ public class AdsManager : MonoBehaviour
 
     private void RewardedAd_OnAdLoaded(object sender, EventArgs e)
     {
-
+       // rewardedAd.Show();
     }
 
 
@@ -127,7 +127,7 @@ public class AdsManager : MonoBehaviour
 #if UNITY_ANDROID
         //  string adUnitId = "ca-app-pub-3940256099942544/1033173712"; // id test
         //string adUnitId = "ca-app-pub-8296383146698662/4157503440";
-        string adUnitId = "ca-app-pub-7459447661833455/7646908463"; // cua cty
+        string adUnitId = "ca-app-pub-6790906231789318/5322278825"; // cua cty
 
 #elif UNITY_IPHONE
         string adUnitId = "ca-app-pub-3940256099942544/4411468910";
@@ -151,15 +151,15 @@ public class AdsManager : MonoBehaviour
 
     private void Interstitial_OnAdLoaded(object sender, EventArgs e)
     {
-      
+      //  interstitial.Show();
     }
 
     private void Interstitial_OnAdClosed(object sender, EventArgs e)
     {
         //RequestInterstitial();
 
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
+       // Create an empty ad request.
+       AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
 
@@ -210,12 +210,12 @@ public class AdsManager : MonoBehaviour
 
     }
 
-    private void RequesRewarded()
+  public void RequesRewarded()
     {
-       // string adUnitId = "ca-app-pub-3940256099942544/5224354917"; // id test
-        //string adUnitId = "ca-app-pub-8296383146698662/4843236440";
+        //string adUnitId = "ca-app-pub-3940256099942544/5224354917"; // id test
+   // string adUnitId = "ca-app-pub-8296383146698662/4843236440"
 
-        string adUnitId = "ca-app -pub-7459447661833455 / 6825742814"; // cua cty
+         string adUnitId = "ca-app-pub-6790906231789318/4009197154"; // cua cty
 
         this.rewardedAd = new RewardedAd(adUnitId);
 

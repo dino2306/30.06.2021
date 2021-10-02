@@ -118,9 +118,22 @@ public class Choose_menu : MonoBehaviour
             }
 
         }
-      
-        UpdateUi();
+        if (!PlayerPrefs.HasKey("SELECTED"))     // luu bien boo selected voi dieu kien s=n
+        {
+            PlayerPrefs.SetInt("SELECTED", 0);
+            Load_selected();
+        }
+        else
+        {
+            ListSkin mod = list[n];
+            change_1.List_skin = mod.index;
+            change_2.List_skin = mod.index;
+            Load_selected();
+        }
+        UpdateSelect();
 
+        UpdateUi();
+      //  UpdateSelect();
         if (Input.GetKey(KeyCode.D))
         {
             PlayerPrefs.DeleteAll();

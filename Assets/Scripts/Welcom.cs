@@ -66,7 +66,7 @@ public class Welcom : MonoBehaviour
 
     
 
-    //    PlayerPrefs.SetInt("LastMission", missionID);
+     //   PlayerPrefs.SetInt("LastMission", missionID);
 
         if (PlayerPrefs.GetInt("SELECTED") == 0)
         {
@@ -245,7 +245,7 @@ public class Welcom : MonoBehaviour
         panel_Menu.SetActive(false);
         audioClik.clip = click;
         audioClik.Play();
-
+        audioS.volume = 1f;
     }
     public void Danh_Gia()
     {

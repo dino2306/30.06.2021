@@ -26688,7 +26688,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 168, y: 108}
+  m_AnchoredPosition: {x: 387, y: 108}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923228739
@@ -26735,9 +26735,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 60812689}
-        m_TargetAssemblyTypeName: Welcom, Assembly-CSharp
-        m_MethodName: Danh_Gia
+      - m_Target: {fileID: 383027485}
+        m_TargetAssemblyTypeName: AdsManager, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

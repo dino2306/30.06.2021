@@ -83,16 +83,6 @@ public class Listspine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Choose_skin();
-       Btn_Skin();
-        if (n != 1 )
-        {
-            bought = false;
-        }
-        else
-        {
-            bought = true;
-        }
         foreach (ListSkin l in list)
         {
             if (l.Dimon == 0)
@@ -104,8 +94,28 @@ public class Listspine : MonoBehaviour
                 l.Bought = PlayerPrefs.GetInt(l.name, 0) == 0 ? false : true;
             }
         }
+        Choose_skin();
+       Btn_Skin();
+        if (n != 1 )
+        {
+            bought = false;
+        }
+        else
+        {
+            bought = true;
+        }
+
+        //ListSkin a = list[n-1];
+        //Debug.Log(a.index);
+        if (s == n )
+        {
+            Selected_skin.gameObject.SetActive(true);
+            Select_skin.gameObject.SetActive(false);
+        }
+
         ListSkin a = list[n - 1];
         Debug.Log(a.index);
+
     }
 
 
@@ -315,12 +325,14 @@ public class Listspine : MonoBehaviour
     }
 
     private void Btn_Skin() ///***********8888888
-    {   
-        if (!bought)
+    {
+        ListSkin l = list[n-1];
+        if (!l.Bought)
         {
             Buy_skin.SetActive(true);
             Try_skin.SetActive(true);
             Select_skin.SetActive(false);
+            Selected_skin.SetActive(false);
         }
         else
         {

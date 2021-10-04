@@ -131,8 +131,10 @@ public class Choose_menu : MonoBehaviour
         {
             PlayerPrefs.DeleteAll();
         }
+
         ListSkin a = list[n];
         //Debug.Log(a.index);
+
 
 
     }
@@ -396,7 +398,11 @@ public class Choose_menu : MonoBehaviour
 
     private void Donated()
     {
-        int donate = (PlayerPrefs.GetInt("SUMDIAMON",0) + 10);
+
+      
+
+        int donate = (PlayerPrefs.GetInt("SUMDIAMON",0) + 20);
+
         Diamon_Money.text = donate.ToString();
         PlayerPrefs.SetInt("SUMDIAMON", donate);
         OnDisable();

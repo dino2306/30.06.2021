@@ -247,7 +247,7 @@ public class Choose_menu : MonoBehaviour
 
 
     }
-
+    // 
     private void Update_boughtSkin()
     {
         ListSkin l = list[n];

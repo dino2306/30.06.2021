@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: GD_99
-  productName: Couple Adventure
+  companyName: Adventor
+  productName: Move
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 0}
@@ -157,6 +157,12 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -174,7 +180,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.pgame.couple.stick.adventure
+    Android: com.Adventor.Move
     Standalone: com.HyoGD.BoyAndGirl
     iPhone: com.HyoGD.BoyAndGirl
   buildNumber:
@@ -775,7 +781,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Analytics: 1
+    Analytics: 0
     Build: 0
     Collab: 0
     Game Performance: 0
@@ -795,11 +801,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 2
-  cloudProjectId: 72c2aa59-3594-4253-bd30-d0ae41de5d1f
+  cloudProjectId: db43a62e-87b1-4a10-9aea-42eb530c2652
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BoyAndGirls
-  organizationId: boyyss99
+  projectName: Stickman Go
+  organizationId: trinhducloi2306
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0

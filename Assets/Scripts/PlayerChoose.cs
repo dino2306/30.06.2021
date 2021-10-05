@@ -38,7 +38,7 @@ public class PlayerChoose : MonoBehaviour
     {
         imBg.color = clBlue;
         audioSource = GetComponent<AudioSource>();
-        if (missionId < 21)
+        if (missionId <= 21)
         {
             audioSource.clip = easy;
             audioSource.Play();

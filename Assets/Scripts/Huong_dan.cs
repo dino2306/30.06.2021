@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets;
+using UnityEngine.UI;
+using TMPro;
 public class Huong_dan : MonoBehaviour
 {
     public GameObject tutorial;
@@ -24,5 +26,12 @@ public class Huong_dan : MonoBehaviour
 
             //  winmission.UnlockNextMission(missionId);
         }
+    }
+
+    public void Tutorial_off()
+    {
+        tutorial.GetComponentInChildren<Image>().enabled = false;
+        tutorial.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
+        Destroy(this);
     }
 }

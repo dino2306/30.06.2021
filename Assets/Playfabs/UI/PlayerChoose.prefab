@@ -51,8 +51,8 @@ MonoBehaviour:
   PausePanel: {fileID: 0}
   winmission: {fileID: 0}
   flCam: {fileID: 0}
-  clRed: {r: 0.5372549, g: 0.40784317, b: 0.3803922, a: 1}
-  clBlue: {r: 0, g: 0.5882353, b: 1, a: 1}
+  clRed: {r: 0.65882355, g: 0.20392157, b: 0.14117648, a: 1}
+  clBlue: {r: 0.22745098, g: 0.627451, b: 0.69803923, a: 1}
   imBg: {fileID: 0}
   jumpBtn_Hight: {fileID: 0}
   jumpBtn_Low: {fileID: 0}
